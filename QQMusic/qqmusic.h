@@ -18,8 +18,12 @@ public:
     void initUI();
 private slots:
     void on_quit_clicked();
+protected:
+    virtual void mousePressEvent(QMouseEvent* event);
+    virtual void mouseMoveEvent(QMouseEvent* event);
 
 private:
     Ui::QQMusic *ui;
+    QPoint dragPosition;
 };
 #endif // QQMUSIC_H
