@@ -32,7 +32,10 @@ void QQMusic::mousePressEvent(QMouseEvent *event)
     if(Qt::LeftButton == event->button())
     {
         dragPosition = event->globalPos() - geometry().topLeft();
+        return;
     }
+    // 自己关心的处理完之后其他的交给父类来处理
+    QWidget::mousePressEvent(event);
 }
 
 void QQMusic::mouseMoveEvent(QMouseEvent *event)
@@ -40,7 +43,9 @@ void QQMusic::mouseMoveEvent(QMouseEvent *event)
     if(Qt::LeftButton == event->buttons())
     {
         move(event->globalPos() - dragPosition);
+        return;
     }
+    QWidget::mouseMoveEvent(event);
 }
 
 
