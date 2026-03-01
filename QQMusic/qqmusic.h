@@ -15,6 +15,10 @@ public:
     QQMusic(QWidget *parent = nullptr);
     ~QQMusic();
 
+    void initUI();
+private slots:
+    void on_quit_clicked();
+
 private:
     Ui::QQMusic *ui;
 };

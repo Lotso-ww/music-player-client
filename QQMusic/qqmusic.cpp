@@ -6,6 +6,8 @@ QQMusic::QQMusic(QWidget *parent)
     , ui(new Ui::QQMusic)
 {
     ui->setupUi(this);
+
+    initUI();
 }
 
 QQMusic::~QQMusic()
@@ -13,3 +15,13 @@ QQMusic::~QQMusic()
     delete ui;
 }
 
+void QQMusic::initUI()
+{
+    this->setWindowFlag(Qt::FramelessWindowHint);
+}
+
+
+void QQMusic::on_quit_clicked()
+{
+    close();
+}
