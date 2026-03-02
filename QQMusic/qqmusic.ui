@@ -169,7 +169,7 @@
                 <number>0</number>
                </property>
                <property name="leftMargin">
-                <number>0</number>
+                <number>5</number>
                </property>
                <property name="topMargin">
                 <number>0</number>
@@ -181,7 +181,23 @@
                 <number>0</number>
                </property>
                <item>
-                <widget class="QLineEdit" name="lineEdit"/>
+                <widget class="QLineEdit" name="lineEdit">
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#lineEdit
+{
+	border:none;
+	background-color: #E3E3E3; /*设置背景颜色*/ 
+	border-radius:17px; /*设置四个⻆的圆⻆*/
+	padding-left:17px; /*内部文字到边的距离*/
+}</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -189,7 +205,18 @@
             <item>
              <widget class="QWidget" name="settingBox" native="true">
               <property name="styleSheet">
-               <string notr="true"/>
+               <string notr="true">QPushButton
+{
+	border-radius:0px;
+	border:none;
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+
+QPushButton:hover
+{
+	background-color:rgba(220,0,0,0.5);/*设置背景颜色为半透明的红色*/ 
+}</string>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_6">
                <item>
@@ -219,6 +246,12 @@
                    <height>30</height>
                   </size>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">#skin
+{
+	background-image:url(&quot;:/images/skin.png&quot;);
+}</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -237,6 +270,12 @@
                    <width>30</width>
                    <height>30</height>
                   </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#max
+{
+	background-image:url(&quot;:/images/max.png&quot;);
+}</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -257,6 +296,12 @@
                    <height>30</height>
                   </size>
                  </property>
+                 <property name="styleSheet">
+                  <string notr="true">#min
+{
+	background-image:url(&quot;:/images/min.png&quot;);
+}</string>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -275,6 +320,12 @@
                    <width>30</width>
                    <height>30</height>
                   </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">#quit
+{
+	background-image:url(&quot;:/images/quit.png&quot;);
+}</string>
                  </property>
                  <property name="text">
                   <string/>
