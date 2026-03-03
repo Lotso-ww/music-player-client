@@ -445,23 +445,23 @@ QPushButton:hover
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="rec" native="true">
+                   <widget class="btForm" name="rec" native="true">
                     <property name="styleSheet">
-                     <string notr="true">background-color:rgb(170, 85, 127);</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="audio" native="true">
+                   <widget class="btForm" name="audio" native="true">
                     <property name="styleSheet">
-                     <string notr="true">background-color:rgb(170, 170, 127);</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="music" native="true">
+                   <widget class="btForm" name="music" native="true">
                     <property name="styleSheet">
-                     <string notr="true">background-color:rgb(170, 255, 255);</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -482,23 +482,23 @@ QPushButton:hover
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="like" native="true">
+                   <widget class="btForm" name="like" native="true">
                     <property name="styleSheet">
-                     <string notr="true">background-color:rgb(255, 255, 0);</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="local" native="true">
+                   <widget class="btForm" name="local" native="true">
                     <property name="styleSheet">
-                     <string notr="true">background-color:rgb(202, 255, 220);</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="recent" native="true">
+                   <widget class="btForm" name="recent" native="true">
                     <property name="styleSheet">
-                     <string notr="true">background-color:rgb(210, 225, 255);</string>
+                     <string notr="true"/>
                     </property>
                    </widget>
                   </item>
@@ -991,6 +991,14 @@ QPushButton:hover
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>btForm</class>
+   <extends>QWidget</extends>
+   <header location="global">btform.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
