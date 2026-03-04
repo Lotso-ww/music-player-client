@@ -15,10 +15,14 @@ public:
     explicit btForm(QWidget *parent = nullptr);
     ~btForm();
 
-    void setIconAndText(const QString& btIconUrl, const QString& btText);
-
+    void setIconAndText(const QString& btIconUrl, const QString& btText, int pageId);
+protected:
+    void mousePressEvent(QMouseEvent *event);
+signals:
+    void btClick(int id);
 private:
     Ui::btForm *ui;
+    int pageId;
 };
 
 #endif // BTFORM_H

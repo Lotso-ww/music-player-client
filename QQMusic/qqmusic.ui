@@ -452,7 +452,7 @@ QPushButton:hover
                    </widget>
                   </item>
                   <item>
-                   <widget class="btForm" name="audio" native="true">
+                   <widget class="btForm" name="radio" native="true">
                     <property name="styleSheet">
                      <string notr="true"/>
                     </property>
