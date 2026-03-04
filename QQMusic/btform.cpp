@@ -31,5 +31,5 @@ void btForm::mousePressEvent(QMouseEvent *event)
     ui->btStyle->setStyleSheet("#btStyle { background-color:rgb(30, 206, 154); }");
 
     // 2. 当按钮按下之后，需要切换bodyRight中的page页面
-    emit btClick(pageId);
+    emit btClick(pageId); // 发射信号
 }

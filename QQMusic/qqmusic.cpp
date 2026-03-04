@@ -11,6 +11,7 @@ QQMusic::QQMusic(QWidget *parent)
     ui->setupUi(this);
 
     initUI();
+    connectSignalAndSlots();
 }
 
 QQMusic::~QQMusic()
@@ -41,10 +42,25 @@ void QQMusic::initUI()
     ui->recent->setIconAndText(":/images/recent.png", "最近播放", 5);
 }
 
+void QQMusic::connectSignalAndSlots()
+{
+    // 关联btForm的信号和处理这个信号的槽函数
+    connect(ui->rec, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+    connect(ui->radio, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+    connect(ui->music, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+    connect(ui->like, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+    connect(ui->local, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+    connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+}
 
 void QQMusic::on_quit_clicked()
 {
     close();
+}
+
+void QQMusic::on_btForm_cilcked(int pageId)
+{
+    ui->stackedWidget->setCurrentIndex(pageId);
 }
 
 void QQMusic::mousePressEvent(QMouseEvent *event)
