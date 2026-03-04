@@ -15,6 +15,8 @@ public:
     explicit btForm(QWidget *parent = nullptr);
     ~btForm();
 
+    void setIconAndText(const QString& btIconUrl, const QString& btText);
+
 private:
     Ui::btForm *ui;
 };

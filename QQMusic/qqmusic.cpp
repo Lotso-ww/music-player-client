@@ -31,6 +31,14 @@ void QQMusic::initUI()
     shadowEffect->setColor("#000000"); // 黑色
     shadowEffect->setBlurRadius(20);
     this->setGraphicsEffect(shadowEffect);
+
+    // 设置bodyLeft中6个btForm的图标和文本（调用我们自己实现的函数）
+    ui->rec->setIconAndText(":/images/rec.png", "推荐");
+    ui->audio->setIconAndText(":/images/radio.png", "电台");
+    ui->music->setIconAndText(":/images/music.png", "音乐馆");
+    ui->like->setIconAndText(":/images/like.png", "我喜欢");
+    ui->local->setIconAndText(":/images/local.png", "本地下载");
+    ui->recent->setIconAndText(":/images/recent.png", "最近播放");
 }
 
 
