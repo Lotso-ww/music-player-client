@@ -25,6 +25,17 @@ void btForm::setIconAndText(const QString &btIconUrl, const QString &btText, int
     this->pageId = pageId;
 }
 
+int btForm::getPageId() const
+{
+    return pageId;
+}
+
+void btForm::clearBg()
+{
+    // 把背景颜色设置还原成按下之前的
+    ui->btStyle->setStyleSheet("#btStyle:hover{background-color:#D8D8D8;}");
+}
+
 void btForm::mousePressEvent(QMouseEvent *event)
 {
     // 1. 当按钮按下之后，需要修改其背景颜色

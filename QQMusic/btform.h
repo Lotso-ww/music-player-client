@@ -16,6 +16,8 @@ public:
     ~btForm();
 
     void setIconAndText(const QString& btIconUrl, const QString& btText, int pageId);
+    int getPageId()const;
+    void clearBg();
 protected:
     void mousePressEvent(QMouseEvent *event);
 signals:

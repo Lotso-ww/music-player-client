@@ -60,6 +60,19 @@ void QQMusic::on_quit_clicked()
 
 void QQMusic::on_btForm_cilcked(int pageId)
 {
+    // 1.获取当前⻚⾯所有btFrom按钮类型的对象
+    QList<btForm*> btList = this->findChildren<btForm*>();
+
+    // 2.遍历所有 BtForm 对象，将 pageId 与当前点击 ID 不符的按钮都调用 clearBg() 清除样式
+    for(auto& btItem : btList)
+    {
+        if(btItem->getPageId() != pageId)
+        {
+            btItem->clearBg();
+        }
+    }
+
+    // 3.设置当前显示页面
     ui->stackedWidget->setCurrentIndex(pageId);
 }
 
