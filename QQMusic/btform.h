@@ -2,6 +2,7 @@
 #define BTFORM_H
 
 #include <QWidget>
+#include <QPropertyAnimation>
 
 namespace Ui {
 class btForm;
@@ -25,6 +26,11 @@ signals:
 private:
     Ui::btForm *ui;
     int pageId;
+
+    QPropertyAnimation* line1Animat;
+    QPropertyAnimation* line2Animat;
+    QPropertyAnimation* line3Animat;
+    QPropertyAnimation* line4Animat;
 };
 
 #endif // BTFORM_H

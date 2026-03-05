@@ -19,7 +19,7 @@ public:
     void connectSignalAndSlots();
 private slots:
     void on_quit_clicked();
-    void on_btForm_cilcked(int pageId);
+    void on_btForm_clicked(int pageId);
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);

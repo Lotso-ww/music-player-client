@@ -35,11 +35,11 @@ static const qt_meta_stringdata_QQMusic_t qt_meta_stringdata_QQMusic = {
 QT_MOC_LITERAL(0, 0, 7), // "QQMusic"
 QT_MOC_LITERAL(1, 8, 15), // "on_quit_clicked"
 QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 17), // "on_btForm_cilcked"
+QT_MOC_LITERAL(3, 25, 17), // "on_btForm_clicked"
 QT_MOC_LITERAL(4, 43, 6) // "pageId"
 
     },
-    "QQMusic\0on_quit_clicked\0\0on_btForm_cilcked\0"
+    "QQMusic\0on_quit_clicked\0\0on_btForm_clicked\0"
     "pageId"
 };
 #undef QT_MOC_LITERAL
@@ -75,7 +75,7 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_quit_clicked(); break;
-        case 1: _t->on_btForm_cilcked((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->on_btForm_clicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     }

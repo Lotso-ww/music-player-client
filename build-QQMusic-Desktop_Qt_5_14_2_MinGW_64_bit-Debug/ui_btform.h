@@ -40,7 +40,7 @@ public:
         horizontalLayout = new QHBoxLayout(btForm);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout->setContentsMargins(9, 9, 9, 9);
         btStyle = new QWidget(btForm);
         btStyle->setObjectName(QString::fromUtf8("btStyle"));
         btStyle->setStyleSheet(QString::fromUtf8("#btStyle:hover\n"
@@ -80,29 +80,30 @@ public:
         horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
         line1 = new QLabel(lineBox);
         line1->setObjectName(QString::fromUtf8("line1"));
-        line1->setMinimumSize(QSize(2, 18));
-        line1->setMaximumSize(QSize(2, 18));
+        line1->setEnabled(true);
+        line1->setMinimumSize(QSize(2, 15));
+        line1->setMaximumSize(QSize(2, 15));
 
         horizontalLayout_3->addWidget(line1);
 
         line2 = new QLabel(lineBox);
         line2->setObjectName(QString::fromUtf8("line2"));
-        line2->setMinimumSize(QSize(2, 18));
-        line2->setMaximumSize(QSize(2, 18));
+        line2->setMinimumSize(QSize(2, 15));
+        line2->setMaximumSize(QSize(2, 15));
 
         horizontalLayout_3->addWidget(line2);
 
         line3 = new QLabel(lineBox);
         line3->setObjectName(QString::fromUtf8("line3"));
-        line3->setMinimumSize(QSize(2, 18));
-        line3->setMaximumSize(QSize(2, 18));
+        line3->setMinimumSize(QSize(2, 15));
+        line3->setMaximumSize(QSize(2, 15));
 
         horizontalLayout_3->addWidget(line3);
 
         line4 = new QLabel(lineBox);
         line4->setObjectName(QString::fromUtf8("line4"));
-        line4->setMinimumSize(QSize(2, 18));
-        line4->setMaximumSize(QSize(2, 18));
+        line4->setMinimumSize(QSize(2, 15));
+        line4->setMaximumSize(QSize(2, 15));
 
         horizontalLayout_3->addWidget(line4);
 

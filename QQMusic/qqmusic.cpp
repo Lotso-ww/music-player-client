@@ -45,12 +45,12 @@ void QQMusic::initUI()
 void QQMusic::connectSignalAndSlots()
 {
     // 关联btForm的信号和处理这个信号的槽函数
-    connect(ui->rec, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
-    connect(ui->radio, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
-    connect(ui->music, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
-    connect(ui->like, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
-    connect(ui->local, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
-    connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_cilcked);
+    connect(ui->rec, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+    connect(ui->radio, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+    connect(ui->music, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+    connect(ui->like, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+    connect(ui->local, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+    connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
 }
 
 void QQMusic::on_quit_clicked()
@@ -58,7 +58,7 @@ void QQMusic::on_quit_clicked()
     close();
 }
 
-void QQMusic::on_btForm_cilcked(int pageId)
+void QQMusic::on_btForm_clicked(int pageId)
 {
     // 1.获取当前⻚⾯所有btFrom按钮类型的对象
     QList<btForm*> btList = this->findChildren<btForm*>();
