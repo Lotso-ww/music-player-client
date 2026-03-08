@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>200</width>
+    <width>221</width>
     <height>35</height>
    </rect>
   </property>
@@ -18,16 +18,16 @@
     <number>0</number>
    </property>
    <property name="leftMargin">
-    <number>9</number>
+    <number>0</number>
    </property>
    <property name="topMargin">
-    <number>9</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>9</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>9</number>
+    <number>0</number>
    </property>
    <item>
     <widget class="QWidget" name="btStyle" native="true">
@@ -136,7 +136,7 @@
            <property name="minimumSize">
             <size>
              <width>2</width>
-             <height>15</height>
+             <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -155,7 +155,7 @@
            <property name="minimumSize">
             <size>
              <width>2</width>
-             <height>15</height>
+             <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -174,7 +174,7 @@
            <property name="minimumSize">
             <size>
              <width>2</width>
-             <height>15</height>
+             <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
@@ -193,7 +193,7 @@
            <property name="minimumSize">
             <size>
              <width>2</width>
-             <height>15</height>
+             <height>0</height>
             </size>
            </property>
            <property name="maximumSize">
