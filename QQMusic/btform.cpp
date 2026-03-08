@@ -7,6 +7,8 @@ btForm::btForm(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->lineBox->hide();
+
     // 设置line1的动画效果
     line1Animat = new QPropertyAnimation(ui->line1, "geometry", this);
     line1Animat->setDuration(1500);
@@ -70,6 +72,16 @@ void btForm::clearBg()
 {
     // 把背景颜色设置还原成按下之前的
     ui->btStyle->setStyleSheet("#btStyle:hover{background-color:#D8D8D8;}");
+}
+
+void btForm::showAnimat()
+{
+    ui->lineBox->show();
+}
+
+void btForm::hideAnimat()
+{
+    ui->lineBox->hide();
 }
 
 void btForm::mousePressEvent(QMouseEvent *event)

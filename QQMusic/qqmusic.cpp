@@ -40,6 +40,10 @@ void QQMusic::initUI()
     ui->like->setIconAndText(":/images/like.png", "我喜欢", 3);
     ui->local->setIconAndText(":/images/local.png", "本地下载", 4);
     ui->recent->setIconAndText(":/images/recent.png", "最近播放", 5);
+
+    // 本地下载btForm默认显示动画
+    ui->local->showAnimat();
+    ui->stackedWidget->setCurrentIndex(4);
 }
 
 void QQMusic::connectSignalAndSlots()
@@ -69,6 +73,11 @@ void QQMusic::on_btForm_clicked(int pageId)
         if(btItem->getPageId() != pageId)
         {
             btItem->clearBg();
+            btItem->hideAnimat();
+        }
+        else
+        {
+            btItem->showAnimat();
         }
     }
 
