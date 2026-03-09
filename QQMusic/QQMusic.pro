@@ -19,17 +19,20 @@ SOURCES += \
     btform.cpp \
     main.cpp \
     qqmusic.cpp \
-    recbox.cpp
+    recbox.cpp \
+    recboxitem.cpp
 
 HEADERS += \
     btform.h \
     qqmusic.h \
-    recbox.h
+    recbox.h \
+    recboxitem.h
 
 FORMS += \
     btform.ui \
     qqmusic.ui \
-    recbox.ui
+    recbox.ui \
+    recboxitem.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
