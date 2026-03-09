@@ -16,11 +16,13 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <btform.h>
+#include <recbox.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -70,7 +72,14 @@ public:
     QVBoxLayout *verticalLayout_6;
     QStackedWidget *stackedWidget;
     QWidget *recPage;
-    QLabel *label;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QVBoxLayout *verticalLayout_7;
+    QLabel *recText;
+    QLabel *recMusictext;
+    RecBox *recMusicBox;
+    QLabel *supplyMusicText;
+    RecBox *supplyMusicBox;
     QWidget *musicpage;
     QLabel *label_2;
     QWidget *radioPage;
@@ -372,14 +381,60 @@ public:
         verticalLayout_6 = new QVBoxLayout(bodyRight);
         verticalLayout_6->setSpacing(0);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_6->setContentsMargins(0, 0, 5, 0);
         stackedWidget = new QStackedWidget(bodyRight);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
         recPage = new QWidget();
         recPage->setObjectName(QString::fromUtf8("recPage"));
-        label = new QLabel(recPage);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(310, 240, 72, 15));
+        scrollArea = new QScrollArea(recPage);
+        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
+        scrollArea->setGeometry(QRect(0, 0, 808, 494));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 806, 492));
+        verticalLayout_7 = new QVBoxLayout(scrollAreaWidgetContents);
+        verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
+        verticalLayout_7->setContentsMargins(9, -1, -1, -1);
+        recText = new QLabel(scrollAreaWidgetContents);
+        recText->setObjectName(QString::fromUtf8("recText"));
+        recText->setMinimumSize(QSize(0, 50));
+        recText->setMaximumSize(QSize(16777215, 50));
+        QFont font;
+        font.setPointSize(24);
+        recText->setFont(font);
+
+        verticalLayout_7->addWidget(recText);
+
+        recMusictext = new QLabel(scrollAreaWidgetContents);
+        recMusictext->setObjectName(QString::fromUtf8("recMusictext"));
+        recMusictext->setMinimumSize(QSize(0, 30));
+        recMusictext->setMaximumSize(QSize(16777215, 30));
+        QFont font1;
+        font1.setPointSize(18);
+        recMusictext->setFont(font1);
+
+        verticalLayout_7->addWidget(recMusictext);
+
+        recMusicBox = new RecBox(scrollAreaWidgetContents);
+        recMusicBox->setObjectName(QString::fromUtf8("recMusicBox"));
+
+        verticalLayout_7->addWidget(recMusicBox);
+
+        supplyMusicText = new QLabel(scrollAreaWidgetContents);
+        supplyMusicText->setObjectName(QString::fromUtf8("supplyMusicText"));
+        supplyMusicText->setMinimumSize(QSize(0, 30));
+        supplyMusicText->setMaximumSize(QSize(16777215, 30));
+        supplyMusicText->setFont(font1);
+
+        verticalLayout_7->addWidget(supplyMusicText);
+
+        supplyMusicBox = new RecBox(scrollAreaWidgetContents);
+        supplyMusicBox->setObjectName(QString::fromUtf8("supplyMusicBox"));
+
+        verticalLayout_7->addWidget(supplyMusicBox);
+
+        scrollArea->setWidget(scrollAreaWidgetContents);
         stackedWidget->addWidget(recPage);
         musicpage = new QWidget();
         musicpage->setObjectName(QString::fromUtf8("musicpage"));
@@ -617,7 +672,9 @@ public:
         quit->setText(QString());
         onlineMusicText->setText(QCoreApplication::translate("QQMusic", "\345\234\250\347\272\277\351\237\263\344\271\220", nullptr));
         myMusicText->setText(QCoreApplication::translate("QQMusic", "\346\210\221\347\232\204\351\237\263\344\271\220", nullptr));
-        label->setText(QCoreApplication::translate("QQMusic", "page1", nullptr));
+        recText->setText(QCoreApplication::translate("QQMusic", "\346\216\250\350\215\220", nullptr));
+        recMusictext->setText(QCoreApplication::translate("QQMusic", "\344\273\212\346\227\245\344\270\272\344\275\240\346\216\250\350\215\220", nullptr));
+        supplyMusicText->setText(QCoreApplication::translate("QQMusic", "\344\275\240\347\232\204\351\237\263\344\271\220\350\241\245\347\273\231\347\253\231", nullptr));
         label_2->setText(QCoreApplication::translate("QQMusic", "page2", nullptr));
         label_3->setText(QCoreApplication::translate("QQMusic", "page3", nullptr));
         label_4->setText(QCoreApplication::translate("QQMusic", "page4", nullptr));

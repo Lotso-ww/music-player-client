@@ -628,7 +628,7 @@ QPushButton:hover
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="recMusicBox" native="true"/>
+                   <widget class="RecBox" name="recMusicBox" native="true"/>
                   </item>
                   <item>
                    <widget class="QLabel" name="supplyMusicText">
@@ -655,7 +655,7 @@ QPushButton:hover
                    </widget>
                   </item>
                   <item>
-                   <widget class="QWidget" name="supplyMusicBox" native="true"/>
+                   <widget class="RecBox" name="supplyMusicBox" native="true"/>
                   </item>
                  </layout>
                 </widget>
@@ -1089,6 +1089,12 @@ QPushButton:hover
    <class>btForm</class>
    <extends>QWidget</extends>
    <header location="global">btform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RecBox</class>
+   <extends>QWidget</extends>
+   <header location="global">recbox.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
