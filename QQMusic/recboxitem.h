@@ -15,6 +15,8 @@ public:
     explicit RecBoxItem(QWidget *parent = nullptr);
     ~RecBoxItem();
 
+    bool eventFilter(QObject* watched, QEvent* event);
+
 private:
     Ui::RecBoxItem *ui;
 };
