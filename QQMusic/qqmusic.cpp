@@ -4,6 +4,8 @@
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QGraphicsDropShadowEffect>
+#include <QJsonArray>
+#include <QJsonObject>
 
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
@@ -46,7 +48,8 @@ void QQMusic::initUI()
     ui->local->showAnimat();
     ui->stackedWidget->setCurrentIndex(4);
 
-    randomPicture(); // 打乱图片
+    ui->recMusicBox->initRecBoxUi(randomPicture(), 1);
+    ui->supplyMusicBox->initRecBoxUi(randomPicture(), 2);
 }
 
 void QQMusic::connectSignalAndSlots()
@@ -60,7 +63,8 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
 }
 
-void QQMusic::randomPicture()
+// 设置随机图⽚【歌曲的图⽚】
+QJsonArray QQMusic::randomPicture()
 {
     // 推荐文本 + 推荐图片
     QVector<QString> vecImageName;
@@ -74,9 +78,27 @@ void QQMusic::randomPicture()
                 << "038.png" << "039.png" << "040.png";
    std::random_shuffle(vecImageName.begin(), vecImageName.end());
 
-   qDebug() << vecImageName[0];
-   qDebug() << vecImageName[1];
-   qDebug() << vecImageName[2];
+   // 001.png
+   // path: ":/images/rec/"+vecImageName[i];
+   // text: "推荐-001"
+   QJsonArray objArray;
+   for(int i = 0; i < vecImageName.size(); i++)
+   {
+       QJsonObject obj;
+       obj.insert("path", ":/images/rec" + vecImageName[i]);
+
+       // arg(i, 3, 10, QCchar('0'))
+       // i：要放⼊%1位置的数据
+       // 3: 三位数
+       // 10：表⽰⼗进制数
+       // QChar('0')：数字不够三位，前⾯⽤字符'0'填充
+       QString strText = QString("推荐-%1").arg(i, 3, 10, QChar('0'));
+       obj.insert("text", strText);
+
+       objArray.append(obj);
+   }
+
+   return objArray;
 }
 
 void QQMusic::on_quit_clicked()

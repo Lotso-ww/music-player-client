@@ -16,7 +16,9 @@ public:
     ~RecBoxItem();
 
     bool eventFilter(QObject* watched, QEvent* event);
+    // 设置推荐文本
     void setRecText(const QString& text);
+    // 设置图片
     void setRecImage(const QString& imageUrl);
 private:
     Ui::RecBoxItem *ui;
