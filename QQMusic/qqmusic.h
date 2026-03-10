@@ -17,6 +17,7 @@ public:
 
     void initUI();
     void connectSignalAndSlots();
+    void randomPicture();
 private slots:
     void on_quit_clicked();
     void on_btForm_clicked(int pageId);

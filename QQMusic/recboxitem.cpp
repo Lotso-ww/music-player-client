@@ -59,3 +59,14 @@ bool RecBoxItem::eventFilter(QObject *watched, QEvent *event)
     }
     return QObject::eventFilter(watched, event);
 }
+
+void RecBoxItem::setRecText(const QString &text)
+{
+    ui->recBoxItemText->setText(text);
+}
+
+void RecBoxItem::setRecImage(const QString &imageUrl)
+{
+    QString style = "background-image:url{"+imageUrl+"};";
+    ui->recMusicImage->setStyleSheet(style);
+}

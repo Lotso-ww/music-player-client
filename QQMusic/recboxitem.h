@@ -16,9 +16,11 @@ public:
     ~RecBoxItem();
 
     bool eventFilter(QObject* watched, QEvent* event);
-
+    void setRecText(const QString& text);
+    void setRecImage(const QString& imageUrl);
 private:
     Ui::RecBoxItem *ui;
 };
+
 
 #endif // RECBOXITEM_H

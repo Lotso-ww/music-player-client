@@ -1,5 +1,6 @@
 #include "qqmusic.h"
 #include "ui_qqmusic.h"
+#include <QDebug>
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QGraphicsDropShadowEffect>
@@ -44,6 +45,8 @@ void QQMusic::initUI()
     // 本地下载btForm默认显示动画
     ui->local->showAnimat();
     ui->stackedWidget->setCurrentIndex(4);
+
+    randomPicture(); // 打乱图片
 }
 
 void QQMusic::connectSignalAndSlots()
@@ -55,6 +58,25 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->like, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
     connect(ui->local, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
     connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+}
+
+void QQMusic::randomPicture()
+{
+    // 推荐文本 + 推荐图片
+    QVector<QString> vecImageName;
+    // 支持流插入
+    vecImageName<< "001.png" << "003.png" << "004.png" << "005.png" << "006.png" << "007.png"
+                << "008.png" << "009.png" << "010.png" << "011.png" << "012.png" << "013.png"
+                << "014.png" << "015.png" << "016.png" << "017.png" << "018.png" << "019.png"
+                << "020.png" << "021.png" << "022.png" << "023.png" << "024.png" << "025.png"
+                << "026.png" << "027.png" << "028.png" << "029.png" << "030.png" << "031.png"
+                << "032.png" << "033.png" << "034.png" << "035.png" << "036.png" << "037.png"
+                << "038.png" << "039.png" << "040.png";
+   std::random_shuffle(vecImageName.begin(), vecImageName.end());
+
+   qDebug() << vecImageName[0];
+   qDebug() << vecImageName[1];
+   qDebug() << vecImageName[2];
 }
 
 void QQMusic::on_quit_clicked()
