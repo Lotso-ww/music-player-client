@@ -34,6 +34,12 @@ void RecBox::initRecBoxUi(QJsonArray data, int row)
 
     // 图⽚保存起来
     imageList = data;
+
+    // 默认显⽰第0组
+     currentIndex = 0;
+
+     // 计算总共有⼏组图⽚
+     count = imageList.size()/col ;
     // 往RecBox中添加图⽚
     createRecItem();
 }
@@ -68,3 +74,14 @@ void RecBox::createRecItem()
         }
     }
 }
+
+void RecBox::on_btUp_clicked()
+{
+    // 点击btUp按钮，显⽰前4张图⽚，如果已经是第⼀张图⽚，循环从后往前显⽰
+}
+
+void RecBox::on_btDown_clicked()
+{
+    // 点击btUp按钮，显⽰前8张图⽚，如果已经是第⼀张图⽚，循环从后往前显⽰
+}
+
