@@ -41,13 +41,12 @@ public:
         recMusicImage = new QLabel(musicImageBox);
         recMusicImage->setObjectName(QString::fromUtf8("recMusicImage"));
         recMusicImage->setGeometry(QRect(0, 0, 150, 150));
-        recMusicImage->setStyleSheet(QString::fromUtf8("background-color:rgb(85, 255, 255);"));
+        recMusicImage->setStyleSheet(QString::fromUtf8(""));
         recMusicBtn = new QPushButton(musicImageBox);
         recMusicBtn->setObjectName(QString::fromUtf8("recMusicBtn"));
         recMusicBtn->setGeometry(QRect(20, 60, 99, 28));
         recMusicBtn->setStyleSheet(QString::fromUtf8("#recMusicBtn\n"
 "{\n"
-"	background-color:rgb(85, 255, 0);\n"
 "	border:none;\n"
 "}"));
 

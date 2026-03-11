@@ -67,6 +67,6 @@ void RecBoxItem::setRecText(const QString &text)
 
 void RecBoxItem::setRecImage(const QString &imageUrl)
 {
-    QString style = "background-image:url{"+imageUrl+"};";
+    QString style =  "border-image:url("+imageUrl+");";
     ui->recMusicImage->setStyleSheet(style);
 }

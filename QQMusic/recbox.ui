@@ -131,13 +131,16 @@ QPushButton:hover
           <number>0</number>
          </property>
          <item>
-          <layout class="QHBoxLayout" name="recListDownLayout"/>
+          <layout class="QHBoxLayout" name="recListUpLayout"/>
          </item>
         </layout>
        </widget>
       </item>
       <item>
        <widget class="QWidget" name="recListDown" native="true">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <property name="spacing">
           <number>0</number>
@@ -155,7 +158,7 @@ QPushButton:hover
           <number>0</number>
          </property>
          <item>
-          <layout class="QHBoxLayout" name="recListUpLayout"/>
+          <layout class="QHBoxLayout" name="recListDownLayout"/>
          </item>
         </layout>
        </widget>

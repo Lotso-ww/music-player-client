@@ -18,6 +18,7 @@ public:
 
     // 初始化
     void initRecBoxUi(QJsonArray data, int row);
+    void createRecItem();
 
 private:
     Ui::RecBox *ui;

@@ -29,10 +29,10 @@ public:
     QVBoxLayout *verticalLayout;
     QWidget *recListUp;
     QHBoxLayout *horizontalLayout_7;
-    QHBoxLayout *recListDownLayout;
+    QHBoxLayout *recListUpLayout;
     QWidget *recListDown;
     QHBoxLayout *horizontalLayout_6;
-    QHBoxLayout *recListUpLayout;
+    QHBoxLayout *recListDownLayout;
     QWidget *rightPage;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *btDown;
@@ -87,24 +87,25 @@ public:
         horizontalLayout_7->setSpacing(0);
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        recListDownLayout = new QHBoxLayout();
-        recListDownLayout->setObjectName(QString::fromUtf8("recListDownLayout"));
+        recListUpLayout = new QHBoxLayout();
+        recListUpLayout->setObjectName(QString::fromUtf8("recListUpLayout"));
 
-        horizontalLayout_7->addLayout(recListDownLayout);
+        horizontalLayout_7->addLayout(recListUpLayout);
 
 
         verticalLayout->addWidget(recListUp);
 
         recListDown = new QWidget(musicContent);
         recListDown->setObjectName(QString::fromUtf8("recListDown"));
+        recListDown->setStyleSheet(QString::fromUtf8(""));
         horizontalLayout_6 = new QHBoxLayout(recListDown);
         horizontalLayout_6->setSpacing(0);
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        recListUpLayout = new QHBoxLayout();
-        recListUpLayout->setObjectName(QString::fromUtf8("recListUpLayout"));
+        recListDownLayout = new QHBoxLayout();
+        recListDownLayout->setObjectName(QString::fromUtf8("recListDownLayout"));
 
-        horizontalLayout_6->addLayout(recListUpLayout);
+        horizontalLayout_6->addLayout(recListDownLayout);
 
 
         verticalLayout->addWidget(recListDown);

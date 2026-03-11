@@ -85,7 +85,7 @@ QJsonArray QQMusic::randomPicture()
    for(int i = 0; i < vecImageName.size(); i++)
    {
        QJsonObject obj;
-       obj.insert("path", ":/images/rec" + vecImageName[i]);
+       obj.insert("path", ":/images/rec/" + vecImageName[i]);
 
        // arg(i, 3, 10, QCchar('0'))
        // i：要放⼊%1位置的数据
