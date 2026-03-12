@@ -48,6 +48,8 @@ void QQMusic::initUI()
     ui->local->showAnimat();
     ui->stackedWidget->setCurrentIndex(4);
 
+    // 初始化推荐页面
+    srand((unsigned int)time(nullptr)); // 设置随机数种子确保每次启动的图片顺序都是不同的
     ui->recMusicBox->initRecBoxUi(randomPicture(), 1);
     ui->supplyMusicBox->initRecBoxUi(randomPicture(), 2);
 }
