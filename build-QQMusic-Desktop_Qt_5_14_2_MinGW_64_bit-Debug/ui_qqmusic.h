@@ -22,6 +22,7 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <btform.h>
+#include <commonpage.h>
 #include <recbox.h>
 
 QT_BEGIN_NAMESPACE
@@ -84,12 +85,9 @@ public:
     QLabel *label_2;
     QWidget *radioPage;
     QLabel *label_3;
-    QWidget *likePage;
-    QLabel *label_4;
-    QWidget *localPage;
-    QLabel *label_5;
-    QWidget *recentPage;
-    QLabel *label_6;
+    CommonPage *likePage;
+    CommonPage *localPage;
+    CommonPage *recentPage;
     QWidget *porgressBar;
     QWidget *controlBox;
     QHBoxLayout *horizontalLayout_8;
@@ -448,23 +446,14 @@ public:
         label_3->setObjectName(QString::fromUtf8("label_3"));
         label_3->setGeometry(QRect(310, 230, 72, 15));
         stackedWidget->addWidget(radioPage);
-        likePage = new QWidget();
+        likePage = new CommonPage();
         likePage->setObjectName(QString::fromUtf8("likePage"));
-        label_4 = new QLabel(likePage);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(320, 250, 72, 15));
         stackedWidget->addWidget(likePage);
-        localPage = new QWidget();
+        localPage = new CommonPage();
         localPage->setObjectName(QString::fromUtf8("localPage"));
-        label_5 = new QLabel(localPage);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(320, 240, 72, 15));
         stackedWidget->addWidget(localPage);
-        recentPage = new QWidget();
+        recentPage = new CommonPage();
         recentPage->setObjectName(QString::fromUtf8("recentPage"));
-        label_6 = new QLabel(recentPage);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(310, 240, 72, 15));
         stackedWidget->addWidget(recentPage);
 
         verticalLayout_6->addWidget(stackedWidget);
@@ -656,7 +645,7 @@ public:
 
         retranslateUi(QQMusic);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(QQMusic);
@@ -677,9 +666,6 @@ public:
         supplyMusicText->setText(QCoreApplication::translate("QQMusic", "\344\275\240\347\232\204\351\237\263\344\271\220\350\241\245\347\273\231\347\253\231", nullptr));
         label_2->setText(QCoreApplication::translate("QQMusic", "page2", nullptr));
         label_3->setText(QCoreApplication::translate("QQMusic", "page3", nullptr));
-        label_4->setText(QCoreApplication::translate("QQMusic", "page4", nullptr));
-        label_5->setText(QCoreApplication::translate("QQMusic", "page5", nullptr));
-        label_6->setText(QCoreApplication::translate("QQMusic", "page6", nullptr));
         musicName->setText(QCoreApplication::translate("QQMusic", "\346\255\214\345\220\215", nullptr));
         label_9->setText(QCoreApplication::translate("QQMusic", "\346\255\214\346\211\213", nullptr));
         musicCover->setText(QCoreApplication::translate("QQMusic", "\345\233\276\347\211\207", nullptr));

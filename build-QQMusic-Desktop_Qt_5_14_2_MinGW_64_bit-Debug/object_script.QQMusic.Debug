@@ -1,10 +1,12 @@
 debug/btform.o
+debug/commonpage.o
 debug/main.o
 debug/qqmusic.o
 debug/recbox.o
 debug/recboxitem.o
 debug/qrc_Resource.o
 debug/moc_btform.o
+debug/moc_commonpage.o
 debug/moc_qqmusic.o
 debug/moc_recbox.o
 debug/moc_recboxitem.o
