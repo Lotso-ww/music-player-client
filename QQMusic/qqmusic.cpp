@@ -52,6 +52,11 @@ void QQMusic::initUI()
     srand((unsigned int)time(nullptr)); // 设置随机数种子确保每次启动的图片顺序都是不同的
     ui->recMusicBox->initRecBoxUi(randomPicture(), 1);
     ui->supplyMusicBox->initRecBoxUi(randomPicture(), 2);
+
+    // 设置CommonPage的文本和图标
+    ui->likePage->setCommonPageUI("我喜欢", ":/images/ilikebg.png");
+    ui->localPage->setCommonPageUI("本地下载", ":/images/localbg.png");
+    ui->recentPage->setCommonPageUI("最近播放", ":/images/recentbg.png");
 }
 
 void QQMusic::connectSignalAndSlots()

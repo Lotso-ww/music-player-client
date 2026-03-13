@@ -45,6 +45,7 @@ public:
         recMusicBtn = new QPushButton(musicImageBox);
         recMusicBtn->setObjectName(QString::fromUtf8("recMusicBtn"));
         recMusicBtn->setGeometry(QRect(20, 60, 99, 28));
+        recMusicBtn->setCursor(QCursor(Qt::PointingHandCursor));
         recMusicBtn->setStyleSheet(QString::fromUtf8("#recMusicBtn\n"
 "{\n"
 "	border:none;\n"

@@ -65,7 +65,7 @@ public:
         horizontalLayout = new QHBoxLayout(musicPlayBox);
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout->setContentsMargins(4, 0, 0, 0);
         musicImageLabel = new QLabel(musicPlayBox);
         musicImageLabel->setObjectName(QString::fromUtf8("musicImageLabel"));
         musicImageLabel->setMinimumSize(QSize(150, 0));

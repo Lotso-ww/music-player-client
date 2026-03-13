@@ -12,3 +12,13 @@ CommonPage::~CommonPage()
 {
     delete ui;
 }
+
+void CommonPage::setCommonPageUI(const QString &text, const QString &imagePath)
+{
+    // 设置文本
+    ui->PageTittle->setText(text);
+
+    // 设置图片
+    ui->musicImageLabel->setPixmap(QPixmap(imagePath));
+    ui->musicImageLabel->setScaledContents(true); // 自动适应大小
+}
