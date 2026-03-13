@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     btform.cpp \
     commonpage.cpp \
+    listitembox.cpp \
     main.cpp \
     qqmusic.cpp \
     recbox.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 HEADERS += \
     btform.h \
     commonpage.h \
+    listitembox.h \
     qqmusic.h \
     recbox.h \
     recboxitem.h
@@ -33,6 +35,7 @@ HEADERS += \
 FORMS += \
     btform.ui \
     commonpage.ui \
+    listitembox.ui \
     qqmusic.ui \
     recbox.ui \
     recboxitem.ui
