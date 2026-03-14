@@ -2,6 +2,7 @@ release/btform.o
 release/commonpage.o
 release/listitembox.o
 release/main.o
+release/musicslider.o
 release/qqmusic.o
 release/recbox.o
 release/recboxitem.o
@@ -9,6 +10,7 @@ release/qrc_Resource.o
 release/moc_btform.o
 release/moc_commonpage.o
 release/moc_listitembox.o
+release/moc_musicslider.o
 release/moc_qqmusic.o
 release/moc_recbox.o
 release/moc_recboxitem.o

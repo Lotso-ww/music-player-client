@@ -697,7 +697,7 @@ QPushButton:hover
              </widget>
             </item>
             <item>
-             <widget class="QWidget" name="porgressBar" native="true">
+             <widget class="MusicSlider" name="porgressBar" native="true">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -711,7 +711,7 @@ QPushButton:hover
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color:pink;</string>
+               <string notr="true"/>
               </property>
              </widget>
             </item>
@@ -1059,6 +1059,12 @@ QPushButton:hover
    <class>CommonPage</class>
    <extends>QWidget</extends>
    <header location="global">commonpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MusicSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">musicslider.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

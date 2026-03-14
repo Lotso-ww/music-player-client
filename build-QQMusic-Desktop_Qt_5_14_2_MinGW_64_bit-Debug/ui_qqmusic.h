@@ -23,6 +23,7 @@
 #include <QtWidgets/QWidget>
 #include <btform.h>
 #include <commonpage.h>
+#include <musicslider.h>
 #include <recbox.h>
 
 QT_BEGIN_NAMESPACE
@@ -88,7 +89,7 @@ public:
     CommonPage *likePage;
     CommonPage *localPage;
     CommonPage *recentPage;
-    QWidget *porgressBar;
+    MusicSlider *porgressBar;
     QWidget *controlBox;
     QHBoxLayout *horizontalLayout_8;
     QWidget *play1;
@@ -458,11 +459,11 @@ public:
 
         verticalLayout_6->addWidget(stackedWidget);
 
-        porgressBar = new QWidget(bodyRight);
+        porgressBar = new MusicSlider(bodyRight);
         porgressBar->setObjectName(QString::fromUtf8("porgressBar"));
         porgressBar->setMinimumSize(QSize(0, 40));
         porgressBar->setBaseSize(QSize(0, 40));
-        porgressBar->setStyleSheet(QString::fromUtf8("background-color:pink;"));
+        porgressBar->setStyleSheet(QString::fromUtf8(""));
 
         verticalLayout_6->addWidget(porgressBar);
 

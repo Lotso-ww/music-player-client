@@ -20,6 +20,7 @@ SOURCES += \
     commonpage.cpp \
     listitembox.cpp \
     main.cpp \
+    musicslider.cpp \
     qqmusic.cpp \
     recbox.cpp \
     recboxitem.cpp
@@ -28,6 +29,7 @@ HEADERS += \
     btform.h \
     commonpage.h \
     listitembox.h \
+    musicslider.h \
     qqmusic.h \
     recbox.h \
     recboxitem.h
@@ -36,6 +38,7 @@ FORMS += \
     btform.ui \
     commonpage.ui \
     listitembox.ui \
+    musicslider.ui \
     qqmusic.ui \
     recbox.ui \
     recboxitem.ui

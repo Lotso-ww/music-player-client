@@ -2,6 +2,7 @@ debug/btform.o
 debug/commonpage.o
 debug/listitembox.o
 debug/main.o
+debug/musicslider.o
 debug/qqmusic.o
 debug/recbox.o
 debug/recboxitem.o
@@ -9,6 +10,7 @@ debug/qrc_Resource.o
 debug/moc_btform.o
 debug/moc_commonpage.o
 debug/moc_listitembox.o
+debug/moc_musicslider.o
 debug/moc_qqmusic.o
 debug/moc_recbox.o
 debug/moc_recboxitem.o
