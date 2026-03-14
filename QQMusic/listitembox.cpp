@@ -12,3 +12,16 @@ ListItemBox::~ListItemBox()
 {
     delete ui;
 }
+
+void ListItemBox::enterEvent(QEvent *event)
+{
+    (void)event;
+    setStyleSheet("background-color:#EFEFEF");
+
+}
+
+void ListItemBox::leaveEvent(QEvent *event)
+{
+    (void)event;
+    setStyleSheet("");
+}

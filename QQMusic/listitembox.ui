@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>710</width>
-    <height>33</height>
+    <width>800</width>
+    <height>45</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,13 +33,13 @@
     <widget class="QWidget" name="musicNameBox" native="true">
      <property name="minimumSize">
       <size>
-       <width>380</width>
+       <width>410</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>380</width>
+       <width>410</width>
        <height>16777215</height>
       </size>
      </property>
@@ -77,10 +77,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">#likeBtn
-{
-	border:none;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string/>
@@ -180,13 +177,13 @@
     <widget class="QWidget" name="musicSingerBox" native="true">
      <property name="minimumSize">
       <size>
-       <width>130</width>
+       <width>150</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>130</width>
+       <width>150</width>
        <height>16777215</height>
       </size>
      </property>
@@ -223,13 +220,13 @@
     <widget class="QWidget" name="musicAlbumBox" native="true">
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>235</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>235</width>
        <height>16777215</height>
       </size>
      </property>

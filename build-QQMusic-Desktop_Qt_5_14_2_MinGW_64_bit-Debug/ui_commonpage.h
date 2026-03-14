@@ -123,16 +123,22 @@ public:
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         musicNameLabel = new QLabel(listLabelBox);
         musicNameLabel->setObjectName(QString::fromUtf8("musicNameLabel"));
+        musicNameLabel->setMinimumSize(QSize(410, 0));
+        musicNameLabel->setMaximumSize(QSize(410, 16777215));
 
         horizontalLayout_2->addWidget(musicNameLabel);
 
         musicSingerLabel = new QLabel(listLabelBox);
         musicSingerLabel->setObjectName(QString::fromUtf8("musicSingerLabel"));
+        musicSingerLabel->setMinimumSize(QSize(150, 0));
+        musicSingerLabel->setMaximumSize(QSize(150, 16777215));
 
         horizontalLayout_2->addWidget(musicSingerLabel);
 
         musicAlbumLabel = new QLabel(listLabelBox);
         musicAlbumLabel->setObjectName(QString::fromUtf8("musicAlbumLabel"));
+        musicAlbumLabel->setMinimumSize(QSize(235, 0));
+        musicAlbumLabel->setMaximumSize(QSize(235, 16777215));
 
         horizontalLayout_2->addWidget(musicAlbumLabel);
 

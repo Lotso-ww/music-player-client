@@ -14,7 +14,9 @@ class ListItemBox : public QWidget
 public:
     explicit ListItemBox(QWidget *parent = nullptr);
     ~ListItemBox();
-
+protected:
+    void enterEvent(QEvent *event);
+    void leaveEvent(QEvent *event);
 private:
     Ui::ListItemBox *ui;
 };

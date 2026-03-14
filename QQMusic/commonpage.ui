@@ -219,6 +219,18 @@
       </property>
       <item>
        <widget class="QLabel" name="musicNameLabel">
+        <property name="minimumSize">
+         <size>
+          <width>410</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>410</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>歌曲名称</string>
         </property>
@@ -226,6 +238,18 @@
       </item>
       <item>
        <widget class="QLabel" name="musicSingerLabel">
+        <property name="minimumSize">
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>歌手名称</string>
         </property>
@@ -233,6 +257,18 @@
       </item>
       <item>
        <widget class="QLabel" name="musicAlbumLabel">
+        <property name="minimumSize">
+         <size>
+          <width>235</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>235</width>
+          <height>16777215</height>
+         </size>
+        </property>
         <property name="text">
          <string>专辑名称</string>
         </property>
