@@ -23,7 +23,8 @@ SOURCES += \
     musicslider.cpp \
     qqmusic.cpp \
     recbox.cpp \
-    recboxitem.cpp
+    recboxitem.cpp \
+    volumetool.cpp
 
 HEADERS += \
     btform.h \
@@ -32,7 +33,8 @@ HEADERS += \
     musicslider.h \
     qqmusic.h \
     recbox.h \
-    recboxitem.h
+    recboxitem.h \
+    volumetool.h
 
 FORMS += \
     btform.ui \
@@ -41,7 +43,8 @@ FORMS += \
     musicslider.ui \
     qqmusic.ui \
     recbox.ui \
-    recboxitem.ui
+    recboxitem.ui \
+    volumetool.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
