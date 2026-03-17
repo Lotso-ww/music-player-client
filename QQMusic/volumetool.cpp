@@ -21,6 +21,20 @@ VolumeTool::VolumeTool(QWidget *parent) :
     shadowEffect->setOffset(0, 0);
     shadowEffect->setBlurRadius(10);
     this->setGraphicsEffect(shadowEffect);
+
+    // 给按钮设置图标
+    ui->silenceBtn->setIcon(QIcon(":/images/volumn.png"));
+
+    // 设置初始音量为20%
+    ui->volumeRatio->setText("20%");
+    // 设置outSlider尺寸
+    QRect rect = ui->outSlider->geometry();
+    // 窗体原本高度是180*20%=36, 25是rect距离父元素上方的距离
+    ui->outSlider->setGeometry(rect.x(), 180 - 36 + 25, rect.width(), 36);
+
+    // 移动按钮位置
+    ui->sliderBtn->move(ui->sliderBtn->x(), ui->outSlider->y() - ui->sliderBtn->height()/2);
+
 }
 
 VolumeTool::~VolumeTool()

@@ -104,7 +104,7 @@ public:
     void retranslateUi(QWidget *VolumeTool)
     {
         VolumeTool->setWindowTitle(QCoreApplication::translate("VolumeTool", "Form", nullptr));
-        silenceBtn->setText(QCoreApplication::translate("VolumeTool", "\351\235\231\351\237\263", nullptr));
+        silenceBtn->setText(QString());
         volumeRatio->setText(QCoreApplication::translate("VolumeTool", "45%", nullptr));
         sliderBtn->setText(QString());
     } // retranslateUi

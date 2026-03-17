@@ -62,7 +62,7 @@
 }</string>
     </property>
     <property name="text">
-     <string>静音</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="volumeRatio">
