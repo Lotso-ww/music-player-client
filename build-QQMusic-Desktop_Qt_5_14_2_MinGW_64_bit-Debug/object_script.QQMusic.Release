@@ -6,6 +6,7 @@ release/musicslider.o
 release/qqmusic.o
 release/recbox.o
 release/recboxitem.o
+release/volumetool.o
 release/qrc_Resource.o
 release/moc_btform.o
 release/moc_commonpage.o
@@ -14,3 +15,4 @@ release/moc_musicslider.o
 release/moc_qqmusic.o
 release/moc_recbox.o
 release/moc_recboxitem.o
+release/moc_volumetool.o

@@ -57,6 +57,9 @@ void QQMusic::initUI()
     ui->likePage->setCommonPageUI("我喜欢", ":/images/ilikebg.png");
     ui->localPage->setCommonPageUI("本地下载", ":/images/localbg.png");
     ui->recentPage->setCommonPageUI("最近播放", ":/images/recentbg.png");
+
+    // 创建⾳量调节窗⼝对象并挂到对象树
+    volumeTool = new VolumeTool(this);
 }
 
 void QQMusic::connectSignalAndSlots()
@@ -158,3 +161,16 @@ void QQMusic::mouseMoveEvent(QMouseEvent *event)
 }
 
 
+
+void QQMusic::on_volume_clicked()
+{
+    // 1. 获取ui->volume控件的left-top坐标，并转换为基于屏幕的全局坐标
+    QPoint point = ui->volume->mapToGlobal(QPoint(0,0)); // 给 0,0坐标就行，该函数会自己生成基于全局的
+
+    // 2. 计算volumeTool需要移动到的位置，即ui->volume正上方左边偏一半
+    QPoint volumeLeftTop = point - QPoint(volumeTool->width() / 2, volumeTool->height());
+
+    // 3. 移动volumeTool
+    volumeTool->move(volumeLeftTop);
+    volumeTool->show();
+}

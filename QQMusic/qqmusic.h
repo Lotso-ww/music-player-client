@@ -2,6 +2,7 @@
 #define QQMUSIC_H
 
 #include <QWidget>
+#include "volumetool.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class QQMusic; }
@@ -21,6 +22,8 @@ public:
 private slots:
     void on_quit_clicked();
     void on_btForm_clicked(int pageId);
+    void on_volume_clicked();
+
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
@@ -28,5 +31,6 @@ protected:
 private:
     Ui::QQMusic *ui;
     QPoint dragPosition;
+    VolumeTool *volumeTool;
 };
 #endif // QQMUSIC_H

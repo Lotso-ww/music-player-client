@@ -6,6 +6,8 @@ VolumeTool::VolumeTool(QWidget *parent) :
     ui(new Ui::VolumeTool)
 {
     ui->setupUi(this);
+
+    setWindowFlag(Qt::Popup);
 }
 
 VolumeTool::~VolumeTool()
