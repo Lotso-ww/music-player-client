@@ -170,6 +170,9 @@ void QQMusic::on_volume_clicked()
     // 2. 计算volumeTool需要移动到的位置，即ui->volume正上方左边偏一半
     QPoint volumeLeftTop = point - QPoint(volumeTool->width() / 2, volumeTool->height());
 
+    // 对volumeTool进行微调
+    volumeLeftTop.setX(volumeLeftTop.x() + 15);
+    volumeLeftTop.setY(volumeLeftTop.y() + 30);
     // 3. 移动volumeTool
     volumeTool->move(volumeLeftTop);
     volumeTool->show();

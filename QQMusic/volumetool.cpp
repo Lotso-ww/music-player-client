@@ -1,6 +1,7 @@
 #include "volumetool.h"
 #include "ui_volumetool.h"
 #include <QGraphicsDropShadowEffect>
+#include <QPainter>
 
 VolumeTool::VolumeTool(QWidget *parent) :
     QWidget(parent),
@@ -40,4 +41,28 @@ VolumeTool::VolumeTool(QWidget *parent) :
 VolumeTool::~VolumeTool()
 {
     delete ui;
+}
+
+void VolumeTool::paintEvent(QPaintEvent *event)
+{
+    // 绘制volumeTool界面的三角形
+    QPainter painter(this); // 指定一个this,让它知道在哪里画
+    painter.setRenderHint(QPainter::Antialiasing, true); // 设置抗锯齿
+
+    // 1.设置画笔
+    painter.setPen(Qt::NoPen);
+
+    // 2.设置画刷
+    painter.setBrush(Qt::white);
+
+    // 3.绘制三角形
+    QPolygon polygon;
+    QPoint a(10 + 10, 300);
+    QPoint b(10 + 10 + 60, 300);
+    QPoint c(10 + 10 + 30, 300 + 20);
+    polygon.append(a);
+    polygon.append(b);
+    polygon.append(c);
+
+    painter.drawPolygon(polygon);
 }
