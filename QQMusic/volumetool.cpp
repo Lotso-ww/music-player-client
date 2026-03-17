@@ -15,7 +15,7 @@ VolumeTool::VolumeTool(QWidget *parent) :
     // 由于默认窗⼝有阴影，因此还需要将窗⼝的原有的阴影去掉，窗⼝需要加上 Qt::NoDropShadowWindowHint
     setAttribute(Qt::WA_TranslucentBackground);
 
-    // ⾃定义阴影效果
+    // 自定义阴影效果
     QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setColor("#646464");
     shadowEffect->setOffset(0, 0);
