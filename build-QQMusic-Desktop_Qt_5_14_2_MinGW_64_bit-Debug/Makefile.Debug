@@ -2136,7 +2136,57 @@ debug/main.o: ../QQMusic/main.cpp ../QQMusic/qqmusic.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\QQMusic\main.cpp
 
-debug/music.o: ../QQMusic/music.cpp ../QQMusic/music.h
+debug/music.o: ../QQMusic/music.cpp ../QQMusic/music.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QUrl \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\music.o ..\QQMusic\music.cpp
 
 debug/musiclist.o: ../QQMusic/musiclist.cpp ../QQMusic/musiclist.h \
@@ -2191,7 +2241,10 @@ debug/musiclist.o: ../QQMusic/musiclist.cpp ../QQMusic/musiclist.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qhash.h \
-		../QQMusic/music.h
+		../QQMusic/music.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QMimeDatabase \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmimedatabase.h \
+		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qmimetype.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\musiclist.o ..\QQMusic\musiclist.cpp
 
 debug/musicslider.o: ../QQMusic/musicslider.cpp ../QQMusic/musicslider.h \
