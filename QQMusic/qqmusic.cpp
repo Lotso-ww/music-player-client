@@ -190,14 +190,29 @@ void QQMusic::on_addLocal_clicked()
     fileDialog->setAcceptMode(QFileDialog::AcceptOpen); // 设置一个打开格式的文件对话框
     fileDialog->setFileMode(QFileDialog::ExistingFiles); // 设置只能选择文件，并且⼀次性可以选择多个存在的文件; 可以一次打开多个
 
-    // 3. 设置对话框打开的默认路径，先获取当前工作目录并且进行调整
+    // 3. 设置对话框的MIME过滤器
+    QStringList mimeTypeFilters;
+    mimeTypeFilters << "application/octet-stream";
+    fileDialog->setMimeTypeFilters(mimeTypeFilters);
+
+    // 4. 设置对话框打开的默认路径，先获取当前工作目录并且进行调整
     QDir dir(QDir::currentPath());
     dir.cdUp();
     QString projectPath = dir.path();
     projectPath += "/QQMusic/musics/";
     fileDialog->setDirectory(projectPath);
 
-    // 4. 设置成模态的
-    fileDialog->exec();
+    // 5. 显⽰对话框，并接收返回值
+    // 模态对话框, exec内部是死循环处理
+    if(QDialog::Accepted == fileDialog->exec())
+    {
+        // 获取选中的文件
+        QList<QUrl> fileUrls = fileDialog->selectedUrls();
+
+        // fileUrls: 内部存放的是刚刚选中的文件的url路径
+        // 需要将文件信息填充到本地下载
+
+        // 将所有音乐添加到音乐列表中, MusicList
+    }
 
 }
