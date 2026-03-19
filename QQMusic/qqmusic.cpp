@@ -213,6 +213,7 @@ void QQMusic::on_addLocal_clicked()
         // 需要将文件信息填充到本地下载
 
         // 将所有音乐添加到音乐列表中, MusicList
+        musicList.addMusicByUrl(fileUrls);
     }
 
 }

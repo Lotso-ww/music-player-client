@@ -2,6 +2,7 @@
 #define QQMUSIC_H
 
 #include <QWidget>
+#include "musiclist.h"
 #include "volumetool.h"
 
 QT_BEGIN_NAMESPACE
@@ -33,6 +34,7 @@ protected:
 private:
     Ui::QQMusic *ui;
     QPoint dragPosition;
+    MusicList musicList;
     VolumeTool *volumeTool;
 };
 #endif // QQMUSIC_H

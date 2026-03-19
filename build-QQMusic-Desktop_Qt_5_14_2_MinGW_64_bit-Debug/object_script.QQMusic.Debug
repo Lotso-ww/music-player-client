@@ -2,6 +2,8 @@ debug/btform.o
 debug/commonpage.o
 debug/listitembox.o
 debug/main.o
+debug/music.o
+debug/musiclist.o
 debug/musicslider.o
 debug/qqmusic.o
 debug/recbox.o
