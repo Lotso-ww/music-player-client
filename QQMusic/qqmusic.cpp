@@ -6,6 +6,8 @@
 #include <QGraphicsDropShadowEffect>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QFileDialog>
+#include <QDial>
 
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
@@ -176,4 +178,26 @@ void QQMusic::on_volume_clicked()
     // 3. 移动volumeTool
     volumeTool->move(volumeLeftTop);
     volumeTool->show();
+}
+
+void QQMusic::on_addLocal_clicked()
+{
+    // 1. 创建一个文件对话框,并且设置标题
+    QFileDialog* fileDialog = new QFileDialog(this);
+    fileDialog->setWindowTitle("添加本地音乐");
+
+    // 2. 设置对话框的打开格式和选择文件的模式
+    fileDialog->setAcceptMode(QFileDialog::AcceptOpen); // 设置一个打开格式的文件对话框
+    fileDialog->setFileMode(QFileDialog::ExistingFiles); // 设置只能选择文件，并且⼀次性可以选择多个存在的文件; 可以一次打开多个
+
+    // 3. 设置对话框打开的默认路径，先获取当前工作目录并且进行调整
+    QDir dir(QDir::currentPath());
+    dir.cdUp();
+    QString projectPath = dir.path();
+    projectPath += "/QQMusic/musics/";
+    fileDialog->setDirectory(projectPath);
+
+    // 4. 设置成模态的
+    fileDialog->exec();
+
 }
