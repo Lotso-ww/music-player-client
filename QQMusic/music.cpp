@@ -110,6 +110,45 @@ void Music::parseMediaMetaData()
         musicAlbumn = player.metaData("AlbumTitle").toString();
         musicDuration = player.metaData("Duration").toLongLong();
 
+        // 我们可以能在元数据里面有些歌曲基本信息获取不到，所以在文件中找一下
+        QString fileName = musicUrl.fileName();
+        // 找 - 的位置
+        int index = fileName.indexOf('-');
+
+        // musicName为 ""
+        if(musicName.isEmpty())
+        {
+            // 能找到对应的 -
+            // 2002年的第一场雪 - 刀郎.mp3
+            if(index != - 1) // ! =
+            {
+                musicName = fileName.mid(0, index);
+            }
+            // 2002年的第一场雪.mp3
+            else
+            {
+                musicName = fileName.mid(0, fileName.indexOf('.'));
+            }
+        }
+
+        // musicSinger为 ""
+        if(musicSinger.isEmpty())
+        {
+            if(index != -1)
+            {
+                musicSinger = fileName.mid(index + 2, fileName.indexOf('.') - index - 2);
+            }
+            else
+            {
+                musicSinger = "未知歌手";
+            }
+        }
+
+        // musicAlbumn
+        if(musicAlbumn.isEmpty())
+        {
+            musicAlbumn = "未知专辑";
+        }
         qDebug() << musicName << ":" << musicSinger << ":" << musicAlbumn << ":" << musicDuration;
     }
 }
