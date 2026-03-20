@@ -52,7 +52,7 @@ public:
         musicNameBox->setMaximumSize(QSize(410, 16777215));
         musicNameBox->setStyleSheet(QString::fromUtf8(""));
         horizontalLayout_2 = new QHBoxLayout(musicNameBox);
-        horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setSpacing(3);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         likeBtn = new QPushButton(musicNameBox);
@@ -65,8 +65,8 @@ public:
 
         musicNameLabel = new QLabel(musicNameBox);
         musicNameLabel->setObjectName(QString::fromUtf8("musicNameLabel"));
-        musicNameLabel->setMinimumSize(QSize(130, 0));
-        musicNameLabel->setMaximumSize(QSize(130, 16777215));
+        musicNameLabel->setMinimumSize(QSize(145, 0));
+        musicNameLabel->setMaximumSize(QSize(145, 16777215));
 
         horizontalLayout_2->addWidget(musicNameLabel);
 
@@ -76,10 +76,11 @@ public:
         VIPLabel->setMaximumSize(QSize(30, 15));
         VIPLabel->setStyleSheet(QString::fromUtf8("#VIPLabel\n"
 "{\n"
-"	borderr: 1px solid #1ECD96;\n"
+"	border: 1px solid #1ECD96;\n"
 "	color: #1ECD96;\n"
 "	border-radius: 2px;\n"
 "}"));
+        VIPLabel->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_2->addWidget(VIPLabel);
 
@@ -89,10 +90,11 @@ public:
         SQLabel->setMaximumSize(QSize(30, 15));
         SQLabel->setStyleSheet(QString::fromUtf8("#SQLabel\n"
 "{\n"
-"	borderr: 1px solid #FF6600;\n"
+"	border: 1px solid #FF6600;\n"
 "	color: #FF6600;\n"
 "	border-radius: 2px;\n"
 "}"));
+        SQLabel->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_2->addWidget(SQLabel);
 

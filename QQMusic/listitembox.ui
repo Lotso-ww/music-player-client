@@ -48,7 +48,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -88,13 +88,13 @@
        <widget class="QLabel" name="musicNameLabel">
         <property name="minimumSize">
          <size>
-          <width>130</width>
+          <width>145</width>
           <height>0</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>130</width>
+          <width>145</width>
           <height>16777215</height>
          </size>
         </property>
@@ -120,13 +120,16 @@
         <property name="styleSheet">
          <string notr="true">#VIPLabel
 {
-	borderr: 1px solid #1ECD96;
+	border: 1px solid #1ECD96;
 	color: #1ECD96;
 	border-radius: 2px;
 }</string>
         </property>
         <property name="text">
          <string>VIP</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
@@ -147,13 +150,16 @@
         <property name="styleSheet">
          <string notr="true">#SQLabel
 {
-	borderr: 1px solid #FF6600;
+	border: 1px solid #FF6600;
 	color: #FF6600;
 	border-radius: 2px;
 }</string>
         </property>
         <property name="text">
          <string>SQ</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>

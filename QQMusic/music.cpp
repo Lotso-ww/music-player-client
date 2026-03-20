@@ -1,5 +1,8 @@
 #include "music.h"
 #include <QUuid>
+#include <QMediaPlayer>
+#include <QCoreApplication>
+#include <QDebug>
 
 Music::Music()
      : isLike(false)
@@ -16,6 +19,8 @@ Music::Music(const QUrl& url)
     // 读取url对应的歌曲文件信息，解析出元数据
     // 歌曲名称，歌曲作者，歌曲专辑，歌曲持续时长
     musicId = QUuid::createUuid().toString();
+    // 该函数需要在Music的构造函数中调⽤，当创建⾳乐对象时，顺便完成歌曲⽂件的加载
+    parseMediaMetaData(); // 解析元数据
 }
 
 // set系列
@@ -80,4 +85,31 @@ bool Music::getIsHistory()const
 QUrl Music::getMusicUrl()const
 {
     return musicUrl;
+}
+
+void Music::parseMediaMetaData()
+{
+    // 1. 创建媒体播放对象
+    QMediaPlayer player;
+
+    // 2. 设置媒体源,依靠setMedia方法解析元数据
+    player.setMedia(musicUrl);
+
+    // 3. 媒体元数据解析需要时间，只有等待解析完成之后，才能提取⾳乐信息，此处循环等待
+    // 循环等待时：主界⾯消息循环就⽆法处理了，因此需要在等待解析期间，让消息循环继续处理
+    while(!player.isMetaDataAvailable())
+    {
+        QCoreApplication::processEvents();
+    }
+
+    // 已经加载完成即可获取有效的元数据了
+    if(player.isMetaDataAvailable())
+    {
+        musicName = player.metaData("Title").toString();
+        musicSinger = player.metaData("Author").toString();
+        musicAlbumn = player.metaData("AlbumTitle").toString();
+        musicDuration = player.metaData("Duration").toLongLong();
+
+        qDebug() << musicName << ":" << musicSinger << ":" << musicAlbumn << ":" << musicDuration;
+    }
 }

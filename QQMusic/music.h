@@ -30,6 +30,8 @@ public:
     QUrl getMusicUrl()const;
 
 private:
+    void parseMediaMetaData(); // 解析元数据
+private:
     // 为了保证歌曲的唯一性，需要给音乐添加id
     // 磁盘上的歌曲⽂件经常删除或者修改位置，导致播放时找不到⽂件，或者重复添加
     // 此处⽤musicId来维护播放列表中⾳乐的唯⼀性

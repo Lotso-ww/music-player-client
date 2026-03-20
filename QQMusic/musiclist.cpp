@@ -1,6 +1,6 @@
 #include "musiclist.h"
 #include "QMimeDatabase"
-
+#include <QDebug>
 MusicList::MusicList()
 {
 
@@ -20,6 +20,7 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
         // 如果是音乐文件, 加⼊歌曲列表
         if(mime == "audio/mpeg" || mime == "audio/flac" || mime == "audio/wav")
         {
+            qDebug() << musicurl << ":" << mime;
             // 需要将url创建一个Music对象添加至musicList中
             Music music(musicurl);
             musicList.push_back(music);
