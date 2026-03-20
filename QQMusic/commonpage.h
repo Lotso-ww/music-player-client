@@ -2,10 +2,20 @@
 #define COMMONPAGE_H
 
 #include <QWidget>
+#include "musiclist.h"
 
 namespace Ui {
 class CommonPage;
 }
+
+// 通过枚举: 区分不同的Page页面
+enum PageType
+{
+    LIKE_PAGE,    // 我喜欢界面
+    LOCAL_PAGE,   // 本地下载界面
+    HISTORY_PAGE  // 历史播放界面
+};
+
 
 class CommonPage : public QWidget
 {
@@ -15,10 +25,14 @@ public:
     explicit CommonPage(QWidget *parent = nullptr);
     ~CommonPage();
 
+    void setPageType(PageType pageType);
+    void addMusicToMusicPage(MusicList musicList);
     void setCommonPageUI(const QString& text, const QString& imagePath);
 
 private:
     Ui::CommonPage *ui;
+    PageType pageType; // 标记属于likePage、localPage、recentPage哪个页面
+    QVector<QString> musicListOfPage; // 具体某个页面的⾳乐，将来只需要存储音乐的id即可
 };
 
 #endif // COMMONPAGE_H

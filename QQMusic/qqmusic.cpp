@@ -56,8 +56,13 @@ void QQMusic::initUI()
     ui->supplyMusicBox->initRecBoxUi(randomPicture(), 2);
 
     // 设置CommonPage的文本和图标
+    ui->likePage->setPageType(PageType::LIKE_PAGE);
     ui->likePage->setCommonPageUI("我喜欢", ":/images/ilikebg.png");
+
+    ui->localPage->setPageType(PageType::LOCAL_PAGE);
     ui->localPage->setCommonPageUI("本地下载", ":/images/localbg.png");
+
+    ui->recentPage->setPageType(PageType::HISTORY_PAGE);
     ui->recentPage->setCommonPageUI("最近播放", ":/images/recentbg.png");
 
     // 创建⾳量调节窗⼝对象并挂到对象树
@@ -214,6 +219,9 @@ void QQMusic::on_addLocal_clicked()
 
         // 将所有音乐添加到音乐列表中, MusicList
         musicList.addMusicByUrl(fileUrls);
+
+        // 切换到本地⾳乐界面，加载完的音乐需要在此界面上显示
+        ui->stackedWidget->setCurrentIndex(4);
     }
 
 }
