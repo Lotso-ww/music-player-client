@@ -59,7 +59,10 @@ public:
         likeBtn->setObjectName(QString::fromUtf8("likeBtn"));
         likeBtn->setMinimumSize(QSize(25, 25));
         likeBtn->setMaximumSize(QSize(25, 25));
-        likeBtn->setStyleSheet(QString::fromUtf8(""));
+        likeBtn->setStyleSheet(QString::fromUtf8("#likeBtn\n"
+"{\n"
+"	border:none;\n"
+"}"));
 
         horizontalLayout_2->addWidget(likeBtn);
 

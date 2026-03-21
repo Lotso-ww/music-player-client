@@ -71,6 +71,7 @@ void CommonPage::reFresh(MusicList &musicList)
         listItemBox->setMusicName(it->getMusicName());
         listItemBox->setMusicSinger(it->getMusicSinger());
         listItemBox->setMusicAlbum(it->getMusicAlbumn());
+        listItemBox->setLikeMusic(it->getIsLike());
 
         QListWidgetItem* listWidgetItem = new QListWidgetItem(ui->pageMusicList);
         listWidgetItem->setSizeHint(QSize(listItemBox->width(), listItemBox->height())); // 设置成推荐大小(这里是没有的,我们自己设置宽高)

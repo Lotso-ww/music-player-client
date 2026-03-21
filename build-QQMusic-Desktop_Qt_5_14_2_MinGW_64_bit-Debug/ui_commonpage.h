@@ -45,7 +45,7 @@ public:
     {
         if (CommonPage->objectName().isEmpty())
             CommonPage->setObjectName(QString::fromUtf8("CommonPage"));
-        CommonPage->resize(800, 500);
+        CommonPage->resize(801, 500);
         verticalLayout = new QVBoxLayout(CommonPage);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
@@ -147,6 +147,28 @@ public:
 
         pageMusicList = new QListWidget(CommonPage);
         pageMusicList->setObjectName(QString::fromUtf8("pageMusicList"));
+        pageMusicList->setStyleSheet(QString::fromUtf8("#pageMusicList::item:selected \n"
+"{\n"
+"	background-color:#EFEFEF;\n"
+"/*::item\350\241\250\342\275\260\342\274\246\346\216\247\344\273\266\357\274\214\345\215\263ListItemBox \357\274\232selected: \n"
+"\350\241\250\342\275\260\351\200\211\344\270\255*/\n"
+"}\n"
+"\n"
+"QScrollBar:vertical\n"
+"{\n"
+" 	border:none; \n"
+"	width:10px; \n"
+"	background-color:#FFFFFF;\n"
+" 	margin:0px 0px 0px 0px; \n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical\n"
+"{\n"
+" 	width:10px;\n"
+" 	background-color:#E3E3E3;\n"
+" 	border-radius:5px; \n"
+" 	min-height:20px;\n"
+"}"));
 
         verticalLayout->addWidget(pageMusicList);
 

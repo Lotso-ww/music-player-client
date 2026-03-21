@@ -3,9 +3,13 @@
 
 ListItemBox::ListItemBox(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::ListItemBox)
+    ui(new Ui::ListItemBox),
+    isLike(false)
 {
     ui->setupUi(this);
+
+    // 连接信号槽
+    connect(ui->likeBtn, &QPushButton::clicked, this, &ListItemBox::onLikeBtnClicked);
 }
 
 ListItemBox::~ListItemBox()
@@ -24,6 +28,21 @@ void ListItemBox::setMusicSinger(const QString& musicSinger)
 void ListItemBox::setMusicAlbum(const QString& musicAlbum)
 {
     ui->musicAlbumLabel->setText(musicAlbum);
+}
+
+void ListItemBox::setLikeMusic(bool isLike)
+{
+    this->isLike = isLike;
+    if(isLike)
+        ui->likeBtn->setIcon(QIcon(":/images/like_2.png"));
+    else
+        ui->likeBtn->setIcon(QIcon(":/images/like_3.png"));
+}
+
+void ListItemBox::onLikeBtnClicked()
+{
+    isLike = !isLike;
+    setLikeMusic(isLike);
 }
 
 void ListItemBox::enterEvent(QEvent *event)

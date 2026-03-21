@@ -18,11 +18,15 @@ public:
     void setMusicName(const QString& musicName);
     void setMusicSinger(const QString& musicSinger);
     void setMusicAlbum(const QString& musicAlbum);
+    void setLikeMusic(bool isLike);
+
+    void onLikeBtnClicked(); // 按钮点击槽函数
 protected:
     void enterEvent(QEvent *event);
     void leaveEvent(QEvent *event);
 private:
     Ui::ListItemBox *ui;
+    bool isLike;
 };
 
 #endif // LISTITEMBOX_H
