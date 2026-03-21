@@ -29,7 +29,8 @@ public:
     void setCommonPageUI(const QString& text, const QString& imagePath);
     void addMusicToMusicPage(MusicList& musicList);
     void reFresh(MusicList& musicList);
-
+signals:
+    void updateLikeMusic(bool isLike, const QString& musicId);
 private:
     Ui::CommonPage *ui;
     PageType pageType; // 标记属于likePage、localPage、recentPage哪个页面

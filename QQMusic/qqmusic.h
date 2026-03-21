@@ -20,13 +20,14 @@ public:
     void initUI();
     void connectSignalAndSlots();
     QJsonArray randomPicture();
+
+    void updateLikeMusicAndPage(bool isLike, const QString& musicId);// 响应CommonPage发射的updateLikeMusic信号
 private slots:
     void on_quit_clicked();
     void on_btForm_clicked(int pageId);
     void on_volume_clicked();
 
     void on_addLocal_clicked();
-
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);

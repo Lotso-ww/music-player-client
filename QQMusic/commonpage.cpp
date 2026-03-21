@@ -76,6 +76,12 @@ void CommonPage::reFresh(MusicList &musicList)
         QListWidgetItem* listWidgetItem = new QListWidgetItem(ui->pageMusicList);
         listWidgetItem->setSizeHint(QSize(listItemBox->width(), listItemBox->height())); // 设置成推荐大小(这里是没有的,我们自己设置宽高)
         ui->pageMusicList->setItemWidget(listWidgetItem, listItemBox); // 关联设置起来了
+
+        // 拦截listItemBox的信号,再进行一个中转,发射一个信号到QQMusic中去进行处理
+        connect(listItemBox, &ListItemBox::setLike, this, [=](bool isLike)
+        {
+            emit updateLikeMusic(isLike, it->getMusicId());
+        });
     }
 
     // 触发窗口重绘

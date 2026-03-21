@@ -78,6 +78,11 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->like, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
     connect(ui->local, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
     connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+
+    // 关联CommonPage发射的updateLikeMusic信号,三个页面都需要
+    connect(ui->likePage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
+    connect(ui->localPage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
+    connect(ui->recentPage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -116,6 +121,21 @@ QJsonArray QQMusic::randomPicture()
    }
 
    return objArray;
+}
+
+void QQMusic::updateLikeMusicAndPage(bool isLike, const QString &musicId)
+{
+    // 1. 找到歌曲，并更新对应Music对象信息
+    auto it = musicList.findMusicById(musicId);
+    if(it != musicList.end())
+    {
+        it->setIsLike(isLike);
+    }
+
+    //2. 通知三个页面更新自己的数据
+    ui->likePage->reFresh(musicList);
+    ui->localPage->reFresh(musicList);
+    ui->recentPage->reFresh(musicList);
 }
 
 void QQMusic::on_quit_clicked()

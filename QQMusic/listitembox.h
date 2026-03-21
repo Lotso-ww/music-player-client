@@ -21,6 +21,9 @@ public:
     void setLikeMusic(bool isLike);
 
     void onLikeBtnClicked(); // 按钮点击槽函数
+
+signals:
+    void setLike(bool IsLike);
 protected:
     void enterEvent(QEvent *event);
     void leaveEvent(QEvent *event);

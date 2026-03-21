@@ -43,6 +43,9 @@ void ListItemBox::onLikeBtnClicked()
 {
     isLike = !isLike;
     setLikeMusic(isLike);
+
+    // 发射一个信号, 先在CommonPage进行拦截
+    emit setLike(isLike);
 }
 
 void ListItemBox::enterEvent(QEvent *event)
