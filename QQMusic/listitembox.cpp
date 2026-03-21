@@ -13,6 +13,19 @@ ListItemBox::~ListItemBox()
     delete ui;
 }
 
+void ListItemBox::setMusicName(const QString& musicName)
+{
+    ui->musicNameLabel->setText(musicName);
+}
+void ListItemBox::setMusicSinger(const QString& musicSinger)
+{
+    ui->musicSingerLabel->setText(musicSinger);
+}
+void ListItemBox::setMusicAlbum(const QString& musicAlbum)
+{
+    ui->musicAlbumLabel->setText(musicAlbum);
+}
+
 void ListItemBox::enterEvent(QEvent *event)
 {
     (void)event;

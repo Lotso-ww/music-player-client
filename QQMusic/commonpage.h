@@ -26,8 +26,9 @@ public:
     ~CommonPage();
 
     void setPageType(PageType pageType);
-    void addMusicToMusicPage(MusicList musicList);
     void setCommonPageUI(const QString& text, const QString& imagePath);
+    void addMusicToMusicPage(MusicList& musicList);
+    void reFresh(MusicList& musicList);
 
 private:
     Ui::CommonPage *ui;

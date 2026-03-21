@@ -222,6 +222,7 @@ void QQMusic::on_addLocal_clicked()
 
         // 切换到本地⾳乐界面，加载完的音乐需要在此界面上显示
         ui->stackedWidget->setCurrentIndex(4);
+        ui->localPage->reFresh(musicList);
     }
 
 }

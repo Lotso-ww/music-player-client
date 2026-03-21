@@ -27,6 +27,17 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
     }
 }
 
+iterator MusicList::findMusicById(const QString &musicId)
+{
+    for(iterator it = begin(); it != end(); ++it)
+    {
+        if(it->getMusicId() == musicId)
+            return it;
+    }
+
+    return end(); // 代表没找到
+}
+
 iterator MusicList::begin()
 {
     return musicList.begin();

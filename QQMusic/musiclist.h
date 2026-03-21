@@ -13,6 +13,7 @@ public:
     MusicList();
     // 将QQMusic⻚⾯中读取到的⾳乐⽂件，检测是⾳乐⽂件后添加到musicList中
     void addMusicByUrl(const QList<QUrl>& musicUrls);
+    iterator findMusicById(const QString& musicId);
 
     iterator begin();
     iterator end();
