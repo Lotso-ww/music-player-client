@@ -77,7 +77,10 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">#likeBtn
+{
+	border:none;
+}</string>
         </property>
         <property name="text">
          <string/>

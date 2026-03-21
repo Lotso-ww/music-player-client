@@ -122,12 +122,12 @@ void Music::parseMediaMetaData()
             // 2002年的第一场雪 - 刀郎.mp3
             if(index != - 1) // ! =
             {
-                musicName = fileName.mid(0, index);
+                musicName = fileName.mid(0, index).trimmed();
             }
             // 2002年的第一场雪.mp3
             else
             {
-                musicName = fileName.mid(0, fileName.indexOf('.'));
+                musicName = fileName.mid(0, fileName.indexOf('.')).trimmed();
             }
         }
 
@@ -136,7 +136,7 @@ void Music::parseMediaMetaData()
         {
             if(index != -1)
             {
-                musicSinger = fileName.mid(index + 2, fileName.indexOf('.') - index - 2);
+                musicSinger = fileName.mid(index + 2, fileName.indexOf('.') - index - 2).trimmed(); // +1, -1也可以,后续注意去掉空格
             }
             else
             {
