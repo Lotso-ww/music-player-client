@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>801</width>
     <height>500</height>
    </rect>
   </property>
@@ -278,7 +278,32 @@
     </widget>
    </item>
    <item>
-    <widget class="QListWidget" name="pageMusicList"/>
+    <widget class="QListWidget" name="pageMusicList">
+     <property name="styleSheet">
+      <string notr="true">#pageMusicList::item:selected 
+{
+	background-color:#EFEFEF;
+/*::item表⽰⼦控件，即ListItemBox ：selected: 
+表⽰选中*/
+}
+
+QScrollBar:vertical
+{
+ 	border:none; 
+	width:10px; 
+	background-color:#FFFFFF;
+ 	margin:0px 0px 0px 0px; 
+}
+
+QScrollBar::handle:vertical
+{
+ 	width:10px;
+ 	background-color:#E3E3E3;
+ 	border-radius:5px; 
+ 	min-height:20px;
+}</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

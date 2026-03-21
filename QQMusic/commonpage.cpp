@@ -8,6 +8,8 @@ CommonPage::CommonPage(QWidget *parent) :
     ui(new Ui::CommonPage)
 {
     ui->setupUi(this);
+    // 取消水平滚动条
+    ui->pageMusicList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 CommonPage::~CommonPage()
@@ -74,6 +76,10 @@ void CommonPage::reFresh(MusicList &musicList)
         listWidgetItem->setSizeHint(QSize(listItemBox->width(), listItemBox->height())); // 设置成推荐大小(这里是没有的,我们自己设置宽高)
         ui->pageMusicList->setItemWidget(listWidgetItem, listItemBox); // 关联设置起来了
     }
+
+    // 触发窗口重绘
+    // update(); // update()将paintEvent放入事件循环队列中，不立即处理
+    repaint(); // 立即触发
 
 }
 
