@@ -34,6 +34,8 @@ void CommonPage::setCommonPageUI(const QString &text, const QString &imagePath)
 
 void CommonPage::addMusicToMusicPage(MusicList& musicList)
 {
+    // 清除 musicListOfPage 和界面的显示是无关的.
+    musicListOfPage.clear();
     for(auto& music : musicList)
     {
         switch(pageType)
@@ -55,7 +57,11 @@ void CommonPage::addMusicToMusicPage(MusicList& musicList)
 
 void CommonPage::reFresh(MusicList &musicList)
 {
+    // 每次添加之前我们先将QListWidget之前的内容清空
+    ui->pageMusicList->clear();
+
     // 从musicList中分离出当前⻚⾯的所有⾳乐
+    // 添加新的歌曲
     addMusicToMusicPage(musicList);
 
     // 遍历歌单，将歌单中的歌曲显示到界面
