@@ -27,7 +27,7 @@ void CommonPage::addMusicToMusicPage(MusicList musicList)
         switch(pageType)
         {
         case LIKE_PAGE:
-            if(music.getISLike()) musicListOfPage.push_back(music.getMusicId());
+            if(music.getIsLike()) musicListOfPage.push_back(music.getMusicId());
             break;
         case LOCAL_PAGE:
             musicListOfPage.push_back(music.getMusicId());

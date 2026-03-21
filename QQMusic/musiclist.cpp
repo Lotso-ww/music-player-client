@@ -26,3 +26,13 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
         }
     }
 }
+
+iterator MusicList::begin()
+{
+    return musicList.begin();
+}
+
+iterator MusicList::end()
+{
+    return musicList.end();
+}
