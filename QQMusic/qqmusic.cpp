@@ -66,6 +66,10 @@ void QQMusic::initUI()
     ui->recentPage->setPageType(PageType::HISTORY_PAGE);
     ui->recentPage->setCommonPageUI("最近播放", ":/images/recentbg.png");
 
+    // 按钮的背景图⽚样式去除掉之后，需要设置默认图标
+    // 播放控制区按钮图标设定
+    ui->play->setIcon(QIcon(":/images/play3.png")); // 默认为暂停图标
+
     // 创建⾳量调节窗⼝对象并挂到对象树
     volumeTool = new VolumeTool(this);
 }
@@ -84,6 +88,8 @@ void QQMusic::initPlayer()
 
     // 4. 设置默认音量 -- 默认20%
     player->setVolume(20);
+
+    // 播放状态改变的槽函数关联
 }
 
 void QQMusic::connectSignalAndSlots()
@@ -103,6 +109,7 @@ void QQMusic::connectSignalAndSlots()
 
     // 播放控制器相关槽函数关联
     connect(ui->play, &QPushButton::clicked, this, &QQMusic::onPlayMusic);
+    connect(player, &QMediaPlayer::stateChanged, this, &QQMusic::onPlayStateChanged);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -263,13 +270,43 @@ void QQMusic::on_addLocal_clicked()
         // 切换到本地⾳乐界面，加载完的音乐需要在此界面上显示
         ui->stackedWidget->setCurrentIndex(4);
         ui->localPage->reFresh(musicList);
+
+        // 添加歌曲到播放列表
+        ui->localPage->addMusicToPlayList(musicList, playList);
     }
 
 }
 
 void QQMusic::onPlayMusic()
 {
-    player->setMedia(musicList.begin()->getMusicUrl());
+    // 图标切换我们可以在这里实现,但是利用信号更加清晰
+    if(QMediaPlayer::StoppedState == player->state())
+    {
+        // 默认为停止状态,按下按钮后变成播放
+        player->play();
+    }
+    else if(QMediaPlayer::PlayingState == player->state())
+    {
+        // 处于播放状态,按一下变成暂停
+        player->pause();
+    }
+    else if(QMediaPlayer::PausedState == player->state())
+    {
+        // 处于暂停状态,按一下变成播放
+        player->play();
+    }
+}
 
-    player->play();
+void QQMusic::onPlayStateChanged()
+{
+    if(QMediaPlayer::PlayingState == player->state())
+    {
+        // 播放状态
+        ui->play->setIcon(QIcon(":/images/play_on.png"));
+    }
+    else
+    {
+        // 暂停状态
+        ui->play->setIcon(QIcon(":/images/play3.png"));
+    }
 }

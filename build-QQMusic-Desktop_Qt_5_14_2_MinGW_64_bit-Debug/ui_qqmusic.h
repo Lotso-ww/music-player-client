@@ -541,10 +541,7 @@ public:
         play->setObjectName(QString::fromUtf8("play"));
         play->setMinimumSize(QSize(30, 30));
         play->setMaximumSize(QSize(30, 30));
-        play->setStyleSheet(QString::fromUtf8("#play\n"
-"{\n"
-"	background-image:url(\":/images/play3.png\");\n"
-"}"));
+        play->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_9->addWidget(play);
 

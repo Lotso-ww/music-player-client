@@ -860,10 +860,7 @@ QPushButton:hover
                      </size>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">#play
-{
-	background-image:url(&quot;:/images/play3.png&quot;);
-}</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string/>

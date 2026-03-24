@@ -35,6 +35,10 @@ private slots:
     // 媒体播放相关槽函数
     // 播放按钮: 歌曲在播放和暂停之间切换
     void onPlayMusic();
+
+    // QMediaPlayer -- stateChanged信号处理
+    // 播放状态发⽣改变、
+    void onPlayStateChanged();
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);

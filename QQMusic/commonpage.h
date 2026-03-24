@@ -2,6 +2,7 @@
 #define COMMONPAGE_H
 
 #include <QWidget>
+#include <QMediaPlaylist>
 #include "musiclist.h"
 
 namespace Ui {
@@ -29,6 +30,8 @@ public:
     void setCommonPageUI(const QString& text, const QString& imagePath);
     void addMusicToMusicPage(MusicList& musicList);
     void reFresh(MusicList& musicList);
+
+    void addMusicToPlayList(MusicList& musicList, QMediaPlaylist* playList);
 signals:
     void updateLikeMusic(bool isLike, const QString& musicId);
 private:
