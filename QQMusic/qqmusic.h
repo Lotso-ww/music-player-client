@@ -2,6 +2,8 @@
 #define QQMUSIC_H
 
 #include <QWidget>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include "musiclist.h"
 #include "volumetool.h"
 
@@ -17,7 +19,8 @@ public:
     QQMusic(QWidget *parent = nullptr);
     ~QQMusic();
 
-    void initUI();
+    void initUI();   // 初始化UI界面
+    void initPlayer(); // 媒体播放和控制相关初始化
     void connectSignalAndSlots();
     QJsonArray randomPicture();
 
@@ -28,6 +31,10 @@ private slots:
     void on_volume_clicked();
 
     void on_addLocal_clicked();
+
+    // 媒体播放相关槽函数
+    // 播放按钮: 歌曲在播放和暂停之间切换
+    void onPlayMusic();
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
@@ -35,7 +42,10 @@ protected:
 private:
     Ui::QQMusic *ui;
     QPoint dragPosition;
-    MusicList musicList;
+    MusicList musicList; // 程序中组织管理的音乐列表
     VolumeTool *volumeTool;
+
+    QMediaPlayer* player;     // 媒体播放控制
+    QMediaPlaylist* playList; // 要多⾸歌曲播放，以及更复杂的播放设置，需要给播放器设置媒体列表
 };
 #endif // QQMUSIC_H

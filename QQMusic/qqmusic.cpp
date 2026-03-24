@@ -16,6 +16,7 @@ QQMusic::QQMusic(QWidget *parent)
     ui->setupUi(this);
 
     initUI();
+    initPlayer();
     connectSignalAndSlots();
 }
 
@@ -69,6 +70,22 @@ void QQMusic::initUI()
     volumeTool = new VolumeTool(this);
 }
 
+void QQMusic::initPlayer()
+{
+    // 1. 初始化媒体播放器和播放列表
+    player = new QMediaPlayer(this);
+    playList = new QMediaPlaylist(this);
+
+    // 2. 设置默认播放模式 -- 默认列表循环播放
+    playList->setPlaybackMode(QMediaPlaylist::Loop);
+
+    // 3. 将播放列表设置进媒体播放器
+    player->setPlaylist(playList);
+
+    // 4. 设置默认音量 -- 默认20%
+    player->setVolume(20);
+}
+
 void QQMusic::connectSignalAndSlots()
 {
     // 关联btForm的信号和处理这个信号的槽函数
@@ -83,6 +100,9 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->likePage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
     connect(ui->localPage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
     connect(ui->recentPage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
+
+    // 播放控制器相关槽函数关联
+    connect(ui->play, &QPushButton::clicked, this, &QQMusic::onPlayMusic);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -245,4 +265,11 @@ void QQMusic::on_addLocal_clicked()
         ui->localPage->reFresh(musicList);
     }
 
+}
+
+void QQMusic::onPlayMusic()
+{
+    player->setMedia(musicList.begin()->getMusicUrl());
+
+    player->play();
 }
