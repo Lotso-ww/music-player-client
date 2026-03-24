@@ -36,9 +36,19 @@ private slots:
     // 播放按钮: 歌曲在播放和暂停之间切换
     void onPlayMusic();
 
+    // 播放上一曲
+    void onPlayUpClicked();
+    // 播放下一曲
+    void onPlayDownClicked();
+
+    // 切换播放模式
+    void onPlaybackModeClicked();
+
     // QMediaPlayer -- stateChanged信号处理
     // 播放状态发⽣改变、
     void onPlayStateChanged();
+    // 播放列表模式发生改变
+    void onPlaybackModeChanged(QMediaPlaylist::PlaybackMode playbackMode); // 带不带参数其实都行,上面没带这个就带一下
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);

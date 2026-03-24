@@ -519,10 +519,7 @@ public:
         playMode->setObjectName(QString::fromUtf8("playMode"));
         playMode->setMinimumSize(QSize(30, 30));
         playMode->setMaximumSize(QSize(30, 30));
-        playMode->setStyleSheet(QString::fromUtf8("#playMode\n"
-"{\n"
-"	background-image:url(\":/images/shuffle_2.png\");\n"
-"}"));
+        playMode->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_9->addWidget(playMode);
 

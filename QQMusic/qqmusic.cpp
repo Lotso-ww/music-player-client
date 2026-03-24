@@ -68,7 +68,8 @@ void QQMusic::initUI()
 
     // 按钮的背景图⽚样式去除掉之后，需要设置默认图标
     // 播放控制区按钮图标设定
-    ui->play->setIcon(QIcon(":/images/play3.png")); // 默认为暂停图标
+    ui->play->setIcon(QIcon(":/images/play3.png"));          // 默认为暂停图标
+    ui->playMode->setIcon(QIcon(":/images/shuffle_2.png"));  // 默认为随机播放
 
     // 创建⾳量调节窗⼝对象并挂到对象树
     volumeTool = new VolumeTool(this);
@@ -81,7 +82,7 @@ void QQMusic::initPlayer()
     playList = new QMediaPlaylist(this);
 
     // 2. 设置默认播放模式 -- 默认列表循环播放
-    playList->setPlaybackMode(QMediaPlaylist::Loop);
+    playList->setPlaybackMode(QMediaPlaylist::Random);
 
     // 3. 将播放列表设置进媒体播放器
     player->setPlaylist(playList);
@@ -90,6 +91,11 @@ void QQMusic::initPlayer()
     player->setVolume(20);
 
     // 播放状态改变的槽函数关联
+    connect(player, &QMediaPlayer::stateChanged, this, &QQMusic::onPlayStateChanged);
+
+    // 播放列表模式改变的槽函数关联
+    connect(playList, &QMediaPlaylist::playbackModeChanged, this, &QQMusic::onPlaybackModeChanged);
+
 }
 
 void QQMusic::connectSignalAndSlots()
@@ -109,7 +115,9 @@ void QQMusic::connectSignalAndSlots()
 
     // 播放控制器相关槽函数关联
     connect(ui->play, &QPushButton::clicked, this, &QQMusic::onPlayMusic);
-    connect(player, &QMediaPlayer::stateChanged, this, &QQMusic::onPlayStateChanged);
+    connect(ui->playUp, &QPushButton::clicked, this, &QQMusic::onPlayUpClicked);
+    connect(ui->playDown, &QPushButton::clicked, this, &QQMusic::onPlayDownClicked);
+    connect(ui->playMode, &QPushButton::clicked, this, &QQMusic::onPlaybackModeClicked);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -295,6 +303,50 @@ void QQMusic::onPlayMusic()
         // 处于暂停状态,按一下变成播放
         player->play();
     }
+    else
+    {
+        qDebug() << player->errorString();
+    }
+}
+
+void QQMusic::onPlayUpClicked()
+{
+    playList->previous();
+}
+
+void QQMusic::onPlayDownClicked()
+{
+    playList->next();
+}
+
+void QQMusic::onPlaybackModeClicked()
+{
+    // 1. 根据当前模式切换到下一个模式
+    // 2. 设置ToolTip提示
+    // 列表循环 -> 随机播放 -> 单曲循环
+    // 状态发生改变时,修改图标(这个我们还是通过信号实现)
+    if(QMediaPlaylist::Loop == playList->playbackMode())
+    {
+        // 列表循环 -> 随机播放
+        playList->setPlaybackMode(QMediaPlaylist::Random);
+        ui->playMode->setToolTip("随机播放");
+    }
+    else if(QMediaPlaylist::Random == playList->playbackMode())
+    {
+        // 随机播放 -> 单曲循环
+        playList->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+        ui->playMode->setToolTip("单曲循环");
+    }
+    else if(QMediaPlaylist::CurrentItemInLoop == playList->playbackMode())
+    {
+        // 单曲循环 -> 列表循环
+        playList->setPlaybackMode(QMediaPlaylist::Loop);
+        ui->playMode->setToolTip("列表循环");
+    }
+    else
+    {
+        qDebug() << "模式暂不支持";
+    }
 }
 
 void QQMusic::onPlayStateChanged()
@@ -308,5 +360,25 @@ void QQMusic::onPlayStateChanged()
     {
         // 暂停状态
         ui->play->setIcon(QIcon(":/images/play3.png"));
+    }
+}
+
+void QQMusic::onPlaybackModeChanged(QMediaPlaylist::PlaybackMode playbackMode)
+{
+    if(QMediaPlaylist::Loop == playbackMode)
+    {
+        ui->playMode->setIcon(QIcon(":/images/list_play.png"));
+    }
+    else if(QMediaPlaylist::Random == playbackMode)
+    {
+        ui->playMode->setIcon(QIcon(":/images/shuffle_2.png"));
+    }
+    else if(QMediaPlaylist::CurrentItemInLoop == playbackMode)
+    {
+        ui->playMode->setIcon(QIcon(":/images/single_play.png"));
+    }
+    else
+    {
+        qDebug() << "暂不支持";
     }
 }

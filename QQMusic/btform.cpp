@@ -86,6 +86,7 @@ void btForm::hideAnimat()
 
 void btForm::mousePressEvent(QMouseEvent *event)
 {
+    (void)event;
     // 1. 当按钮按下之后，需要修改其背景颜色
     ui->btStyle->setStyleSheet("#btStyle { background-color:rgb(30, 206, 154); }");
 

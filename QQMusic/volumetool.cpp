@@ -45,6 +45,7 @@ VolumeTool::~VolumeTool()
 
 void VolumeTool::paintEvent(QPaintEvent *event)
 {
+    (void)event;
     // 绘制volumeTool界面的三角形
     QPainter painter(this); // 指定一个this,让它知道在哪里画
     painter.setRenderHint(QPainter::Antialiasing, true); // 设置抗锯齿
