@@ -34,6 +34,8 @@ public:
     void addMusicToPlayList(MusicList& musicList, QMediaPlaylist* playList);
 signals:
     void updateLikeMusic(bool isLike, const QString& musicId);
+    // 该信号发送QQMusic处理
+    void playAll(PageType pageType);
 private:
     Ui::CommonPage *ui;
     PageType pageType; // 标记属于likePage、localPage、recentPage哪个页面

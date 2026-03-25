@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include "commonpage.h"
 #include "musiclist.h"
 #include "volumetool.h"
 
@@ -49,6 +50,11 @@ private slots:
     void onPlayStateChanged();
     // 播放列表模式发生改变
     void onPlaybackModeChanged(QMediaPlaylist::PlaybackMode playbackMode); // 带不带参数其实都行,上面没带这个就带一下
+
+    // 处理播放所有的信号对应的槽函数
+    void onPlayAll(PageType pageType);
+    void playAllOfCommonPage(CommonPage* page, int index);
+
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);

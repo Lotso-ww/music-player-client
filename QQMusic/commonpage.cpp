@@ -10,6 +10,13 @@ CommonPage::CommonPage(QWidget *parent) :
     ui->setupUi(this);
     // 取消水平滚动条
     ui->pageMusicList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // playAllBtn按钮的信号槽处理
+    // 当播放按钮点击时，发射playAll信号，播放当前⻚⾯的所有歌曲
+    // playAll信号交由QQMusic中处理
+    connect(ui->playAllBtn, &QPushButton::clicked, this, [=](){
+        emit(playAll(pageType));
+    });
 }
 
 CommonPage::~CommonPage()

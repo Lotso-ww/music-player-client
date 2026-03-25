@@ -118,6 +118,11 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->playUp, &QPushButton::clicked, this, &QQMusic::onPlayUpClicked);
     connect(ui->playDown, &QPushButton::clicked, this, &QQMusic::onPlayDownClicked);
     connect(ui->playMode, &QPushButton::clicked, this, &QQMusic::onPlaybackModeClicked);
+
+    // 关联三个页面播放所有的信号和槽函数
+    connect(ui->likePage, &CommonPage::playAll, this, &QQMusic::onPlayAll);
+    connect(ui->localPage, &CommonPage::playAll, this, &QQMusic::onPlayAll);
+    connect(ui->recentPage, &CommonPage::playAll, this, &QQMusic::onPlayAll);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -381,4 +386,43 @@ void QQMusic::onPlaybackModeChanged(QMediaPlaylist::PlaybackMode playbackMode)
     {
         qDebug() << "暂不支持";
     }
+}
+
+void QQMusic::onPlayAll(PageType pageType)
+{
+    CommonPage* page = ui->localPage;
+    switch(pageType)
+    {
+    case PageType::LIKE_PAGE:
+        page = ui->likePage;
+        break;
+    case PageType::LOCAL_PAGE:
+        page = ui->localPage;
+        break;
+    case PageType::HISTORY_PAGE:
+        page = ui->recentPage;
+        break;
+   default:
+        qDebug() << "暂不支持,待扩展";
+    }
+
+    // 从当前页面的0号开始播放
+    playAllOfCommonPage(page, 0);
+}
+
+void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
+{
+    // 播放page所在⻚⾯的⾳乐
+    // 将播放列表先清空，否则⽆法播放当前CommonPage⻚⾯的歌曲
+    // 另外：该页面音乐不⼀定就在播放列表中，因此需要先将该页面音乐添加到播放列表
+    playList->clear();
+
+    // 将当前页面歌曲添加到播放列表
+    page->addMusicToPlayList(musicList, playList);
+
+    // 设置当前页面列表的播放索引
+    playList->setCurrentIndex(index);
+
+    // 开始播放
+    player->play();
 }
