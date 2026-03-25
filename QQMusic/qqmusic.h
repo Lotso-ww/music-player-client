@@ -55,6 +55,8 @@ private slots:
     void onPlayAll(PageType pageType);
     void playAllOfCommonPage(CommonPage* page, int index);
     void onPlayMusicByIndex(CommonPage* page, int index);
+    // ⽀持播放历史记录
+    void onPlayCurrentIndexChanged(int index);
 
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
@@ -68,5 +70,7 @@ private:
 
     QMediaPlayer* player;     // 媒体播放控制
     QMediaPlaylist* playList; // 要多⾸歌曲播放，以及更复杂的播放设置，需要给播放器设置媒体列表
+
+    CommonPage* currentPage; // 记录当前播放界面
 };
 #endif // QQMUSIC_H

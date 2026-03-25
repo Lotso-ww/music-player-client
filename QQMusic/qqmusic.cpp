@@ -49,7 +49,10 @@ void QQMusic::initUI()
 
     // 本地下载btForm默认显示动画
     ui->local->showAnimat();
+
+    // 将localPage设置为当前⻚⾯
     ui->stackedWidget->setCurrentIndex(4);
+    currentPage = ui->localPage;
 
     // 初始化推荐页面
     srand((unsigned int)time(nullptr)); // 设置随机数种子确保每次启动的图片顺序都是不同的
@@ -95,6 +98,9 @@ void QQMusic::initPlayer()
 
     // 播放列表模式改变的槽函数关联
     connect(playList, &QMediaPlaylist::playbackModeChanged, this, &QQMusic::onPlaybackModeChanged);
+
+    // 播放列表项发⽣改变，此时将播放的音乐放在历史记录之中
+    connect(playList, &QMediaPlaylist::currentIndexChanged, this, &QQMusic::onPlayCurrentIndexChanged);
 
 }
 
@@ -417,6 +423,9 @@ void QQMusic::onPlayAll(PageType pageType)
 
 void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
 {
+    // 更新当前界面
+    currentPage = page;
+
     // 播放page所在⻚⾯的⾳乐
     // 将播放列表先清空，否则⽆法播放当前CommonPage⻚⾯的歌曲
     // 另外：该页面音乐不⼀定就在播放列表中，因此需要先将该页面音乐添加到播放列表
@@ -435,4 +444,22 @@ void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
 void QQMusic::onPlayMusicByIndex(CommonPage *page, int index)
 {
     playAllOfCommonPage(page, index);
+}
+
+void QQMusic::onPlayCurrentIndexChanged(int index)
+{
+    // ⾳乐的id都在commonPage中的musicListOfPage中存储着
+    const QString musicid = currentPage->getMusicIdByindex(index);
+
+    // 通过索引拿到歌曲,修改歌曲的isHistory;
+    // 有了MusicId就可以再musicList中找到该⾳乐
+    auto it  = musicList.findMusicById(musicid);
+    if(it != musicList.end())
+    {
+        // 将该⾳乐设置为历史播放记录
+        it->setIsHistory(true);
+    }
+
+    // 刷新最近播放界面
+    ui->recentPage->reFresh(musicList);
 }

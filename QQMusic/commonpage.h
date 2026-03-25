@@ -32,6 +32,8 @@ public:
     void reFresh(MusicList& musicList);
 
     void addMusicToPlayList(MusicList& musicList, QMediaPlaylist* playList);
+
+    const QString getMusicIdByindex(int index);
 signals:
     void updateLikeMusic(bool isLike, const QString& musicId);
     // 下面这两个信号发送QQMusic处理

@@ -129,3 +129,14 @@ void CommonPage::addMusicToPlayList(MusicList &musicList, QMediaPlaylist *playLi
     }
 }
 
+const QString CommonPage::getMusicIdByindex(int index)
+{
+    if(index >= musicListOfPage.size())
+    {
+        qDebug() << "暂不此歌曲";
+        return "";
+    }
+
+    return musicListOfPage[index];
+}
+

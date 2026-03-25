@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_QQMusic_t {
-    QByteArrayData data[23];
-    char stringdata0[329];
+    QByteArrayData data[24];
+    char stringdata0[355];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -54,7 +54,8 @@ QT_MOC_LITERAL(18, 267, 19), // "playAllOfCommonPage"
 QT_MOC_LITERAL(19, 287, 11), // "CommonPage*"
 QT_MOC_LITERAL(20, 299, 4), // "page"
 QT_MOC_LITERAL(21, 304, 5), // "index"
-QT_MOC_LITERAL(22, 310, 18) // "onPlayMusicByIndex"
+QT_MOC_LITERAL(22, 310, 18), // "onPlayMusicByIndex"
+QT_MOC_LITERAL(23, 329, 25) // "onPlayCurrentIndexChanged"
 
     },
     "QQMusic\0on_quit_clicked\0\0on_btForm_clicked\0"
@@ -65,7 +66,8 @@ QT_MOC_LITERAL(22, 310, 18) // "onPlayMusicByIndex"
     "QMediaPlaylist::PlaybackMode\0playbackMode\0"
     "onPlayAll\0PageType\0pageType\0"
     "playAllOfCommonPage\0CommonPage*\0page\0"
-    "index\0onPlayMusicByIndex"
+    "index\0onPlayMusicByIndex\0"
+    "onPlayCurrentIndexChanged"
 };
 #undef QT_MOC_LITERAL
 
@@ -75,7 +77,7 @@ static const uint qt_meta_data_QQMusic[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -83,19 +85,20 @@ static const uint qt_meta_data_QQMusic[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   79,    2, 0x08 /* Private */,
-       3,    1,   80,    2, 0x08 /* Private */,
-       5,    0,   83,    2, 0x08 /* Private */,
-       6,    0,   84,    2, 0x08 /* Private */,
-       7,    0,   85,    2, 0x08 /* Private */,
-       8,    0,   86,    2, 0x08 /* Private */,
-       9,    0,   87,    2, 0x08 /* Private */,
-      10,    0,   88,    2, 0x08 /* Private */,
-      11,    0,   89,    2, 0x08 /* Private */,
-      12,    1,   90,    2, 0x08 /* Private */,
-      15,    1,   93,    2, 0x08 /* Private */,
-      18,    2,   96,    2, 0x08 /* Private */,
-      22,    2,  101,    2, 0x08 /* Private */,
+       1,    0,   84,    2, 0x08 /* Private */,
+       3,    1,   85,    2, 0x08 /* Private */,
+       5,    0,   88,    2, 0x08 /* Private */,
+       6,    0,   89,    2, 0x08 /* Private */,
+       7,    0,   90,    2, 0x08 /* Private */,
+       8,    0,   91,    2, 0x08 /* Private */,
+       9,    0,   92,    2, 0x08 /* Private */,
+      10,    0,   93,    2, 0x08 /* Private */,
+      11,    0,   94,    2, 0x08 /* Private */,
+      12,    1,   95,    2, 0x08 /* Private */,
+      15,    1,   98,    2, 0x08 /* Private */,
+      18,    2,  101,    2, 0x08 /* Private */,
+      22,    2,  106,    2, 0x08 /* Private */,
+      23,    1,  111,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -111,6 +114,7 @@ static const uint qt_meta_data_QQMusic[] = {
     QMetaType::Void, 0x80000000 | 16,   17,
     QMetaType::Void, 0x80000000 | 19, QMetaType::Int,   20,   21,
     QMetaType::Void, 0x80000000 | 19, QMetaType::Int,   20,   21,
+    QMetaType::Void, QMetaType::Int,   21,
 
        0        // eod
 };
@@ -134,6 +138,7 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 10: _t->onPlayAll((*reinterpret_cast< PageType(*)>(_a[1]))); break;
         case 11: _t->playAllOfCommonPage((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 12: _t->onPlayMusicByIndex((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 13: _t->onPlayCurrentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -193,13 +198,13 @@ int QQMusic::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }
