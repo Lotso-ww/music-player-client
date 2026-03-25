@@ -54,6 +54,7 @@ private slots:
     // 处理播放所有的信号对应的槽函数
     void onPlayAll(PageType pageType);
     void playAllOfCommonPage(CommonPage* page, int index);
+    void onPlayMusicByIndex(CommonPage* page, int index);
 
 protected:
     virtual void mousePressEvent(QMouseEvent* event);

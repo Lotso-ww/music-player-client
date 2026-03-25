@@ -17,6 +17,11 @@ CommonPage::CommonPage(QWidget *parent) :
     connect(ui->playAllBtn, &QPushButton::clicked, this, [=](){
         emit(playAll(pageType));
     });
+
+    // 鼠标双击后,发射信号告诉QQMusic，播放this⻚⾯中被双击的歌曲
+    connect(ui->pageMusicList, &QListWidget::doubleClicked, this, [=](const QModelIndex &index){
+        emit(playMusicByindex(this, index.row()));
+    });
 }
 
 CommonPage::~CommonPage()

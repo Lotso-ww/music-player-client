@@ -123,6 +123,11 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->likePage, &CommonPage::playAll, this, &QQMusic::onPlayAll);
     connect(ui->localPage, &CommonPage::playAll, this, &QQMusic::onPlayAll);
     connect(ui->recentPage, &CommonPage::playAll, this, &QQMusic::onPlayAll);
+
+    // 关联三个页面中ListItemBox双击
+    connect(ui->likePage, &CommonPage::playMusicByindex, this, &QQMusic::onPlayMusicByIndex);
+    connect(ui->localPage, &CommonPage::playMusicByindex, this, &QQMusic::onPlayMusicByIndex);
+    connect(ui->recentPage, &CommonPage::playMusicByindex, this, &QQMusic::onPlayMusicByIndex);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -425,4 +430,9 @@ void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
 
     // 开始播放
     player->play();
+}
+
+void QQMusic::onPlayMusicByIndex(CommonPage *page, int index)
+{
+    playAllOfCommonPage(page, index);
 }
