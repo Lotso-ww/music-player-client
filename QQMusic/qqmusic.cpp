@@ -95,10 +95,13 @@ void QQMusic::initPlayer()
 
     // 播放状态改变的槽函数关联
     connect(player, &QMediaPlayer::stateChanged, this, &QQMusic::onPlayStateChanged);
+    // 关联QMediaPlayer::durationChanged信号
+    connect(player, &QMediaPlayer::durationChanged, this, &QQMusic::onDurationChanged);
+    // 关联QMediaPlayer::positionChanged信号
+    connect(player, &QMediaPlayer::positionChanged, this, &QQMusic::onPositionChanged);
 
     // 播放列表模式改变的槽函数关联
     connect(playList, &QMediaPlaylist::playbackModeChanged, this, &QQMusic::onPlaybackModeChanged);
-
     // 播放列表项发⽣改变，此时将播放的音乐放在历史记录之中
     connect(playList, &QMediaPlaylist::currentIndexChanged, this, &QQMusic::onPlayCurrentIndexChanged);
 
@@ -477,4 +480,19 @@ void QQMusic::setMusicSilence(bool isMuted)
 void QQMusic::setMusicVolume(int volume)
 {
     player->setVolume(volume);
+}
+
+void QQMusic::onDurationChanged(qint64 duration)
+{
+    // 计算时间
+    // 分: duration/1000/60;
+    // 秒: duration/1000%60;
+    ui->totalTime->setText(QString("%1:%2").arg(duration/1000/60, 2, 10, QChar('0'))  // 设置完%1后返回的也是一个QString再继续设置第二个
+                                           .arg(duration/1000%60, 2, 10, QChar('0')));
+}
+
+void QQMusic::onPositionChanged(qint64 position)
+{
+    ui->currentTime->setText(QString("%1:%2").arg(position/1000/60, 2, 10, QChar('0'))
+                                           .arg(position/1000%60, 2, 10, QChar('0')));
 }

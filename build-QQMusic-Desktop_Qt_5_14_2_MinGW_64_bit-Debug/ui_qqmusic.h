@@ -119,7 +119,9 @@ public:
             QQMusic->setObjectName(QString::fromUtf8("QQMusic"));
         QQMusic->resize(1040, 700);
         horizontalLayout = new QHBoxLayout(QQMusic);
+        horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         background = new QWidget(QQMusic);
         background->setObjectName(QString::fromUtf8("background"));
         background->setStyleSheet(QString::fromUtf8(""));
@@ -585,8 +587,8 @@ public:
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         labelNull = new QLabel(play3);
         labelNull->setObjectName(QString::fromUtf8("labelNull"));
-        labelNull->setMinimumSize(QSize(100, 0));
-        labelNull->setMaximumSize(QSize(100, 16777215));
+        labelNull->setMinimumSize(QSize(145, 0));
+        labelNull->setMaximumSize(QSize(145, 16777215));
 
         horizontalLayout_10->addWidget(labelNull);
 

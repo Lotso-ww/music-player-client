@@ -63,6 +63,11 @@ private slots:
     // 设置音量
     void setMusicVolume(int volume);
 
+    // 歌曲持续时⻓改变时[歌曲切换]
+    void onDurationChanged(qint64 duration);
+    // 播放位置改变，即持续播放时间改变[当前歌曲进度]
+    void onPositionChanged(qint64 position);
+
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
