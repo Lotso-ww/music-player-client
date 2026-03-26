@@ -5,7 +5,9 @@
 
 VolumeTool::VolumeTool(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::VolumeTool)
+    ui(new Ui::VolumeTool),
+    isMuted(false), // 默认静⾳
+    volumeRatio(20) // 默认20%
 {
     ui->setupUi(this);
 
@@ -36,6 +38,11 @@ VolumeTool::VolumeTool(QWidget *parent) :
     // 移动按钮位置
     ui->sliderBtn->move(ui->sliderBtn->x(), ui->outSlider->y() - ui->sliderBtn->height()/2);
 
+    // 关联静⾳按钮的信号槽
+    connect(ui->silenceBtn, &QPushButton::clicked, this, &VolumeTool::ononSilenceBtnClicked);
+
+    // 安装事件过滤器
+    ui->volumeBox->installEventFilter(this);
 }
 
 VolumeTool::~VolumeTool()
@@ -66,4 +73,72 @@ void VolumeTool::paintEvent(QPaintEvent *event)
     polygon.append(c);
 
     painter.drawPolygon(polygon);
+}
+
+void VolumeTool::calculateVolume()
+{
+    // 1. 将鼠标的位置转换为相对坐标，此处只要获取y坐标
+    int height = ui->volumeBox->mapFromGlobal(QCursor().pos()).y();
+
+    // 2. 检查height的合法性【25, 25 + 180】
+    // ⿏标在volumeBox中可移动的y范围在[25, 205]之间
+    height = height < 25 ? 25 : height;
+    height = height > 205 ? 205 : height;
+
+    // 3. 更新outSlider的位置和大小, 205是因为我们算的时候是有上面的缝隙的
+    ui->outSlider->setGeometry(ui->outSlider->x(), height, ui->outSlider->width(), 205 - height);
+
+    // 4. 移动sliderBtn的位置
+    ui->sliderBtn->move(ui->sliderBtn->x(), height - ui->sliderBtn->height() / 2);
+
+    // 5. 计算音量的比例
+    volumeRatio = (int)(ui->outSlider->height() / (float)180 * 100);
+
+    // 6. 设置给label显示出来
+    ui->volumeRatio->setText(QString::number(volumeRatio) + "%");
+}
+
+bool VolumeTool::eventFilter(QObject *object, QEvent *event)
+{
+    // 过滤volumeBox上的事件
+    if(object == ui->volumeBox)
+    {
+        if(event->type() == QEvent::MouseButtonPress) // 鼠标按下事件
+        {
+            // 如果是鼠标按下事件，修改sliderBtn和outLine的位置，并计算volumeRatio
+            calculateVolume();
+        }
+        else if(event->type() == QEvent::MouseButtonRelease) // 鼠标释放
+        {
+            // 如果是鼠标释放事件，直接发射setMusicVolume信号
+            emit(setMusicVolume(volumeRatio));
+        }
+        else if(event->type() == QEvent::MouseMove) // 鼠标滚动事件
+        {
+            // 重新计算并且发射信号
+            calculateVolume();
+            emit(setMusicVolume(volumeRatio));
+        }
+
+        return true;
+    }
+    return QObject::eventFilter(object, event);
+}
+
+void VolumeTool::ononSilenceBtnClicked()
+{
+    isMuted = !isMuted;
+    if(isMuted)
+    {
+        // true: 静音
+        ui->silenceBtn->setIcon(QIcon(":/images/silent.png"));
+    }
+    else
+    {
+        // false: 非禁音
+        ui->silenceBtn->setIcon(QIcon(":/images/volumn.png"));
+    }
+
+    // 向QQMusic发射信号
+    emit setSilence(isMuted);
 }

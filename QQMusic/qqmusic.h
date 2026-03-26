@@ -58,6 +58,11 @@ private slots:
     // ⽀持播放历史记录
     void onPlayCurrentIndexChanged(int index);
 
+    // 关联禁音信号的槽函数(volumetool)
+    void setMusicSilence(bool isMuted);
+    // 设置音量
+    void setMusicVolume(int volume);
+
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);

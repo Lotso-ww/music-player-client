@@ -134,6 +134,11 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->likePage, &CommonPage::playMusicByindex, this, &QQMusic::onPlayMusicByIndex);
     connect(ui->localPage, &CommonPage::playMusicByindex, this, &QQMusic::onPlayMusicByIndex);
     connect(ui->recentPage, &CommonPage::playMusicByindex, this, &QQMusic::onPlayMusicByIndex);
+
+    // 设置静⾳, VolumeTool
+    connect(volumeTool, &VolumeTool::setSilence, this, &QQMusic::setMusicSilence);
+    // 设置音量, VolumeTool
+    connect(volumeTool, &VolumeTool::setMusicVolume, this, &QQMusic::setMusicVolume);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -462,4 +467,14 @@ void QQMusic::onPlayCurrentIndexChanged(int index)
 
     // 刷新最近播放界面
     ui->recentPage->reFresh(musicList);
+}
+
+void QQMusic::setMusicSilence(bool isMuted)
+{
+    player->setMuted(isMuted);
+}
+
+void QQMusic::setMusicVolume(int volume)
+{
+    player->setVolume(volume);
 }

@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_QQMusic_t {
-    QByteArrayData data[24];
-    char stringdata0[355];
+    QByteArrayData data[28];
+    char stringdata0[401];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -55,7 +55,11 @@ QT_MOC_LITERAL(19, 287, 11), // "CommonPage*"
 QT_MOC_LITERAL(20, 299, 4), // "page"
 QT_MOC_LITERAL(21, 304, 5), // "index"
 QT_MOC_LITERAL(22, 310, 18), // "onPlayMusicByIndex"
-QT_MOC_LITERAL(23, 329, 25) // "onPlayCurrentIndexChanged"
+QT_MOC_LITERAL(23, 329, 25), // "onPlayCurrentIndexChanged"
+QT_MOC_LITERAL(24, 355, 15), // "setMusicSilence"
+QT_MOC_LITERAL(25, 371, 7), // "isMuted"
+QT_MOC_LITERAL(26, 379, 14), // "setMusicVolume"
+QT_MOC_LITERAL(27, 394, 6) // "volume"
 
     },
     "QQMusic\0on_quit_clicked\0\0on_btForm_clicked\0"
@@ -67,7 +71,8 @@ QT_MOC_LITERAL(23, 329, 25) // "onPlayCurrentIndexChanged"
     "onPlayAll\0PageType\0pageType\0"
     "playAllOfCommonPage\0CommonPage*\0page\0"
     "index\0onPlayMusicByIndex\0"
-    "onPlayCurrentIndexChanged"
+    "onPlayCurrentIndexChanged\0setMusicSilence\0"
+    "isMuted\0setMusicVolume\0volume"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,7 +82,7 @@ static const uint qt_meta_data_QQMusic[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -85,20 +90,22 @@ static const uint qt_meta_data_QQMusic[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   84,    2, 0x08 /* Private */,
-       3,    1,   85,    2, 0x08 /* Private */,
-       5,    0,   88,    2, 0x08 /* Private */,
-       6,    0,   89,    2, 0x08 /* Private */,
-       7,    0,   90,    2, 0x08 /* Private */,
-       8,    0,   91,    2, 0x08 /* Private */,
-       9,    0,   92,    2, 0x08 /* Private */,
-      10,    0,   93,    2, 0x08 /* Private */,
-      11,    0,   94,    2, 0x08 /* Private */,
-      12,    1,   95,    2, 0x08 /* Private */,
-      15,    1,   98,    2, 0x08 /* Private */,
-      18,    2,  101,    2, 0x08 /* Private */,
-      22,    2,  106,    2, 0x08 /* Private */,
-      23,    1,  111,    2, 0x08 /* Private */,
+       1,    0,   94,    2, 0x08 /* Private */,
+       3,    1,   95,    2, 0x08 /* Private */,
+       5,    0,   98,    2, 0x08 /* Private */,
+       6,    0,   99,    2, 0x08 /* Private */,
+       7,    0,  100,    2, 0x08 /* Private */,
+       8,    0,  101,    2, 0x08 /* Private */,
+       9,    0,  102,    2, 0x08 /* Private */,
+      10,    0,  103,    2, 0x08 /* Private */,
+      11,    0,  104,    2, 0x08 /* Private */,
+      12,    1,  105,    2, 0x08 /* Private */,
+      15,    1,  108,    2, 0x08 /* Private */,
+      18,    2,  111,    2, 0x08 /* Private */,
+      22,    2,  116,    2, 0x08 /* Private */,
+      23,    1,  121,    2, 0x08 /* Private */,
+      24,    1,  124,    2, 0x08 /* Private */,
+      26,    1,  127,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -115,6 +122,8 @@ static const uint qt_meta_data_QQMusic[] = {
     QMetaType::Void, 0x80000000 | 19, QMetaType::Int,   20,   21,
     QMetaType::Void, 0x80000000 | 19, QMetaType::Int,   20,   21,
     QMetaType::Void, QMetaType::Int,   21,
+    QMetaType::Void, QMetaType::Bool,   25,
+    QMetaType::Void, QMetaType::Int,   27,
 
        0        // eod
 };
@@ -139,6 +148,8 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 11: _t->playAllOfCommonPage((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 12: _t->onPlayMusicByIndex((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 13: _t->onPlayCurrentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->setMusicSilence((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 15: _t->setMusicVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -198,13 +209,13 @@ int QQMusic::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }
