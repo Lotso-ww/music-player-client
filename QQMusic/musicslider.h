@@ -14,9 +14,18 @@ class MusicSlider : public QWidget
 public:
     explicit MusicSlider(QWidget *parent = nullptr);
     ~MusicSlider();
+    void moveSlider(); // 修改outLine的宽度为currentPos;
+    void checkCurrentPos(); // 边界检查
 
+protected:
+    // 采用事件重写的方式来实现(当然也是可以使用事件过滤的)
+    void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 private:
     Ui::MusicSlider *ui;
+    int currentPos; // 滑动条当前位置
+    int maxWidth;
 };
 
 #endif // MUSICSLIDER_H
