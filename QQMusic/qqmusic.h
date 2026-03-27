@@ -67,6 +67,9 @@ private slots:
     void onDurationChanged(qint64 duration);
     // 播放位置改变，即持续播放时间改变[当前歌曲进度]
     void onPositionChanged(qint64 position);
+    void onMusicSliderChanged(float ratio); // 进度条改变
+
+    void on_max_clicked();
 
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
@@ -82,5 +85,7 @@ private:
     QMediaPlaylist* playList; // 要多⾸歌曲播放，以及更复杂的播放设置，需要给播放器设置媒体列表
 
     CommonPage* currentPage; // 记录当前播放界面
+
+    qint64 totalTime; // 记录总的时间
 };
 #endif // QQMUSIC_H

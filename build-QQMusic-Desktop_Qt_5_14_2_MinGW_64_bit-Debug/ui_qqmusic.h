@@ -89,7 +89,7 @@ public:
     CommonPage *likePage;
     CommonPage *localPage;
     CommonPage *recentPage;
-    MusicSlider *porgressBar;
+    MusicSlider *progressBar;
     QWidget *controlBox;
     QHBoxLayout *horizontalLayout_8;
     QWidget *play1;
@@ -461,13 +461,13 @@ public:
 
         verticalLayout_6->addWidget(stackedWidget);
 
-        porgressBar = new MusicSlider(bodyRight);
-        porgressBar->setObjectName(QString::fromUtf8("porgressBar"));
-        porgressBar->setMinimumSize(QSize(0, 40));
-        porgressBar->setBaseSize(QSize(0, 40));
-        porgressBar->setStyleSheet(QString::fromUtf8(""));
+        progressBar = new MusicSlider(bodyRight);
+        progressBar->setObjectName(QString::fromUtf8("progressBar"));
+        progressBar->setMinimumSize(QSize(0, 40));
+        progressBar->setBaseSize(QSize(0, 40));
+        progressBar->setStyleSheet(QString::fromUtf8(""));
 
-        verticalLayout_6->addWidget(porgressBar);
+        verticalLayout_6->addWidget(progressBar);
 
         controlBox = new QWidget(bodyRight);
         controlBox->setObjectName(QString::fromUtf8("controlBox"));
@@ -587,8 +587,8 @@ public:
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         labelNull = new QLabel(play3);
         labelNull->setObjectName(QString::fromUtf8("labelNull"));
-        labelNull->setMinimumSize(QSize(145, 0));
-        labelNull->setMaximumSize(QSize(145, 16777215));
+        labelNull->setMinimumSize(QSize(110, 0));
+        labelNull->setMaximumSize(QSize(110, 16777215));
 
         horizontalLayout_10->addWidget(labelNull);
 
@@ -642,7 +642,7 @@ public:
 
         retranslateUi(QQMusic);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(QQMusic);

@@ -142,6 +142,8 @@ void QQMusic::connectSignalAndSlots()
     connect(volumeTool, &VolumeTool::setSilence, this, &QQMusic::setMusicSilence);
     // 设置音量, VolumeTool
     connect(volumeTool, &VolumeTool::setMusicVolume, this, &QQMusic::setMusicVolume);
+    // 进度条拖拽
+    connect(ui->progressBar, &MusicSlider::setMusicSliderPosition, this, &QQMusic::onMusicSliderChanged);
 }
 
 // 设置随机图⽚【歌曲的图⽚】
@@ -484,6 +486,7 @@ void QQMusic::setMusicVolume(int volume)
 
 void QQMusic::onDurationChanged(qint64 duration)
 {
+    totalTime = duration;
     // 计算时间
     // 分: duration/1000/60;
     // 秒: duration/1000%60;
@@ -493,6 +496,26 @@ void QQMusic::onDurationChanged(qint64 duration)
 
 void QQMusic::onPositionChanged(qint64 position)
 {
+    // 修改当前时间显示
     ui->currentTime->setText(QString("%1:%2").arg(position/1000/60, 2, 10, QChar('0'))
-                                           .arg(position/1000%60, 2, 10, QChar('0')));
+                                             .arg(position/1000%60, 2, 10, QChar('0')));
+
+    // 根据播放时间修改进度条
+    ui->progressBar->setStep(position/(float)totalTime);
+}
+
+void QQMusic::onMusicSliderChanged(float ratio)
+{
+    // 1. 计算当前seek位置的时⻓
+     qint64 durationTime = (qint64)(totalTime * ratio);
+    // 修改当前时间显示
+     ui->currentTime->setText(QString("%1:%2").arg(durationTime/1000/60, 2, 10, QChar('0'))
+                                              .arg(durationTime/1000%60, 2, 10, QChar('0')));
+
+     player->setPosition(durationTime);
+}
+
+void QQMusic::on_max_clicked()
+{
+    showMaximized();
 }

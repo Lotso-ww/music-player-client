@@ -16,7 +16,10 @@ public:
     ~MusicSlider();
     void moveSlider(); // 修改outLine的宽度为currentPos;
     void checkCurrentPos(); // 边界检查
+    void setStep(float ratio);
 
+signals:
+ void setMusicSliderPosition(float);
 protected:
     // 采用事件重写的方式来实现(当然也是可以使用事件过滤的)
     void mouseMoveEvent(QMouseEvent *event);

@@ -31,6 +31,12 @@ void MusicSlider::checkCurrentPos()
     if(currentPos > maxWidth) currentPos = maxWidth;
 }
 
+void MusicSlider::setStep(float ratio)
+{
+    currentPos = maxWidth * ratio;
+    moveSlider();
+}
+
 void MusicSlider::mouseMoveEvent(QMouseEvent *event)
 {
     // 注意：QMouseEvent中的pos()为⿏标相对于widget的坐标，不是相当于screen
@@ -65,4 +71,6 @@ void MusicSlider::mouseReleaseEvent(QMouseEvent *event)
     currentPos = event->pos().x(); // 这里也可以不用再计算一次,但是还是带上
     checkCurrentPos(); // 边界检查
     moveSlider();
+
+    emit(setMusicSliderPosition(currentPos / (float)maxWidth));
 }
