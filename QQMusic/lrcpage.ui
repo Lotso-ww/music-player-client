@@ -30,7 +30,17 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QWidget" name="btStyle" native="true">
+    <widget class="QWidget" name="bgStyle" native="true">
+     <property name="styleSheet">
+      <string notr="true">#bgStyle
+{
+	border-image:url(&quot;:/images/bg.png&quot;);
+}
+*
+{
+	color: #FFFFFF;
+}</string>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
        <number>0</number>
@@ -62,7 +72,7 @@
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(170, 170, 255);</string>
+         <string notr="true"/>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <property name="spacing">
@@ -94,6 +104,12 @@
              <height>50</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">#hideBtn
+{
+	border: none;
+}</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -102,7 +118,7 @@
          <item>
           <widget class="QWidget" name="titltBox" native="true">
            <property name="styleSheet">
-            <string notr="true">background-color:rgb(255, 170, 127);</string>
+            <string notr="true"/>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <property name="spacing">
@@ -123,10 +139,10 @@
             <item>
              <widget class="QLabel" name="musicSinger">
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(170, 170, 0);</string>
+               <string notr="true"/>
               </property>
               <property name="text">
-               <string>TextLabel</string>
+               <string>刀郎</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -136,10 +152,10 @@
             <item>
              <widget class="QLabel" name="musicName">
               <property name="styleSheet">
-               <string notr="true">background-color:rgb(170, 170, 255);</string>
+               <string notr="true"/>
               </property>
               <property name="text">
-               <string>TextLabel</string>
+               <string>2002年的第一场雪</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -155,7 +171,7 @@
       <item>
        <widget class="QWidget" name="lrcContent" native="true">
         <property name="styleSheet">
-         <string notr="true">background-color:rgb(255, 255, 127);</string>
+         <string notr="true"/>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="spacing">
@@ -285,6 +301,12 @@
             <font>
              <pointsize>25</pointsize>
             </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">#lineCenter
+{
+	color: #1ECE9A;
+}</string>
            </property>
            <property name="text">
             <string>TextLabel</string>

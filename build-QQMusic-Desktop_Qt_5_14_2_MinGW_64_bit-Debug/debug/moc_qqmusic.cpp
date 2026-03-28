@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_QQMusic_t {
-    QByteArrayData data[37];
-    char stringdata0[531];
+    QByteArrayData data[38];
+    char stringdata0[548];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,43 +39,45 @@ QT_MOC_LITERAL(3, 25, 17), // "on_btForm_clicked"
 QT_MOC_LITERAL(4, 43, 6), // "pageId"
 QT_MOC_LITERAL(5, 50, 17), // "on_volume_clicked"
 QT_MOC_LITERAL(6, 68, 19), // "on_addLocal_clicked"
-QT_MOC_LITERAL(7, 88, 11), // "onPlayMusic"
-QT_MOC_LITERAL(8, 100, 15), // "onPlayUpClicked"
-QT_MOC_LITERAL(9, 116, 17), // "onPlayDownClicked"
-QT_MOC_LITERAL(10, 134, 21), // "onPlaybackModeClicked"
-QT_MOC_LITERAL(11, 156, 18), // "onPlayStateChanged"
-QT_MOC_LITERAL(12, 175, 21), // "onPlaybackModeChanged"
-QT_MOC_LITERAL(13, 197, 28), // "QMediaPlaylist::PlaybackMode"
-QT_MOC_LITERAL(14, 226, 12), // "playbackMode"
-QT_MOC_LITERAL(15, 239, 9), // "onPlayAll"
-QT_MOC_LITERAL(16, 249, 8), // "PageType"
-QT_MOC_LITERAL(17, 258, 8), // "pageType"
-QT_MOC_LITERAL(18, 267, 19), // "playAllOfCommonPage"
-QT_MOC_LITERAL(19, 287, 11), // "CommonPage*"
-QT_MOC_LITERAL(20, 299, 4), // "page"
-QT_MOC_LITERAL(21, 304, 5), // "index"
-QT_MOC_LITERAL(22, 310, 18), // "onPlayMusicByIndex"
-QT_MOC_LITERAL(23, 329, 25), // "onPlayCurrentIndexChanged"
-QT_MOC_LITERAL(24, 355, 15), // "setMusicSilence"
-QT_MOC_LITERAL(25, 371, 7), // "isMuted"
-QT_MOC_LITERAL(26, 379, 14), // "setMusicVolume"
-QT_MOC_LITERAL(27, 394, 6), // "volume"
-QT_MOC_LITERAL(28, 401, 17), // "onDurationChanged"
-QT_MOC_LITERAL(29, 419, 8), // "duration"
-QT_MOC_LITERAL(30, 428, 17), // "onPositionChanged"
-QT_MOC_LITERAL(31, 446, 8), // "position"
-QT_MOC_LITERAL(32, 455, 20), // "onMusicSliderChanged"
-QT_MOC_LITERAL(33, 476, 5), // "ratio"
-QT_MOC_LITERAL(34, 482, 23), // "onMediaAvailableChanged"
-QT_MOC_LITERAL(35, 506, 9), // "available"
-QT_MOC_LITERAL(36, 516, 14) // "on_max_clicked"
+QT_MOC_LITERAL(7, 88, 16), // "onLrcWordClicked"
+QT_MOC_LITERAL(8, 105, 11), // "onPlayMusic"
+QT_MOC_LITERAL(9, 117, 15), // "onPlayUpClicked"
+QT_MOC_LITERAL(10, 133, 17), // "onPlayDownClicked"
+QT_MOC_LITERAL(11, 151, 21), // "onPlaybackModeClicked"
+QT_MOC_LITERAL(12, 173, 18), // "onPlayStateChanged"
+QT_MOC_LITERAL(13, 192, 21), // "onPlaybackModeChanged"
+QT_MOC_LITERAL(14, 214, 28), // "QMediaPlaylist::PlaybackMode"
+QT_MOC_LITERAL(15, 243, 12), // "playbackMode"
+QT_MOC_LITERAL(16, 256, 9), // "onPlayAll"
+QT_MOC_LITERAL(17, 266, 8), // "PageType"
+QT_MOC_LITERAL(18, 275, 8), // "pageType"
+QT_MOC_LITERAL(19, 284, 19), // "playAllOfCommonPage"
+QT_MOC_LITERAL(20, 304, 11), // "CommonPage*"
+QT_MOC_LITERAL(21, 316, 4), // "page"
+QT_MOC_LITERAL(22, 321, 5), // "index"
+QT_MOC_LITERAL(23, 327, 18), // "onPlayMusicByIndex"
+QT_MOC_LITERAL(24, 346, 25), // "onPlayCurrentIndexChanged"
+QT_MOC_LITERAL(25, 372, 15), // "setMusicSilence"
+QT_MOC_LITERAL(26, 388, 7), // "isMuted"
+QT_MOC_LITERAL(27, 396, 14), // "setMusicVolume"
+QT_MOC_LITERAL(28, 411, 6), // "volume"
+QT_MOC_LITERAL(29, 418, 17), // "onDurationChanged"
+QT_MOC_LITERAL(30, 436, 8), // "duration"
+QT_MOC_LITERAL(31, 445, 17), // "onPositionChanged"
+QT_MOC_LITERAL(32, 463, 8), // "position"
+QT_MOC_LITERAL(33, 472, 20), // "onMusicSliderChanged"
+QT_MOC_LITERAL(34, 493, 5), // "ratio"
+QT_MOC_LITERAL(35, 499, 23), // "onMediaAvailableChanged"
+QT_MOC_LITERAL(36, 523, 9), // "available"
+QT_MOC_LITERAL(37, 533, 14) // "on_max_clicked"
 
     },
     "QQMusic\0on_quit_clicked\0\0on_btForm_clicked\0"
     "pageId\0on_volume_clicked\0on_addLocal_clicked\0"
-    "onPlayMusic\0onPlayUpClicked\0"
-    "onPlayDownClicked\0onPlaybackModeClicked\0"
-    "onPlayStateChanged\0onPlaybackModeChanged\0"
+    "onLrcWordClicked\0onPlayMusic\0"
+    "onPlayUpClicked\0onPlayDownClicked\0"
+    "onPlaybackModeClicked\0onPlayStateChanged\0"
+    "onPlaybackModeChanged\0"
     "QMediaPlaylist::PlaybackMode\0playbackMode\0"
     "onPlayAll\0PageType\0pageType\0"
     "playAllOfCommonPage\0CommonPage*\0page\0"
@@ -95,7 +97,7 @@ static const uint qt_meta_data_QQMusic[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -103,27 +105,28 @@ static const uint qt_meta_data_QQMusic[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  119,    2, 0x08 /* Private */,
-       3,    1,  120,    2, 0x08 /* Private */,
-       5,    0,  123,    2, 0x08 /* Private */,
-       6,    0,  124,    2, 0x08 /* Private */,
-       7,    0,  125,    2, 0x08 /* Private */,
-       8,    0,  126,    2, 0x08 /* Private */,
-       9,    0,  127,    2, 0x08 /* Private */,
-      10,    0,  128,    2, 0x08 /* Private */,
-      11,    0,  129,    2, 0x08 /* Private */,
-      12,    1,  130,    2, 0x08 /* Private */,
-      15,    1,  133,    2, 0x08 /* Private */,
-      18,    2,  136,    2, 0x08 /* Private */,
-      22,    2,  141,    2, 0x08 /* Private */,
-      23,    1,  146,    2, 0x08 /* Private */,
-      24,    1,  149,    2, 0x08 /* Private */,
-      26,    1,  152,    2, 0x08 /* Private */,
-      28,    1,  155,    2, 0x08 /* Private */,
-      30,    1,  158,    2, 0x08 /* Private */,
-      32,    1,  161,    2, 0x08 /* Private */,
-      34,    1,  164,    2, 0x08 /* Private */,
-      36,    0,  167,    2, 0x08 /* Private */,
+       1,    0,  124,    2, 0x08 /* Private */,
+       3,    1,  125,    2, 0x08 /* Private */,
+       5,    0,  128,    2, 0x08 /* Private */,
+       6,    0,  129,    2, 0x08 /* Private */,
+       7,    0,  130,    2, 0x08 /* Private */,
+       8,    0,  131,    2, 0x08 /* Private */,
+       9,    0,  132,    2, 0x08 /* Private */,
+      10,    0,  133,    2, 0x08 /* Private */,
+      11,    0,  134,    2, 0x08 /* Private */,
+      12,    0,  135,    2, 0x08 /* Private */,
+      13,    1,  136,    2, 0x08 /* Private */,
+      16,    1,  139,    2, 0x08 /* Private */,
+      19,    2,  142,    2, 0x08 /* Private */,
+      23,    2,  147,    2, 0x08 /* Private */,
+      24,    1,  152,    2, 0x08 /* Private */,
+      25,    1,  155,    2, 0x08 /* Private */,
+      27,    1,  158,    2, 0x08 /* Private */,
+      29,    1,  161,    2, 0x08 /* Private */,
+      31,    1,  164,    2, 0x08 /* Private */,
+      33,    1,  167,    2, 0x08 /* Private */,
+      35,    1,  170,    2, 0x08 /* Private */,
+      37,    0,  173,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -135,17 +138,18 @@ static const uint qt_meta_data_QQMusic[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 13,   14,
-    QMetaType::Void, 0x80000000 | 16,   17,
-    QMetaType::Void, 0x80000000 | 19, QMetaType::Int,   20,   21,
-    QMetaType::Void, 0x80000000 | 19, QMetaType::Int,   20,   21,
-    QMetaType::Void, QMetaType::Int,   21,
-    QMetaType::Void, QMetaType::Bool,   25,
-    QMetaType::Void, QMetaType::Int,   27,
-    QMetaType::Void, QMetaType::LongLong,   29,
-    QMetaType::Void, QMetaType::LongLong,   31,
-    QMetaType::Void, QMetaType::Float,   33,
-    QMetaType::Void, QMetaType::Bool,   35,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 14,   15,
+    QMetaType::Void, 0x80000000 | 17,   18,
+    QMetaType::Void, 0x80000000 | 20, QMetaType::Int,   21,   22,
+    QMetaType::Void, 0x80000000 | 20, QMetaType::Int,   21,   22,
+    QMetaType::Void, QMetaType::Int,   22,
+    QMetaType::Void, QMetaType::Bool,   26,
+    QMetaType::Void, QMetaType::Int,   28,
+    QMetaType::Void, QMetaType::LongLong,   30,
+    QMetaType::Void, QMetaType::LongLong,   32,
+    QMetaType::Void, QMetaType::Float,   34,
+    QMetaType::Void, QMetaType::Bool,   36,
     QMetaType::Void,
 
        0        // eod
@@ -161,43 +165,44 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 1: _t->on_btForm_clicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->on_volume_clicked(); break;
         case 3: _t->on_addLocal_clicked(); break;
-        case 4: _t->onPlayMusic(); break;
-        case 5: _t->onPlayUpClicked(); break;
-        case 6: _t->onPlayDownClicked(); break;
-        case 7: _t->onPlaybackModeClicked(); break;
-        case 8: _t->onPlayStateChanged(); break;
-        case 9: _t->onPlaybackModeChanged((*reinterpret_cast< QMediaPlaylist::PlaybackMode(*)>(_a[1]))); break;
-        case 10: _t->onPlayAll((*reinterpret_cast< PageType(*)>(_a[1]))); break;
-        case 11: _t->playAllOfCommonPage((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 12: _t->onPlayMusicByIndex((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 13: _t->onPlayCurrentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 14: _t->setMusicSilence((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 15: _t->setMusicVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->onDurationChanged((*reinterpret_cast< qint64(*)>(_a[1]))); break;
-        case 17: _t->onPositionChanged((*reinterpret_cast< qint64(*)>(_a[1]))); break;
-        case 18: _t->onMusicSliderChanged((*reinterpret_cast< float(*)>(_a[1]))); break;
-        case 19: _t->onMediaAvailableChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 20: _t->on_max_clicked(); break;
+        case 4: _t->onLrcWordClicked(); break;
+        case 5: _t->onPlayMusic(); break;
+        case 6: _t->onPlayUpClicked(); break;
+        case 7: _t->onPlayDownClicked(); break;
+        case 8: _t->onPlaybackModeClicked(); break;
+        case 9: _t->onPlayStateChanged(); break;
+        case 10: _t->onPlaybackModeChanged((*reinterpret_cast< QMediaPlaylist::PlaybackMode(*)>(_a[1]))); break;
+        case 11: _t->onPlayAll((*reinterpret_cast< PageType(*)>(_a[1]))); break;
+        case 12: _t->playAllOfCommonPage((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 13: _t->onPlayMusicByIndex((*reinterpret_cast< CommonPage*(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 14: _t->onPlayCurrentIndexChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 15: _t->setMusicSilence((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 16: _t->setMusicVolume((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->onDurationChanged((*reinterpret_cast< qint64(*)>(_a[1]))); break;
+        case 18: _t->onPositionChanged((*reinterpret_cast< qint64(*)>(_a[1]))); break;
+        case 19: _t->onMusicSliderChanged((*reinterpret_cast< float(*)>(_a[1]))); break;
+        case 20: _t->onMediaAvailableChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 21: _t->on_max_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 9:
+        case 10:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QMediaPlaylist::PlaybackMode >(); break;
             }
             break;
-        case 11:
+        case 12:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< CommonPage* >(); break;
             }
             break;
-        case 12:
+        case 13:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -237,13 +242,13 @@ int QQMusic::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 22;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 22;
     }
     return _id;
 }

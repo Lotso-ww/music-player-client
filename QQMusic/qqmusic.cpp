@@ -74,8 +74,12 @@ void QQMusic::initUI()
     ui->play->setIcon(QIcon(":/images/play3.png"));          // 默认为暂停图标
     ui->playMode->setIcon(QIcon(":/images/shuffle_2.png"));  // 默认为随机播放
 
-    // 创建⾳量调节窗⼝对象并挂到对象树
+    // 创建音量调节窗⼝对象并挂到对象树
     volumeTool = new VolumeTool(this);
+
+    // 创建lrc歌词窗⼝
+    lrcPage = new LrcPage(this);
+    lrcPage->hide(); // 默认是隐藏
 }
 
 void QQMusic::initPlayer()
@@ -144,6 +148,8 @@ void QQMusic::connectSignalAndSlots()
     connect(volumeTool, &VolumeTool::setSilence, this, &QQMusic::setMusicSilence);
     // 设置音量, VolumeTool
     connect(volumeTool, &VolumeTool::setMusicVolume, this, &QQMusic::setMusicVolume);
+    // 显示歌词窗口
+    connect(ui->lrcWord, &QPushButton::clicked, this, &QQMusic::onLrcWordClicked);
     // 进度条拖拽
     connect(ui->progressBar, &MusicSlider::setMusicSliderPosition, this, &QQMusic::onMusicSliderChanged);
 }
@@ -311,6 +317,11 @@ void QQMusic::on_addLocal_clicked()
         ui->localPage->addMusicToPlayList(musicList, playList);
     }
 
+}
+
+void QQMusic::onLrcWordClicked()
+{
+    lrcPage->show();
 }
 
 void QQMusic::onPlayMusic()

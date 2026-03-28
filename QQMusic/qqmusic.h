@@ -7,6 +7,7 @@
 #include "commonpage.h"
 #include "musiclist.h"
 #include "volumetool.h"
+#include "lrcpage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class QQMusic; }
@@ -32,6 +33,7 @@ private slots:
     void on_volume_clicked();
 
     void on_addLocal_clicked();
+    void onLrcWordClicked();
 
     // 媒体播放相关槽函数
     // 播放按钮: 歌曲在播放和暂停之间切换
@@ -81,6 +83,7 @@ private:
     QPoint dragPosition;
     MusicList musicList; // 程序中组织管理的音乐列表
     VolumeTool *volumeTool;
+    LrcPage* lrcPage; // 歌曲界面
 
     QMediaPlayer* player;     // 媒体播放控制
     QMediaPlaylist* playList; // 要多⾸歌曲播放，以及更复杂的播放设置，需要给播放器设置媒体列表
