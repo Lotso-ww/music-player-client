@@ -1,6 +1,7 @@
 debug/btform.o
 debug/commonpage.o
 debug/listitembox.o
+debug/lrcpage.o
 debug/main.o
 debug/music.o
 debug/musiclist.o
@@ -13,6 +14,7 @@ debug/qrc_Resource.o
 debug/moc_btform.o
 debug/moc_commonpage.o
 debug/moc_listitembox.o
+debug/moc_lrcpage.o
 debug/moc_musicslider.o
 debug/moc_qqmusic.o
 debug/moc_recbox.o
