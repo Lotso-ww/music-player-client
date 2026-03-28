@@ -477,7 +477,7 @@ public:
         horizontalLayout_8 = new QHBoxLayout(controlBox);
         horizontalLayout_8->setSpacing(0);
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
-        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 5);
         play1 = new QWidget(controlBox);
         play1->setObjectName(QString::fromUtf8("play1"));
         play1->setStyleSheet(QString::fromUtf8(""));

@@ -29,6 +29,7 @@ public:
     void setPageType(PageType pageType);
     void setCommonPageUI(const QString& text, const QString& imagePath);
     void addMusicToMusicPage(MusicList& musicList);
+    void setMusicImage(QPixmap pixmap);
     void reFresh(MusicList& musicList);
 
     void addMusicToPlayList(MusicList& musicList, QMediaPlaylist* playList);

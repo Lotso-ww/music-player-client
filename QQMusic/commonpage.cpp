@@ -67,6 +67,12 @@ void CommonPage::addMusicToMusicPage(MusicList& musicList)
     }
 }
 
+void CommonPage::setMusicImage(QPixmap pixmap)
+{
+    ui->musicImageLabel->setPixmap(pixmap);
+    ui->musicImageLabel->setScaledContents(true);
+}
+
 void CommonPage::reFresh(MusicList &musicList)
 {
     // 每次添加之前我们先将QListWidget之前的内容清空

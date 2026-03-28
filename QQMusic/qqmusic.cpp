@@ -540,6 +540,7 @@ void QQMusic::onMediaAvailableChanged(bool available)
     {
         QImage musicImage = coverImage.value<QImage>();
         ui->musicCover->setPixmap(QPixmap().fromImage(musicImage));
+        currentPage->setMusicImage(QPixmap().fromImage(musicImage));
     }
     else
     {
@@ -547,6 +548,7 @@ void QQMusic::onMediaAvailableChanged(bool available)
         // 设置默认图片
         QString path = ":/images/rec/001.png";
         ui->musicCover->setPixmap(path);
+        currentPage->setMusicImage(path);
     }
     ui->musicCover->setScaledContents(true);
 }
