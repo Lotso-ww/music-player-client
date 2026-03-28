@@ -95,7 +95,7 @@ public:
     QWidget *play1;
     QGridLayout *gridLayout;
     QLabel *musicName;
-    QLabel *label_9;
+    QLabel *musicSigner;
     QLabel *musicCover;
     QWidget *play2;
     QHBoxLayout *horizontalLayout_9;
@@ -483,18 +483,21 @@ public:
         play1->setStyleSheet(QString::fromUtf8(""));
         gridLayout = new QGridLayout(play1);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setContentsMargins(-1, 0, -1, -1);
         musicName = new QLabel(play1);
         musicName->setObjectName(QString::fromUtf8("musicName"));
 
         gridLayout->addWidget(musicName, 0, 1, 1, 1);
 
-        label_9 = new QLabel(play1);
-        label_9->setObjectName(QString::fromUtf8("label_9"));
+        musicSigner = new QLabel(play1);
+        musicSigner->setObjectName(QString::fromUtf8("musicSigner"));
 
-        gridLayout->addWidget(label_9, 1, 1, 1, 1);
+        gridLayout->addWidget(musicSigner, 1, 1, 1, 1);
 
         musicCover = new QLabel(play1);
         musicCover->setObjectName(QString::fromUtf8("musicCover"));
+        musicCover->setMinimumSize(QSize(60, 60));
+        musicCover->setMaximumSize(QSize(60, 60));
 
         gridLayout->addWidget(musicCover, 0, 0, 2, 1);
 
@@ -664,7 +667,7 @@ public:
         label_2->setText(QCoreApplication::translate("QQMusic", "page2", nullptr));
         label_3->setText(QCoreApplication::translate("QQMusic", "page3", nullptr));
         musicName->setText(QCoreApplication::translate("QQMusic", "\346\255\214\345\220\215", nullptr));
-        label_9->setText(QCoreApplication::translate("QQMusic", "\346\255\214\346\211\213", nullptr));
+        musicSigner->setText(QCoreApplication::translate("QQMusic", "\346\255\214\346\211\213", nullptr));
         musicCover->setText(QCoreApplication::translate("QQMusic", "\345\233\276\347\211\207", nullptr));
         playMode->setText(QString());
         playUp->setText(QString());

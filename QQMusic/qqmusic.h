@@ -69,6 +69,7 @@ private slots:
     void onPositionChanged(qint64 position);
     void onMusicSliderChanged(float ratio); // 进度条改变
 
+    void onMediaAvailableChanged(bool available); // 更新歌曲名,作者,封面
     void on_max_clicked();
 
 protected:
@@ -87,5 +88,7 @@ private:
     CommonPage* currentPage; // 记录当前播放界面
 
     qint64 totalTime; // 记录总的时间
+
+    int currentIndex; // 当前播放歌曲的索引
 };
 #endif // QQMUSIC_H

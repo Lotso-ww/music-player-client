@@ -1,4 +1,4 @@
-#include "qqmusic.h"
+﻿#include "qqmusic.h"
 #include "ui_qqmusic.h"
 #include <QDebug>
 #include <QPushButton>
@@ -99,6 +99,8 @@ void QQMusic::initPlayer()
     connect(player, &QMediaPlayer::durationChanged, this, &QQMusic::onDurationChanged);
     // 关联QMediaPlayer::positionChanged信号
     connect(player, &QMediaPlayer::positionChanged, this, &QQMusic::onPositionChanged);
+    // QMediaObject::metaDataAvailableChanged
+    connect(player, &QMediaObject::metaDataAvailableChanged, this, &QQMusic::onMediaAvailableChanged);
 
     // 播放列表模式改变的槽函数关联
     connect(playList, &QMediaPlaylist::playbackModeChanged, this, &QQMusic::onPlaybackModeChanged);
@@ -458,6 +460,7 @@ void QQMusic::onPlayMusicByIndex(CommonPage *page, int index)
 
 void QQMusic::onPlayCurrentIndexChanged(int index)
 {
+    currentIndex = index;
     // ⾳乐的id都在commonPage中的musicListOfPage中存储着
     const QString musicid = currentPage->getMusicIdByindex(index);
 
@@ -513,6 +516,39 @@ void QQMusic::onMusicSliderChanged(float ratio)
                                               .arg(durationTime/1000%60, 2, 10, QChar('0')));
 
      player->setPosition(durationTime);
+}
+
+void QQMusic::onMediaAvailableChanged(bool available)
+{
+    // 先获取到Music对象,然后再设置歌曲名和歌曲作者
+    // 需要先知道媒体源在播放列表中的索引
+    QString musicId = currentPage->getMusicIdByindex(currentIndex);
+    auto it = musicList.findMusicById(musicId);
+    QString musicName("未知歌曲");
+    QString musicSigner("未知歌手");
+    if(it != musicList.end())
+    {
+        musicName = it->getMusicName();
+        musicSigner = it->getMusicSinger();
+    }
+    ui->musicName->setText(musicName);
+    ui->musicSigner->setText(musicSigner);
+
+    // 设置封面图 -- 从媒体源从获取
+    QVariant coverImage = player->metaData("ThumbnailImage");
+    if(coverImage.isValid())
+    {
+        QImage musicImage = coverImage.value<QImage>();
+        ui->musicCover->setPixmap(QPixmap().fromImage(musicImage));
+    }
+    else
+    {
+        qDebug() << "没有封面图片";
+        // 设置默认图片
+        QString path = ":/images/rec/001.png";
+        ui->musicCover->setPixmap(path);
+    }
+    ui->musicCover->setScaledContents(true);
 }
 
 void QQMusic::on_max_clicked()
