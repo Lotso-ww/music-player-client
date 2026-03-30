@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QPropertyAnimation>
 #include "commonpage.h"
 #include "musiclist.h"
 #include "volumetool.h"
@@ -83,8 +84,8 @@ private:
     QPoint dragPosition;
     MusicList musicList; // 程序中组织管理的音乐列表
     VolumeTool *volumeTool;
-    LrcPage* lrcPage; // 歌曲界面
-
+    LrcPage* lrcPage; // 歌词界面
+    QPropertyAnimation* lrcAnimal; // 歌词界面动画
     QMediaPlayer* player;     // 媒体播放控制
     QMediaPlaylist* playList; // 要多⾸歌曲播放，以及更复杂的播放设置，需要给播放器设置媒体列表
 

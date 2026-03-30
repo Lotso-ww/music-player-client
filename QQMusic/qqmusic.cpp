@@ -36,7 +36,7 @@ void QQMusic::initUI()
     QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setOffset(0,0);
     shadowEffect->setColor("#000000"); // 黑色
-    shadowEffect->setBlurRadius(20);
+    shadowEffect->setBlurRadius(10); // 此处需要将圆⻆半径不能太大，否则动画效果有问题，可以设置为10
     this->setGraphicsEffect(shadowEffect);
 
     // 设置bodyLeft中6个btForm的图标和文本（调用我们自己实现的函数）
@@ -79,7 +79,15 @@ void QQMusic::initUI()
 
     // 创建lrc歌词窗⼝
     lrcPage = new LrcPage(this);
+    lrcPage->setGeometry(10, 10, lrcPage->width(), lrcPage->height());
     lrcPage->hide(); // 默认是隐藏
+
+    // 初始化上移动画,需要把前面设置的阴影圆角调成10,不然有影响
+    lrcAnimal = new QPropertyAnimation(lrcPage, "geometry", this);
+    lrcAnimal->setDuration(500);
+    lrcAnimal->setStartValue(QRect(10, 10 + lrcPage->height(), lrcPage->width(), lrcPage->height()));
+    lrcAnimal->setEndValue(QRect(10, 10, lrcPage->width(), lrcPage->height()));
+    // 在onLrcWordClicked函数里面启动动画
 }
 
 void QQMusic::initPlayer()
@@ -322,6 +330,7 @@ void QQMusic::on_addLocal_clicked()
 void QQMusic::onLrcWordClicked()
 {
     lrcPage->show();
+    lrcAnimal->start();
 }
 
 void QQMusic::onPlayMusic()

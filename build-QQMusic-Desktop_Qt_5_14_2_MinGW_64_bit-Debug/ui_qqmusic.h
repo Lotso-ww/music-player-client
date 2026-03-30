@@ -119,9 +119,9 @@ public:
             QQMusic->setObjectName(QString::fromUtf8("QQMusic"));
         QQMusic->resize(1040, 700);
         horizontalLayout = new QHBoxLayout(QQMusic);
-        horizontalLayout->setSpacing(0);
+        horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout->setContentsMargins(9, 9, 9, 9);
         background = new QWidget(QQMusic);
         background->setObjectName(QString::fromUtf8("background"));
         background->setStyleSheet(QString::fromUtf8(""));
