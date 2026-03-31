@@ -91,7 +91,7 @@ QString Music::getMusicLrcPath() const
 {
     // 我们已经知道歌曲文件路径了
     // 歌词文件路径其实就是替换了一个后缀 .mp3->.lrc
-    QString lrcPath = musicUrl.toString();
+    QString lrcPath = musicUrl.toLocalFile();
     lrcPath.replace(".mp3", ".lrc");
     lrcPath.replace(".flac", ".lrc");
     lrcPath.replace(".mpga", ".lrc");

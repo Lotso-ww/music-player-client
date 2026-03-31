@@ -542,6 +542,7 @@ void QQMusic::onMusicSliderChanged(float ratio)
 
 void QQMusic::onMediaAvailableChanged(bool available)
 {
+    (void)available;
     // 先获取到Music对象,然后再设置歌曲名和歌曲作者
     // 需要先知道媒体源在播放列表中的索引
     QString musicId = currentPage->getMusicIdByindex(currentIndex);
@@ -581,6 +582,7 @@ void QQMusic::onMediaAvailableChanged(bool available)
         QString lrcPath = it->getMusicLrcPath();
 
         // 通过歌词文件路径解析歌词
+        lrcPage->parseLrc(lrcPath);
     }
 }
 
