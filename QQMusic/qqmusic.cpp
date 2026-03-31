@@ -525,6 +525,8 @@ void QQMusic::onPositionChanged(qint64 position)
 
     // 根据播放时间修改进度条
     ui->progressBar->setStep(position/(float)totalTime);
+
+    // 根据当前播放时间歌词同步显示
 }
 
 void QQMusic::onMusicSliderChanged(float ratio)
@@ -571,6 +573,15 @@ void QQMusic::onMediaAvailableChanged(bool available)
         currentPage->setMusicImage(path);
     }
     ui->musicCover->setScaledContents(true);
+
+    // 解析歌词文件
+    if(it != musicList.end())
+    {
+        // 获取歌词文件路径
+        QString lrcPath = it->getMusicLrcPath();
+
+        // 通过歌词文件路径解析歌词
+    }
 }
 
 void QQMusic::on_max_clicked()

@@ -28,6 +28,7 @@ public:
     bool getIsLike()const;
     bool getIsHistory()const;
     QUrl getMusicUrl()const;
+    QString getMusicLrcPath()const;
 
 private:
     void parseMediaMetaData(); // 解析元数据
