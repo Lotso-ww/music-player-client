@@ -527,6 +527,7 @@ void QQMusic::onPositionChanged(qint64 position)
     ui->progressBar->setStep(position/(float)totalTime);
 
     // 根据当前播放时间歌词同步显示
+    lrcPage->showLrcWord(position);
 }
 
 void QQMusic::onMusicSliderChanged(float ratio)

@@ -26,6 +26,9 @@ class LrcPage : public QWidget
 public:
     explicit LrcPage(QWidget *parent = nullptr);
     bool parseLrc(const QString& lrcPath);
+    void showLrcWord(qint64 time);
+    int getWordIndex(qint64 pos);
+    QString getLrcWordByIndex(int index);
     ~LrcPage();
 private:
     Ui::LrcPage *ui;

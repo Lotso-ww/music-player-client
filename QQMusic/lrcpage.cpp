@@ -48,7 +48,7 @@ bool LrcPage::parseLrc(const QString &lrcPath)
         int start = 0, end = 0;
         end = word.indexOf(']', start);
         QString lrcTime = word.mid(start, end - start + 1);
-        QString lrcText = word.mid(end + 1); // 第二个不给默认到最后
+        QString lrcText = word.mid(end + 1, word.size() - end - 2);
 
         // 解析时间 -- ms
         // [00:17.94] [0:58.600.00]
@@ -77,6 +77,64 @@ bool LrcPage::parseLrc(const QString &lrcPath)
         qDebug() << e._wordTime << ":" << e._wordText;
     }
     return true;
+}
+
+void LrcPage::showLrcWord(qint64 time)
+{
+    // 1. 先拿到对应的下标索引
+    int index = getWordIndex(time);
+
+    // 2. 显示歌词
+    if(-1 == index)
+    {
+        ui->line1->setText("");
+        ui->line2->setText("");
+        ui->line3->setText("");
+        ui->lineCenter->setText("该歌曲暂无歌词");
+        ui->line4->setText("");
+        ui->line5->setText("");
+        ui->line6->setText("");
+    }
+    else
+    {
+        ui->line1->setText(getLrcWordByIndex(index - 3));
+        ui->line2->setText(getLrcWordByIndex(index - 2));
+        ui->line3->setText(getLrcWordByIndex(index - 1));
+        ui->lineCenter->setText(getLrcWordByIndex(index));
+        ui->line4->setText(getLrcWordByIndex(index + 1));
+        ui->line5->setText(getLrcWordByIndex(index + 2));
+        ui->line6->setText(getLrcWordByIndex(index + 3));
+    }
+}
+
+int LrcPage::getWordIndex(qint64 pos)
+{
+    // 将时间和歌词时间进行对比
+    // 如果没歌词文件显示不了
+    if(lrcLines.isEmpty()) return -1;
+
+    if(pos <= lrcLines[0]._wordTime) return 0;
+
+    for(int i = 1; i < lrcLines.size(); i++)
+    {
+        // 如果在i-1和i之间证明上一次的还没播放完
+        if(pos >= lrcLines[i - 1]._wordTime && pos < lrcLines[i]._wordTime)
+        {
+            return i - 1;
+        }
+    }
+
+    return lrcLines.size() - 1; // 一直显示的最后一个歌词
+}
+
+QString LrcPage::getLrcWordByIndex(int index)
+{
+    if(index < 0 || index >= lrcLines.size())
+    {
+        return "";
+    }
+
+    return lrcLines[index]._wordText;
 }
 
 LrcPage::~LrcPage()
