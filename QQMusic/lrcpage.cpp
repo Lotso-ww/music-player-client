@@ -27,6 +27,14 @@ LrcPage::LrcPage(QWidget *parent) :
     connect(animal, &QPropertyAnimation::finished, this, [=]{
        hide();
     });
+
+    showLrcWord(-1);
+}
+
+void LrcPage::setMusicNameAndSinger(QString &musicName, QString &musicSigner)
+{
+    ui->musicName->setText(musicName);
+    ui->musicSinger->setText(musicSigner);
 }
 
 bool LrcPage::parseLrc(const QString &lrcPath)
@@ -37,6 +45,9 @@ bool LrcPage::parseLrc(const QString &lrcPath)
     {
         return false; // 打开失败
     }
+
+    // 清除上一首歌曲的歌词
+    lrcLines.clear();
 
     while(!lrcFile.atEnd()) // 没读到结尾就继续
     {

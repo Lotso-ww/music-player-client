@@ -1035,7 +1035,8 @@ QPushButton:hover
                     <property name="styleSheet">
                      <string notr="true">#lrcWord
 {    
-	border: none; /* 去除边框 */     
+	border: none; /* 去除边框 */    
+	background-image: url(&quot;:/images/geci1.png&quot;);
 	background-repeat:no-repeat;    
 	background-position:center center;
 }
@@ -1045,7 +1046,7 @@ QPushButton:hover
 }</string>
                     </property>
                     <property name="text">
-                     <string>词</string>
+                     <string/>
                     </property>
                    </widget>
                   </item>

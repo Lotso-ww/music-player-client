@@ -25,6 +25,7 @@ class LrcPage : public QWidget
 
 public:
     explicit LrcPage(QWidget *parent = nullptr);
+    void setMusicNameAndSinger(QString &musicName, QString &musicSigner);
     bool parseLrc(const QString& lrcPath);
     void showLrcWord(qint64 time);
     int getWordIndex(qint64 pos);

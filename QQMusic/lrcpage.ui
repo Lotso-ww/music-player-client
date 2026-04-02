@@ -34,7 +34,7 @@
      <property name="styleSheet">
       <string notr="true">#bgStyle
 {
-	border-image:url(&quot;:/images/bg.png&quot;);
+	border-image:url(&quot;:/images/bg3.png&quot;);
 }
 *
 {
@@ -108,6 +108,9 @@
             <string notr="true">#hideBtn
 {
 	border: none;
+	background-image:url(&quot;:/images/xiala.png&quot;);
+	background-repeat:no-repeat;
+	background-position:center center;
 }</string>
            </property>
            <property name="text">
@@ -131,7 +134,7 @@
              <number>0</number>
             </property>
             <property name="rightMargin">
-             <number>0</number>
+             <number>20</number>
             </property>
             <property name="bottomMargin">
              <number>0</number>
@@ -146,6 +149,9 @@
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>0</number>
               </property>
              </widget>
             </item>
@@ -170,6 +176,11 @@
       </item>
       <item>
        <widget class="QWidget" name="lrcContent" native="true">
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>

@@ -616,7 +616,8 @@ public:
         lrcWord->setMaximumSize(QSize(30, 30));
         lrcWord->setStyleSheet(QString::fromUtf8("#lrcWord\n"
 "{    \n"
-"	border: none; /* \345\216\273\351\231\244\350\276\271\346\241\206 */     \n"
+"	border: none; /* \345\216\273\351\231\244\350\276\271\346\241\206 */    \n"
+"	background-image: url(\":/images/geci1.png\");\n"
 "	background-repeat:no-repeat;    \n"
 "	background-position:center center;\n"
 "}\n"
@@ -679,7 +680,7 @@ public:
         currentTime->setText(QCoreApplication::translate("QQMusic", "1:30", nullptr));
         line->setText(QCoreApplication::translate("QQMusic", " /", nullptr));
         totalTime->setText(QCoreApplication::translate("QQMusic", "4:30", nullptr));
-        lrcWord->setText(QCoreApplication::translate("QQMusic", "\350\257\215", nullptr));
+        lrcWord->setText(QString());
     } // retranslateUi
 
 };

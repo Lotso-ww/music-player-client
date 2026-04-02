@@ -58,7 +58,7 @@ public:
         bgStyle->setObjectName(QString::fromUtf8("bgStyle"));
         bgStyle->setStyleSheet(QString::fromUtf8("#bgStyle\n"
 "{\n"
-"	border-image:url(\":/images/bg.png\");\n"
+"	border-image:url(\":/images/bg3.png\");\n"
 "}\n"
 "*\n"
 "{\n"
@@ -84,6 +84,9 @@ public:
         hideBtn->setStyleSheet(QString::fromUtf8("#hideBtn\n"
 "{\n"
 "	border: none;\n"
+"	background-image:url(\":/images/xiala.png\");\n"
+"	background-repeat:no-repeat;\n"
+"	background-position:center center;\n"
 "}"));
 
         horizontalLayout_2->addWidget(hideBtn);
@@ -94,11 +97,12 @@ public:
         verticalLayout_2 = new QVBoxLayout(titltBox);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_2->setContentsMargins(0, 0, 20, 0);
         musicSinger = new QLabel(titltBox);
         musicSinger->setObjectName(QString::fromUtf8("musicSinger"));
         musicSinger->setStyleSheet(QString::fromUtf8(""));
         musicSinger->setAlignment(Qt::AlignCenter);
+        musicSinger->setMargin(0);
 
         verticalLayout_2->addWidget(musicSinger);
 
@@ -117,6 +121,9 @@ public:
 
         lrcContent = new QWidget(bgStyle);
         lrcContent->setObjectName(QString::fromUtf8("lrcContent"));
+        QFont font;
+        font.setPointSize(15);
+        lrcContent->setFont(font);
         lrcContent->setStyleSheet(QString::fromUtf8(""));
         verticalLayout_3 = new QVBoxLayout(lrcContent);
         verticalLayout_3->setSpacing(0);
@@ -130,8 +137,6 @@ public:
         line1->setObjectName(QString::fromUtf8("line1"));
         line1->setMinimumSize(QSize(0, 50));
         line1->setMaximumSize(QSize(16777215, 50));
-        QFont font;
-        font.setPointSize(15);
         line1->setFont(font);
         line1->setAlignment(Qt::AlignCenter);
 

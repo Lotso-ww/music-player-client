@@ -12,6 +12,7 @@
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::QQMusic)
+    , currentIndex(-1)
 {
     ui->setupUi(this);
 
@@ -527,7 +528,8 @@ void QQMusic::onPositionChanged(qint64 position)
     ui->progressBar->setStep(position/(float)totalTime);
 
     // 根据当前播放时间歌词同步显示
-    lrcPage->showLrcWord(position);
+    if(currentIndex >= 0)
+        lrcPage->showLrcWord(position);
 }
 
 void QQMusic::onMusicSliderChanged(float ratio)
@@ -576,6 +578,8 @@ void QQMusic::onMediaAvailableChanged(bool available)
     }
     ui->musicCover->setScaledContents(true);
 
+    // 歌曲作者和歌曲名变化
+    lrcPage->setMusicNameAndSinger(musicName, musicSigner);
     // 解析歌词文件
     if(it != musicList.end())
     {
