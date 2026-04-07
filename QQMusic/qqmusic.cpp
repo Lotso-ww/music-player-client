@@ -261,6 +261,11 @@ void QQMusic::updateLikeMusicAndPage(bool isLike, const QString &musicId)
 
 void QQMusic::on_quit_clicked()
 {
+    // 歌曲信息写入数据库
+    musicList.writeToDB();
+    // 关闭数据库
+    sqlite.close();
+    // 关闭窗口
     close();
 }
 

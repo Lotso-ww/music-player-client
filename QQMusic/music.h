@@ -30,6 +30,8 @@ public:
     QUrl getMusicUrl()const;
     QString getMusicLrcPath()const;
 
+    void insertToDB();
+
 private:
     void parseMediaMetaData(); // 解析元数据
 private:

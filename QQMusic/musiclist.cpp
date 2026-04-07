@@ -27,6 +27,16 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
     }
 }
 
+void MusicList::writeToDB()
+{
+    for(auto& music : musicList)
+    {
+        // 循环遍历这个歌曲列表
+        // 将每个music的信息写入进数据库里
+        music.insertToDB();
+    }
+}
+
 iterator MusicList::findMusicById(const QString &musicId)
 {
     for(iterator it = begin(); it != end(); ++it)
