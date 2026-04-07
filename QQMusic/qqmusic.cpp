@@ -21,6 +21,7 @@ QQMusic::QQMusic(QWidget *parent)
 
     initUI();
     initSqlite();
+    initMusicList();
     initPlayer();
     connectSignalAndSlots();
 }
@@ -65,13 +66,8 @@ void QQMusic::initUI()
     ui->supplyMusicBox->initRecBoxUi(randomPicture(), 2);
 
     // 设置CommonPage的文本和图标
-    ui->likePage->setPageType(PageType::LIKE_PAGE);
     ui->likePage->setCommonPageUI("我喜欢", ":/images/ilikebg.png");
-
-    ui->localPage->setPageType(PageType::LOCAL_PAGE);
     ui->localPage->setCommonPageUI("本地下载", ":/images/localbg.png");
-
-    ui->recentPage->setPageType(PageType::HISTORY_PAGE);
     ui->recentPage->setCommonPageUI("最近播放", ":/images/recentbg.png");
 
     // 按钮的背景图⽚样式去除掉之后，需要设置默认图标
@@ -132,6 +128,22 @@ void QQMusic::initSqlite()
     }
 
     qDebug() << "创建MusicInfo表成功";
+}
+
+void QQMusic::initMusicList()
+{
+    // 1. 从数据库读取歌曲信息
+    musicList.readFromDB();
+
+    // 2. 更新CommonPage⻚⾯信息
+    ui->likePage->setPageType(PageType::LIKE_PAGE);
+    ui->likePage->reFresh(musicList);
+
+    ui->localPage->setPageType(PageType::LOCAL_PAGE);
+    ui->localPage->reFresh(musicList);
+
+    ui->recentPage->setPageType(PageType::HISTORY_PAGE);
+    ui->recentPage->reFresh(musicList);
 }
 
 void QQMusic::initPlayer()

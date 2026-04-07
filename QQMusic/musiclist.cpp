@@ -1,6 +1,8 @@
 #include "musiclist.h"
 #include "QMimeDatabase"
 #include <QDebug>
+#include <QSqlQuery>
+#include <QSqlError>
 MusicList::MusicList()
 {
 
@@ -24,6 +26,32 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
             Music music(musicurl);
             musicList.push_back(music);
         }
+    }
+}
+
+void MusicList::readFromDB()
+{
+    QSqlQuery query;
+    query.prepare("SELECT musicId, musicName, musicSinger, albumName,\
+                   musicUrl, duration, isLike, isHistory FROM MusicInfo");
+    if(!query.exec())
+    {
+        qDebug() << "数据库查询失败!!! " << query.lastError().text();
+        return;
+    }
+
+    while(query.next())
+    {
+        Music music;
+        music.setMusicId(query.value(0).toString());
+        music.setMusicName(query.value(1).toString());
+        music.setMusicSinger(query.value(2).toString());
+        music.setMusicAlbumn(query.value(3).toString());
+        music.setMusicUrl(QUrl::fromLocalFile(query.value(4).toString()));
+        music.setMusicDuration(query.value(5).toLongLong());
+        music.setIsLike(query.value(6).toBool());
+        music.setIsHistory(query.value(7).toBool());
+        musicList.push_back(music);
     }
 }
 

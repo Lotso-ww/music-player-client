@@ -25,6 +25,7 @@ public:
 
     void initUI();     // 初始化UI界面
     void initSqlite(); // 初始化数据库
+    void initMusicList(); // 初始化歌曲列表
     void initPlayer(); // 媒体播放和控制相关初始化
     void connectSignalAndSlots();
     QJsonArray randomPicture();

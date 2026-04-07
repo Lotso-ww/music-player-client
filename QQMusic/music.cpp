@@ -26,6 +26,10 @@ Music::Music(const QUrl& url)
 }
 
 // set系列
+void Music::setMusicId(const QString &musicId)
+{
+    this->musicId = musicId;
+}
 void Music::setMusicName(const QString& musicName)
 {
     this->musicName = musicName;
@@ -125,43 +129,45 @@ void Music::insertToDB()
         return;
     }
 
-    bool isExists = query.value(0).toBool();
-    if(isExists)
+    if(query.next())
     {
-        // 2. 如果存在,那么我们就只需要更新数据库中对应的isLike和isHistory属性
-        query.prepare("UPDATE MusicInfo SET isLike = ?, isHistory = ? WHERE musicId = ?");
-        query.addBindValue(isLike ? 1 : 0);
-        query.addBindValue(isHistory ? 1 : 0);
-        query.addBindValue(musicId);
-        if(!query.exec())
+        bool isExists = query.value(0).toBool();
+        if(isExists)
         {
-            qDebug() << "更新失败" << query.lastError().text();
-            return;
+            // 2. 如果存在,那么我们就只需要更新数据库中对应的isLike和isHistory属性
+            query.prepare("UPDATE MusicInfo SET isLike = ?, isHistory = ? WHERE musicId = ?");
+            query.addBindValue(isLike ? 1 : 0);
+            query.addBindValue(isHistory ? 1 : 0);
+            query.addBindValue(musicId);
+            if(!query.exec())
+            {
+                qDebug() << "更新失败" << query.lastError().text();
+                return;
+            }
+            qDebug() << "更新成功";
         }
-        qDebug() << "更新成功";
-    }
-    else
-    {
-        // 3. 如果不存在,我们就往数据库中插入对应的歌曲信息
-        query.prepare("INSERT INTO MusicInfo(musicId, musicName, musicSinger, albumName,\
-                                             musicUrl, duration, isLike, isHistory)\
-                       VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-        query.addBindValue(musicId);
-        query.addBindValue(musicName);
-        query.addBindValue(musicSinger);
-        query.addBindValue(musicAlbumn);
-        query.addBindValue(musicUrl.toLocalFile());
-        query.addBindValue(musicDuration);
-        query.addBindValue(isLike ? 1 : 0);
-        query.addBindValue(isHistory ? 1 : 0);
-        if(!query.exec())
+        else
         {
-            qDebug() << "插入失败" << query.lastError().text();
-            return;
+            // 3. 如果不存在,我们就往数据库中插入对应的歌曲信息
+            query.prepare("INSERT INTO MusicInfo(musicId, musicName, musicSinger, albumName,\
+                                                 musicUrl, duration, isLike, isHistory)\
+                           VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+            query.addBindValue(musicId);
+            query.addBindValue(musicName);
+            query.addBindValue(musicSinger);
+            query.addBindValue(musicAlbumn);
+            query.addBindValue(musicUrl.toLocalFile());
+            query.addBindValue(musicDuration);
+            query.addBindValue(isLike ? 1 : 0);
+            query.addBindValue(isHistory ? 1 : 0);
+            if(!query.exec())
+            {
+                qDebug() << "插入失败" << query.lastError().text();
+                return;
+            }
+            qDebug() << "插入成功";
         }
-        qDebug() << "插入成功";
     }
-
 }
 
 void Music::parseMediaMetaData()

@@ -11,6 +11,7 @@ public:
 
 public:
     // set系列
+    void setMusicId(const QString& musicId);
     void setMusicName(const QString& musicName);
     void setMusicSinger(const QString& musicSinger);
     void setMusicAlbumn(const QString& musicAlbumn);
