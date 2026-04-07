@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_QQMusic_t {
     QByteArrayData data[38];
-    char stringdata0[548];
+    char stringdata0[546];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,44 +35,44 @@ static const qt_meta_stringdata_QQMusic_t qt_meta_stringdata_QQMusic = {
 QT_MOC_LITERAL(0, 0, 7), // "QQMusic"
 QT_MOC_LITERAL(1, 8, 15), // "on_quit_clicked"
 QT_MOC_LITERAL(2, 24, 0), // ""
-QT_MOC_LITERAL(3, 25, 17), // "on_btForm_clicked"
-QT_MOC_LITERAL(4, 43, 6), // "pageId"
-QT_MOC_LITERAL(5, 50, 17), // "on_volume_clicked"
-QT_MOC_LITERAL(6, 68, 19), // "on_addLocal_clicked"
-QT_MOC_LITERAL(7, 88, 16), // "onLrcWordClicked"
-QT_MOC_LITERAL(8, 105, 11), // "onPlayMusic"
-QT_MOC_LITERAL(9, 117, 15), // "onPlayUpClicked"
-QT_MOC_LITERAL(10, 133, 17), // "onPlayDownClicked"
-QT_MOC_LITERAL(11, 151, 21), // "onPlaybackModeClicked"
-QT_MOC_LITERAL(12, 173, 18), // "onPlayStateChanged"
-QT_MOC_LITERAL(13, 192, 21), // "onPlaybackModeChanged"
-QT_MOC_LITERAL(14, 214, 28), // "QMediaPlaylist::PlaybackMode"
-QT_MOC_LITERAL(15, 243, 12), // "playbackMode"
-QT_MOC_LITERAL(16, 256, 9), // "onPlayAll"
-QT_MOC_LITERAL(17, 266, 8), // "PageType"
-QT_MOC_LITERAL(18, 275, 8), // "pageType"
-QT_MOC_LITERAL(19, 284, 19), // "playAllOfCommonPage"
-QT_MOC_LITERAL(20, 304, 11), // "CommonPage*"
-QT_MOC_LITERAL(21, 316, 4), // "page"
-QT_MOC_LITERAL(22, 321, 5), // "index"
-QT_MOC_LITERAL(23, 327, 18), // "onPlayMusicByIndex"
-QT_MOC_LITERAL(24, 346, 25), // "onPlayCurrentIndexChanged"
-QT_MOC_LITERAL(25, 372, 15), // "setMusicSilence"
-QT_MOC_LITERAL(26, 388, 7), // "isMuted"
-QT_MOC_LITERAL(27, 396, 14), // "setMusicVolume"
-QT_MOC_LITERAL(28, 411, 6), // "volume"
-QT_MOC_LITERAL(29, 418, 17), // "onDurationChanged"
-QT_MOC_LITERAL(30, 436, 8), // "duration"
-QT_MOC_LITERAL(31, 445, 17), // "onPositionChanged"
-QT_MOC_LITERAL(32, 463, 8), // "position"
-QT_MOC_LITERAL(33, 472, 20), // "onMusicSliderChanged"
-QT_MOC_LITERAL(34, 493, 5), // "ratio"
-QT_MOC_LITERAL(35, 499, 23), // "onMediaAvailableChanged"
-QT_MOC_LITERAL(36, 523, 9), // "available"
-QT_MOC_LITERAL(37, 533, 14) // "on_max_clicked"
+QT_MOC_LITERAL(3, 25, 15), // "onBtFormClicked"
+QT_MOC_LITERAL(4, 41, 6), // "pageId"
+QT_MOC_LITERAL(5, 48, 17), // "on_volume_clicked"
+QT_MOC_LITERAL(6, 66, 19), // "on_addLocal_clicked"
+QT_MOC_LITERAL(7, 86, 16), // "onLrcWordClicked"
+QT_MOC_LITERAL(8, 103, 11), // "onPlayMusic"
+QT_MOC_LITERAL(9, 115, 15), // "onPlayUpClicked"
+QT_MOC_LITERAL(10, 131, 17), // "onPlayDownClicked"
+QT_MOC_LITERAL(11, 149, 21), // "onPlaybackModeClicked"
+QT_MOC_LITERAL(12, 171, 18), // "onPlayStateChanged"
+QT_MOC_LITERAL(13, 190, 21), // "onPlaybackModeChanged"
+QT_MOC_LITERAL(14, 212, 28), // "QMediaPlaylist::PlaybackMode"
+QT_MOC_LITERAL(15, 241, 12), // "playbackMode"
+QT_MOC_LITERAL(16, 254, 9), // "onPlayAll"
+QT_MOC_LITERAL(17, 264, 8), // "PageType"
+QT_MOC_LITERAL(18, 273, 8), // "pageType"
+QT_MOC_LITERAL(19, 282, 19), // "playAllOfCommonPage"
+QT_MOC_LITERAL(20, 302, 11), // "CommonPage*"
+QT_MOC_LITERAL(21, 314, 4), // "page"
+QT_MOC_LITERAL(22, 319, 5), // "index"
+QT_MOC_LITERAL(23, 325, 18), // "onPlayMusicByIndex"
+QT_MOC_LITERAL(24, 344, 25), // "onPlayCurrentIndexChanged"
+QT_MOC_LITERAL(25, 370, 15), // "setMusicSilence"
+QT_MOC_LITERAL(26, 386, 7), // "isMuted"
+QT_MOC_LITERAL(27, 394, 14), // "setMusicVolume"
+QT_MOC_LITERAL(28, 409, 6), // "volume"
+QT_MOC_LITERAL(29, 416, 17), // "onDurationChanged"
+QT_MOC_LITERAL(30, 434, 8), // "duration"
+QT_MOC_LITERAL(31, 443, 17), // "onPositionChanged"
+QT_MOC_LITERAL(32, 461, 8), // "position"
+QT_MOC_LITERAL(33, 470, 20), // "onMusicSliderChanged"
+QT_MOC_LITERAL(34, 491, 5), // "ratio"
+QT_MOC_LITERAL(35, 497, 23), // "onMediaAvailableChanged"
+QT_MOC_LITERAL(36, 521, 9), // "available"
+QT_MOC_LITERAL(37, 531, 14) // "on_max_clicked"
 
     },
-    "QQMusic\0on_quit_clicked\0\0on_btForm_clicked\0"
+    "QQMusic\0on_quit_clicked\0\0onBtFormClicked\0"
     "pageId\0on_volume_clicked\0on_addLocal_clicked\0"
     "onLrcWordClicked\0onPlayMusic\0"
     "onPlayUpClicked\0onPlayDownClicked\0"
@@ -162,7 +162,7 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_quit_clicked(); break;
-        case 1: _t->on_btForm_clicked((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: _t->onBtFormClicked((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->on_volume_clicked(); break;
         case 3: _t->on_addLocal_clicked(); break;
         case 4: _t->onLrcWordClicked(); break;

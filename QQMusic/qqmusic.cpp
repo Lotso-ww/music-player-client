@@ -8,6 +8,9 @@
 #include <QJsonObject>
 #include <QFileDialog>
 #include <QDial>
+#include <QMessageBox>
+#include <QSqlQuery>
+#include <QSqlError>
 
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
@@ -17,6 +20,7 @@ QQMusic::QQMusic(QWidget *parent)
     ui->setupUi(this);
 
     initUI();
+    initSqlite();
     initPlayer();
     connectSignalAndSlots();
 }
@@ -91,6 +95,45 @@ void QQMusic::initUI()
     // 在onLrcWordClicked函数里面启动动画
 }
 
+void QQMusic::initSqlite()
+{
+    // 1. 加载数据库驱动
+    sqlite = QSqlDatabase::addDatabase("QSQLITE");
+
+    // 2. 设置数据库名字
+    sqlite.setDatabaseName("QQMusic.db");
+
+    // 3. 打开数据库
+    if(!sqlite.open())
+    {
+        QMessageBox::critical(this, "QQMusic", "数据库打开失败!!!");
+        return;
+    }
+    qDebug() << "数据库打开成功";
+
+    // 4. 创建MusicInfo表
+    QString sql = "CREATE TABLE IF NOT EXISTS MusicInfo(\
+                   id INTEGER PRIMARY KEY AUTOINCREMENT,\
+                   musicId varchar(50) UNIQUE,\
+                   musicName varchar(50),\
+                   musicSinger varchar(50),\
+                   albumName varchar(50),\
+                   musicUrl varchar(256),\
+                   duration BIGINT,\
+                   isLike INTEGER,\
+                   isHistory INTEGER)";
+
+    QSqlQuery query;
+    if(!query.exec(sql))
+    {
+        QMessageBox::critical(this, "QQMusic", "初始化失败");
+        // QMessageBox::critical(this, "QQMusic", sqlite.lastError().text());
+        return;
+    }
+
+    qDebug() << "创建MusicInfo表成功";
+}
+
 void QQMusic::initPlayer()
 {
     // 1. 初始化媒体播放器和播放列表
@@ -125,12 +168,12 @@ void QQMusic::initPlayer()
 void QQMusic::connectSignalAndSlots()
 {
     // 关联btForm的信号和处理这个信号的槽函数
-    connect(ui->rec, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
-    connect(ui->radio, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
-    connect(ui->music, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
-    connect(ui->like, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
-    connect(ui->local, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
-    connect(ui->recent, &btForm::btClick, this, &QQMusic::on_btForm_clicked);
+    connect(ui->rec, &btForm::btClick, this, &QQMusic::onBtFormClicked);
+    connect(ui->radio, &btForm::btClick, this, &QQMusic::onBtFormClicked);
+    connect(ui->music, &btForm::btClick, this, &QQMusic::onBtFormClicked);
+    connect(ui->like, &btForm::btClick, this, &QQMusic::onBtFormClicked);
+    connect(ui->local, &btForm::btClick, this, &QQMusic::onBtFormClicked);
+    connect(ui->recent, &btForm::btClick, this, &QQMusic::onBtFormClicked);
 
     // 关联CommonPage发射的updateLikeMusic信号,三个页面都需要
     connect(ui->likePage, &CommonPage::updateLikeMusic, this, &QQMusic::updateLikeMusicAndPage);
@@ -221,7 +264,7 @@ void QQMusic::on_quit_clicked()
     close();
 }
 
-void QQMusic::on_btForm_clicked(int pageId)
+void QQMusic::onBtFormClicked(int pageId)
 {
     // 1.获取当前⻚⾯所有btFrom按钮类型的对象
     QList<btForm*> btList = this->findChildren<btForm*>();

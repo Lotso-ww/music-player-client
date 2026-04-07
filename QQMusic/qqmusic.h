@@ -5,6 +5,7 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QPropertyAnimation>
+#include <QSqlDatabase>
 #include "commonpage.h"
 #include "musiclist.h"
 #include "volumetool.h"
@@ -22,7 +23,8 @@ public:
     QQMusic(QWidget *parent = nullptr);
     ~QQMusic();
 
-    void initUI();   // 初始化UI界面
+    void initUI();     // 初始化UI界面
+    void initSqlite(); // 初始化数据库
     void initPlayer(); // 媒体播放和控制相关初始化
     void connectSignalAndSlots();
     QJsonArray randomPicture();
@@ -30,7 +32,7 @@ public:
     void updateLikeMusicAndPage(bool isLike, const QString& musicId);// 响应CommonPage发射的updateLikeMusic信号
 private slots:
     void on_quit_clicked();
-    void on_btForm_clicked(int pageId);
+    void onBtFormClicked(int pageId);
     void on_volume_clicked();
 
     void on_addLocal_clicked();
@@ -82,6 +84,7 @@ protected:
 private:
     Ui::QQMusic *ui;
     QPoint dragPosition;
+    QSqlDatabase sqlite;
     MusicList musicList; // 程序中组织管理的音乐列表
     VolumeTool *volumeTool;
     LrcPage* lrcPage; // 歌词界面
