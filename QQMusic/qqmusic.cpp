@@ -37,6 +37,9 @@ void QQMusic::initUI()
 
     // 实现窗口阴影效果之前需要先设置窗口背景透明
     setAttribute(Qt::WA_TranslucentBackground);
+    // 设置主窗口图标
+    setWindowIcon(QIcon(":/images/tubiao.png"));
+    ui->max->setEnabled(false); // 禁用一下这个按钮
 
     // 实现窗口阴影效果
     QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -651,7 +654,13 @@ void QQMusic::onMediaAvailableChanged(bool available)
     }
 }
 
-void QQMusic::on_max_clicked()
+
+void QQMusic::on_skin_clicked()
 {
-    showMaximized();
+    QMessageBox::information(this, "温馨提示", "换肤功能还在紧急支持中!!!");
+}
+
+void QQMusic::on_min_clicked()
+{
+    showMinimized();
 }

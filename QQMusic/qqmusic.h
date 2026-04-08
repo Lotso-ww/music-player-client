@@ -76,7 +76,10 @@ private slots:
     void onMusicSliderChanged(float ratio); // 进度条改变
 
     void onMediaAvailableChanged(bool available); // 更新歌曲名,作者,封面
-    void on_max_clicked();
+
+    void on_skin_clicked();
+
+    void on_min_clicked();
 
 protected:
     virtual void mousePressEvent(QMouseEvent* event);

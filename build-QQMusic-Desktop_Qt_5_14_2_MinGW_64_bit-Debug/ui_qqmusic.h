@@ -390,6 +390,21 @@ public:
         scrollArea = new QScrollArea(recPage);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
         scrollArea->setGeometry(QRect(0, 0, 808, 494));
+        scrollArea->setStyleSheet(QString::fromUtf8("QScrollBar:vertical\n"
+"{\n"
+" 	border:none; \n"
+"	width:10px; \n"
+"	background-color:#FFFFFF;\n"
+" 	margin:0px 0px 0px 0px; \n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical\n"
+"{\n"
+" 	width:10px;\n"
+" 	background-color:#E3E3E3;\n"
+" 	border-radius:5px; \n"
+" 	min-height:20px;\n"
+"}"));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
@@ -402,7 +417,7 @@ public:
         recText->setMinimumSize(QSize(0, 50));
         recText->setMaximumSize(QSize(16777215, 50));
         QFont font;
-        font.setPointSize(24);
+        font.setPointSize(18);
         recText->setFont(font);
 
         verticalLayout_7->addWidget(recText);
@@ -412,7 +427,7 @@ public:
         recMusictext->setMinimumSize(QSize(0, 30));
         recMusictext->setMaximumSize(QSize(16777215, 30));
         QFont font1;
-        font1.setPointSize(18);
+        font1.setPointSize(14);
         recMusictext->setFont(font1);
 
         verticalLayout_7->addWidget(recMusictext);
