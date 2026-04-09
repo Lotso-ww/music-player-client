@@ -70,6 +70,9 @@ void MusicList::readFromDB()
         music.setIsLike(query.value(6).toBool());
         music.setIsHistory(query.value(7).toBool());
         musicList.push_back(music);
+
+        // 防止歌曲恢复导致歌曲添加重复问题复现
+        musicPaths.insert(music.getMusicUrl().toLocalFile()); // 我们上面setMusicUrl如果不是这样的形式的话不仅对我的歌区封面歌词等有影响, 对这个也有
     }
 }
 
