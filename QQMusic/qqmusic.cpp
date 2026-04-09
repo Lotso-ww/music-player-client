@@ -221,6 +221,31 @@ void QQMusic::connectSignalAndSlots()
     connect(ui->progressBar, &MusicSlider::setMusicSliderPosition, this, &QQMusic::onMusicSliderChanged);
 }
 
+void QQMusic::updateBtFormAnimal()
+{
+    // 获取currentPage在stackedWidget中的索引
+    int index = ui->stackedWidget->indexOf(currentPage);
+    if(index == -1)
+    {
+        qDebug() << "该页面不存在";
+        return;
+    }
+
+    // 获取QQMusci界⾯上所有的btForm
+    QList<btForm*> btForms = this->findChildren<btForm*>();
+    for(auto& btItem : btForms)
+    {
+        if(index == btItem->getPageId())
+        {
+            btItem->showAnimat();
+        }
+        else
+        {
+            btItem->hideAnimat();
+        }
+    }
+}
+
 // 设置随机图⽚【歌曲的图⽚】
 QJsonArray QQMusic::randomPicture()
 {
@@ -295,11 +320,6 @@ void QQMusic::onBtFormClicked(int pageId)
         if(btItem->getPageId() != pageId)
         {
             btItem->clearBg();
-            btItem->hideAnimat();
-        }
-        else
-        {
-            btItem->showAnimat();
         }
     }
 
@@ -521,6 +541,7 @@ void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
 {
     // 更新当前界面
     currentPage = page;
+    updateBtFormAnimal();
 
     // 播放page所在⻚⾯的⾳乐
     // 将播放列表先清空，否则⽆法播放当前CommonPage⻚⾯的歌曲

@@ -28,6 +28,7 @@ public:
     void initMusicList(); // 初始化歌曲列表
     void initPlayer(); // 媒体播放和控制相关初始化
     void connectSignalAndSlots();
+    void updateBtFormAnimal();
     QJsonArray randomPicture();
 
     void updateLikeMusicAndPage(bool isLike, const QString& musicId);// 响应CommonPage发射的updateLikeMusic信号
