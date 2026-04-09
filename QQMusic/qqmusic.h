@@ -102,5 +102,7 @@ private:
     qint64 totalTime; // 记录总的时间
 
     int currentIndex; // 当前播放歌曲的索引
+
+    bool isDrag; // 是否拖拽
 };
 #endif // QQMUSIC_H

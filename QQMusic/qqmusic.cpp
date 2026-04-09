@@ -325,12 +325,14 @@ void QQMusic::onBtFormClicked(int pageId)
 
     // 3.设置当前显示页面
     ui->stackedWidget->setCurrentIndex(pageId);
+    isDrag = false; // 如果是点击在这个上面的话不要拖拽
 }
 
 void QQMusic::mousePressEvent(QMouseEvent *event)
 {
     if(Qt::LeftButton == event->button())
     {
+        isDrag = true;
         dragPosition = event->globalPos() - geometry().topLeft();
         return;
     }
@@ -340,7 +342,7 @@ void QQMusic::mousePressEvent(QMouseEvent *event)
 
 void QQMusic::mouseMoveEvent(QMouseEvent *event)
 {
-    if(Qt::LeftButton == event->buttons())
+    if(Qt::LeftButton == event->buttons() && isDrag)
     {
         move(event->globalPos() - dragPosition);
         return;
