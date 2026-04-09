@@ -30,8 +30,9 @@ public:
     void connectSignalAndSlots();
     void updateBtFormAnimal();
     QJsonArray randomPicture();
-
     void updateLikeMusicAndPage(bool isLike, const QString& musicId);// 响应CommonPage发射的updateLikeMusic信号
+    void onQQMusicQuit();
+
 private slots:
     void on_quit_clicked();
     void onBtFormClicked(int pageId);

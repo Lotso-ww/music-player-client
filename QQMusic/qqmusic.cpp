@@ -11,6 +11,8 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QSystemTrayIcon>
+#include <QMenu>
 
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
@@ -40,6 +42,18 @@ void QQMusic::initUI()
     // 设置主窗口图标
     setWindowIcon(QIcon(":/images/tubiao.png"));
     ui->max->setEnabled(false); // 禁用一下这个按钮
+
+    // 添加系统托盘
+    QSystemTrayIcon* trayIcon = new QSystemTrayIcon(this);
+    trayIcon->setIcon(QIcon(":images/tubiao.png"));
+    trayIcon->show();
+
+    // 给系统托盘加上菜单
+    QMenu* trayMenu = new QMenu(this);
+    trayMenu->addAction("显示", this, &QWidget::showNormal); // 让当前窗口处理
+    trayMenu->addSeparator();
+    trayMenu->addAction("退出", this, &QQMusic::onQQMusicQuit);
+    trayIcon->setContextMenu(trayMenu); // 关联绑定上
 
     // 实现窗口阴影效果
     QGraphicsDropShadowEffect* shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -299,7 +313,7 @@ void QQMusic::updateLikeMusicAndPage(bool isLike, const QString &musicId)
     ui->recentPage->reFresh(musicList);
 }
 
-void QQMusic::on_quit_clicked()
+void QQMusic::onQQMusicQuit()
 {
     // 歌曲信息写入数据库
     musicList.writeToDB();
@@ -307,6 +321,12 @@ void QQMusic::on_quit_clicked()
     sqlite.close();
     // 关闭窗口
     close();
+}
+
+void QQMusic::on_quit_clicked()
+{
+    // 不在这里退出关闭了,仅隐藏, onQQMusicQuit里面实现关闭和导入数据库
+    hide();
 }
 
 void QQMusic::onBtFormClicked(int pageId)
