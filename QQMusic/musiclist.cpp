@@ -13,6 +13,24 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
     // 将所有的音乐放置到musicList中
     for(auto& musicurl : musicUrls)
     {
+//        // 这个算法的时间复杂度是O(n)
+//        auto it = begin();
+//        for(; it!=end(); ++it)
+//        {
+//            if(it->getMusicUrl() == musicurl)
+//                break;
+//        }
+//        if(it != end()) continue;
+
+        // 查找: 最快的就是哈希 Qset O(1)
+        // 检测歌曲是否存在，如果不在才能添加
+        QString musicPath = musicurl.toLocalFile();
+        if(musicPaths.contains(musicPath)) continue;
+
+        // 歌曲还没有加载过，将其解析并添加到歌曲列表
+         musicPaths.insert(musicPath);
+
+
         // 由于添加进来的⽂件不⼀定是歌曲文件，因此需要再次筛选出音乐文件
         QMimeDatabase mimeDB;
         QMimeType mimeType = mimeDB.mimeTypeForFile(musicurl.toLocalFile());

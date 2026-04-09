@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QUrl>
+#include <QSet>
 #include "music.h"
 
 // 管理所有歌曲对应的Music对象
@@ -21,6 +22,7 @@ public:
 
 private:
     QVector<Music> musicList;
+    QSet<QString> musicPaths; // 防止添加歌曲文件时重复加载
 };
 
 #endif // MUSICLIST_H
