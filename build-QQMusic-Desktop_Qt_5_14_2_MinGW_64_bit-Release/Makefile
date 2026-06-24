@@ -223,6 +223,7 @@ Makefile: ../QQMusic/QQMusic.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_config.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/toolchain.prf \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/default_pre.prf \
@@ -254,7 +255,6 @@ Makefile: ../QQMusic/QQMusic.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/qtmain.prl \
-		.qmake.stash \
 		../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf \
 		../QQMusic/Resource.qrc
 	$(QMAKE) -o Makefile ..\QQMusic\QQMusic.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
@@ -411,6 +411,7 @@ Makefile: ../QQMusic/QQMusic.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_config.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/toolchain.prf:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/default_pre.prf:
@@ -442,7 +443,6 @@ Makefile: ../QQMusic/QQMusic.pro ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Sql.prl:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/lib/qtmain.prl:
-.qmake.stash:
 ../../../Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
 ../QQMusic/Resource.qrc:
 qmake: FORCE
