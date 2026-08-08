@@ -33,7 +33,8 @@ void MusicSlider::checkCurrentPos()
 
 void MusicSlider::setStep(float ratio)
 {
-    currentPos = maxWidth * ratio;
+    ratio = qBound(0.0f, ratio, 1.0f);
+    currentPos = maxWidth > 0 ? static_cast<int>(maxWidth * ratio) : 0;
     moveSlider();
 }
 
@@ -72,5 +73,5 @@ void MusicSlider::mouseReleaseEvent(QMouseEvent *event)
     checkCurrentPos(); // 边界检查
     moveSlider();
 
-    emit(setMusicSliderPosition(currentPos / (float)maxWidth));
+    emit(setMusicSliderPosition(maxWidth > 0 ? currentPos / (float)maxWidth : 0.0f));
 }

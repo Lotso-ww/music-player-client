@@ -110,24 +110,29 @@ void CommonPage::reFresh(MusicList &musicList)
 
     // 触发窗口重绘
     // update(); // update()将paintEvent放入事件循环队列中，不立即处理
-    repaint(); // 立即触发
+    update();
 
 }
 
 void CommonPage::addMusicToPlayList(MusicList &musicList, QMediaPlaylist *playList)
 {
+    if (!playList) return;
+    QSet<QUrl> existing;
+    for (int i = 0; i < playList->mediaCount(); ++i)
+        existing.insert(playList->media(i).canonicalResource().url());
     for(auto& music : musicList)
     {
+        if (!music.getMusicUrl().isValid() || music.getMusicUrl().toLocalFile().isEmpty()) continue;
         switch(pageType)
         {
         case LIKE_PAGE:
-            if(music.getIsLike()) playList->addMedia(music.getMusicUrl());
+            if(music.getIsLike() && !existing.contains(music.getMusicUrl())) playList->addMedia(music.getMusicUrl());
             break;
         case LOCAL_PAGE:
-            playList->addMedia(music.getMusicUrl());
+            if(!existing.contains(music.getMusicUrl())) playList->addMedia(music.getMusicUrl());
             break;
         case HISTORY_PAGE:
-            if(music.getIsHistory()) playList->addMedia(music.getMusicUrl());
+            if(music.getIsHistory() && !existing.contains(music.getMusicUrl())) playList->addMedia(music.getMusicUrl());
             break;
         default:
              qDebug() << "暂不支持";

@@ -18,6 +18,12 @@ RecBox::~RecBox()
     delete ui;
 }
 
+int RecBox::pageCount(int itemCount, int itemsPerPage)
+{
+    if (itemCount <= 0 || itemsPerPage <= 0) return 0;
+    return (itemCount + itemsPerPage - 1) / itemsPerPage;
+}
+
 void RecBox::initRecBoxUi(QJsonArray data, int row)
 {
     // 如果是两⾏，说明当前RecBox是主界⾯上的supplyMusicBox
@@ -39,7 +45,7 @@ void RecBox::initRecBoxUi(QJsonArray data, int row)
      currentIndex = 0;
 
      // 计算总共有⼏组图⽚
-     count = imageList.size()/col ;
+     count = pageCount(imageList.size(), col);
     // 往RecBox中添加图⽚
     createRecItem();
 }
@@ -65,7 +71,10 @@ void RecBox::createRecItem()
     // 今日为你推荐 row = 1, col = 4;
     // 音乐补给站: row = 2, col = 8;
     int index = 0; // 方便分今日推荐和音乐补给站的item数量
-    for(int i = currentIndex * col; i < col + currentIndex * col; i++)
+    if (count == 0) return;
+    const int start = currentIndex * col;
+    const int end = qMin(start + col, imageList.size());
+    for(int i = start; i < end; i++)
     {
         RecBoxItem* item = new RecBoxItem();
 

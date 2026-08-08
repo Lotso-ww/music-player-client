@@ -24,11 +24,12 @@ public:
     ~QQMusic();
 
     void initUI();     // 初始化UI界面
-    void initSqlite(); // 初始化数据库
+    bool initSqlite(); // 初始化数据库
     void initMusicList(); // 初始化歌曲列表
     void initPlayer(); // 媒体播放和控制相关初始化
     void connectSignalAndSlots();
     void updateBtFormAnimal();
+    bool saveMusicState();
     QJsonArray randomPicture();
     void updateLikeMusicAndPage(bool isLike, const QString& musicId);// 响应CommonPage发射的updateLikeMusic信号
     void onQQMusicQuit();
@@ -86,6 +87,7 @@ private slots:
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
     virtual void mouseMoveEvent(QMouseEvent* event);
+    virtual void closeEvent(QCloseEvent* event);
 
 private:
     Ui::QQMusic *ui;
@@ -105,5 +107,7 @@ private:
     int currentIndex; // 当前播放歌曲的索引
 
     bool isDrag; // 是否拖拽
+    bool databaseReady;
+    bool persistenceDone;
 };
 #endif // QQMUSIC_H

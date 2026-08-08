@@ -19,6 +19,7 @@ public:
     // 初始化
     void initRecBoxUi(QJsonArray data, int row);
     void createRecItem();
+    static int pageCount(int itemCount, int itemsPerPage);
 
 private slots:
     void on_btDown_clicked();

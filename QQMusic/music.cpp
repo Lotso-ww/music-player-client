@@ -5,16 +5,21 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QEventLoop>
+#include <QTimer>
+#include <QFileInfo>
 
 Music::Music()
-     : isLike(false)
+     : musicDuration(0)
+     , isLike(false)
      , isHistory(false)
 {
 
 }
 
 Music::Music(const QUrl& url)
-     : isLike(false)
+     : musicDuration(0)
+     , isLike(false)
      , isHistory(false)
      , musicUrl(url)
 {
@@ -105,7 +110,7 @@ QString Music::getMusicLrcPath() const
     return lrcPath;
 }
 
-void Music::insertToDB()
+bool Music::insertToDB()
 {
     QSqlQuery query;
     // 1. 通过查询判断歌曲是否存在
@@ -126,7 +131,7 @@ void Music::insertToDB()
     if(!query.exec())
     {
         qDebug() << "查询失败" << query.lastError().text();
-        return;
+        return false;
     }
 
     if(query.next())
@@ -142,7 +147,7 @@ void Music::insertToDB()
             if(!query.exec())
             {
                 qDebug() << "更新失败" << query.lastError().text();
-                return;
+                return false;
             }
             qDebug() << "更新成功";
         }
@@ -163,11 +168,12 @@ void Music::insertToDB()
             if(!query.exec())
             {
                 qDebug() << "插入失败" << query.lastError().text();
-                return;
+                return false;
             }
             qDebug() << "插入成功";
         }
     }
+    return true;
 }
 
 void Music::parseMediaMetaData()
@@ -178,15 +184,21 @@ void Music::parseMediaMetaData()
     // 2. 设置媒体源,依靠setMedia方法解析元数据
     player.setMedia(musicUrl);
 
-    // 3. 媒体元数据解析需要时间，只有等待解析完成之后，才能提取⾳乐信息，此处循环等待
-    // 循环等待时：主界⾯消息循环就⽆法处理了，因此需要在等待解析期间，让消息循环继续处理
-    while(!player.isMetaDataAvailable())
-    {
-        QCoreApplication::processEvents();
-    }
+    QEventLoop loop;
+    QTimer timeout;
+    timeout.setSingleShot(true);
+    bool failed = false;
+    QObject::connect(&player, &QMediaObject::metaDataAvailableChanged, &loop, [&](bool available) {
+        if (available) loop.quit();
+    });
+    QObject::connect(&player, QOverload<QMediaPlayer::Error>::of(&QMediaPlayer::error), &loop,
+            [&](QMediaPlayer::Error) { failed = true; loop.quit(); });
+    QObject::connect(&timeout, &QTimer::timeout, &loop, [&]() { failed = true; loop.quit(); });
+    timeout.start(3000);
+    if (!player.isMetaDataAvailable()) loop.exec();
 
     // 已经加载完成即可获取有效的元数据了
-    if(player.isMetaDataAvailable())
+    if(player.isMetaDataAvailable() && !failed)
     {
         musicName = player.metaData("Title").toString();
         musicSinger = player.metaData("Author").toString();
@@ -232,6 +244,10 @@ void Music::parseMediaMetaData()
         {
             musicAlbumn = "未知专辑";
         }
-        qDebug() << musicName << ":" << musicSinger << ":" << musicAlbumn << ":" << musicDuration;
     }
+    const QString fileName = QFileInfo(musicUrl.toLocalFile()).completeBaseName();
+    if (musicName.isEmpty()) musicName = fileName.isEmpty() ? QStringLiteral("未知歌曲") : fileName;
+    if (musicSinger.isEmpty()) musicSinger = QStringLiteral("未知歌手");
+    if (musicAlbumn.isEmpty()) musicAlbumn = QStringLiteral("未知专辑");
+    if (musicDuration < 0) musicDuration = 0;
 }

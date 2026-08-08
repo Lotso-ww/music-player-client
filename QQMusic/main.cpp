@@ -2,6 +2,7 @@
 #include <QMessageBox>
 #include <QSharedMemory>
 #include <QApplication>
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +19,12 @@ int main(int argc, char *argv[])
         QMessageBox::information(nullptr, "QQMusic提示", "QQMusic已经在运行");
         return 0;
     }
-    shareMemory.create(1); // 我们并不是真的需要创建一块共享内存,只需要可以达到我们的目的就行了
+    if(!shareMemory.create(1))
+    {
+        qCritical() << "单实例共享内存初始化失败:" << shareMemory.errorString();
+        QMessageBox::critical(nullptr, "QQMusic提示", "无法初始化单实例控制：" + shareMemory.errorString());
+        return 1;
+    }
     QQMusic w;
     w.show();
     return a.exec();

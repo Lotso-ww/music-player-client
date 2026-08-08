@@ -13,16 +13,25 @@
 #include <QSqlError>
 #include <QSystemTrayIcon>
 #include <QMenu>
+#include <QStandardPaths>
+#include <QDir>
+#include <QCloseEvent>
+#include <QFile>
+#include <QFileInfo>
 
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::QQMusic)
+    , totalTime(0)
     , currentIndex(-1)
+    , isDrag(false)
+    , databaseReady(false)
+    , persistenceDone(false)
 {
     ui->setupUi(this);
 
     initUI();
-    initSqlite();
+    databaseReady = initSqlite();
     initMusicList();
     initPlayer();
     connectSignalAndSlots();
@@ -45,7 +54,7 @@ void QQMusic::initUI()
 
     // 添加系统托盘
     QSystemTrayIcon* trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(QIcon(":images/tubiao.png"));
+    trayIcon->setIcon(QIcon(":/images/tubiao.png"));
     trayIcon->show();
 
     // 给系统托盘加上菜单
@@ -108,19 +117,41 @@ void QQMusic::initUI()
     // 在onLrcWordClicked函数里面启动动画
 }
 
-void QQMusic::initSqlite()
+bool QQMusic::initSqlite()
 {
     // 1. 加载数据库驱动
     sqlite = QSqlDatabase::addDatabase("QSQLITE");
 
     // 2. 设置数据库名字
-    sqlite.setDatabaseName("QQMusic.db");
+    const QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (appDataPath.isEmpty() || !QDir().mkpath(appDataPath)) {
+        qCritical() << "无法创建应用数据目录" << appDataPath;
+        QMessageBox::critical(this, "QQMusic", "无法创建应用数据目录");
+        return false;
+    }
+    const QString databasePath = QDir(appDataPath).filePath("QQMusic.db");
+    if (!QFileInfo::exists(databasePath)) {
+        const QStringList legacyPaths = QStringList()
+            << QDir::current().filePath("QQMusic.db")
+            << QDir(QCoreApplication::applicationDirPath()).filePath("QQMusic.db");
+        for (const QString &legacyPath : legacyPaths) {
+            if (QFileInfo::exists(legacyPath) && QFileInfo(legacyPath).absoluteFilePath() != QFileInfo(databasePath).absoluteFilePath()) {
+                if (QFile::copy(legacyPath, databasePath)) {
+                    qInfo() << "已迁移旧数据库到应用数据目录:" << databasePath;
+                    break;
+                }
+                qWarning() << "旧数据库迁移失败:" << legacyPath;
+            }
+        }
+    }
+    sqlite.setDatabaseName(databasePath);
 
     // 3. 打开数据库
     if(!sqlite.open())
     {
         QMessageBox::critical(this, "QQMusic", "数据库打开失败!!!");
-        return;
+        qCritical() << "数据库打开失败:" << sqlite.lastError().text();
+        return false;
     }
     qDebug() << "数据库打开成功";
 
@@ -141,16 +172,18 @@ void QQMusic::initSqlite()
     {
         QMessageBox::critical(this, "QQMusic", "初始化失败");
         // QMessageBox::critical(this, "QQMusic", sqlite.lastError().text());
-        return;
+        qCritical() << "数据库表初始化失败:" << query.lastError().text();
+        return false;
     }
 
     qDebug() << "创建MusicInfo表成功";
+    return true;
 }
 
 void QQMusic::initMusicList()
 {
     // 1. 从数据库读取歌曲信息
-    musicList.readFromDB();
+    if (databaseReady) musicList.readFromDB();
 
     // 2. 更新CommonPage⻚⾯信息
     ui->likePage->setPageType(PageType::LIKE_PAGE);
@@ -315,8 +348,9 @@ void QQMusic::updateLikeMusicAndPage(bool isLike, const QString &musicId)
 
 void QQMusic::onQQMusicQuit()
 {
-    // 歌曲信息写入数据库
-    musicList.writeToDB();
+    if (persistenceDone) return;
+    if (!saveMusicState()) qCritical() << "退出时批量保存歌曲信息失败";
+    persistenceDone = true;
     // 关闭数据库
     sqlite.close();
     // 关闭窗口
@@ -325,8 +359,15 @@ void QQMusic::onQQMusicQuit()
 
 void QQMusic::on_quit_clicked()
 {
-    // 不在这里退出关闭了,仅隐藏, onQQMusicQuit里面实现关闭和导入数据库
+    // 界面关闭按钮隐藏到托盘；状态先落盘，真正退出由托盘菜单或 Alt+F4 完成。
+    if (!saveMusicState()) qCritical() << "隐藏到托盘前批量保存歌曲信息失败";
     hide();
+}
+
+bool QQMusic::saveMusicState()
+{
+    if (!databaseReady) return false;
+    return musicList.writeToDB();
 }
 
 void QQMusic::onBtFormClicked(int pageId)
@@ -441,6 +482,7 @@ void QQMusic::onLrcWordClicked()
 
 void QQMusic::onPlayMusic()
 {
+    if (!player || !playList || playList->mediaCount() == 0) return;
     // 图标切换我们可以在这里实现,但是利用信号更加清晰
     if(QMediaPlayer::StoppedState == player->state())
     {
@@ -465,11 +507,13 @@ void QQMusic::onPlayMusic()
 
 void QQMusic::onPlayUpClicked()
 {
+    if (!playList || playList->mediaCount() == 0) return;
     playList->previous();
 }
 
 void QQMusic::onPlayDownClicked()
 {
+    if (!playList || playList->mediaCount() == 0) return;
     playList->next();
 }
 
@@ -561,6 +605,7 @@ void QQMusic::onPlayAll(PageType pageType)
 
 void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
 {
+    if (!page) return;
     // 更新当前界面
     currentPage = page;
     updateBtFormAnimal();
@@ -572,6 +617,13 @@ void QQMusic::playAllOfCommonPage(CommonPage *page, int index)
 
     // 将当前页面歌曲添加到播放列表
     page->addMusicToPlayList(musicList, playList);
+
+    if (playList->mediaCount() == 0) {
+        currentIndex = -1;
+        totalTime = 0;
+        return;
+    }
+    index = qBound(0, index, playList->mediaCount() - 1);
 
     // 设置当前页面列表的播放索引
     playList->setCurrentIndex(index);
@@ -588,6 +640,10 @@ void QQMusic::onPlayMusicByIndex(CommonPage *page, int index)
 void QQMusic::onPlayCurrentIndexChanged(int index)
 {
     currentIndex = index;
+    if (index < 0 || !currentPage) {
+        lrcPage->showLrcWord(-1);
+        return;
+    }
     // ⾳乐的id都在commonPage中的musicListOfPage中存储着
     const QString musicid = currentPage->getMusicIdByindex(index);
 
@@ -616,7 +672,7 @@ void QQMusic::setMusicVolume(int volume)
 
 void QQMusic::onDurationChanged(qint64 duration)
 {
-    totalTime = duration;
+    totalTime = qMax<qint64>(0, duration);
     // 计算时间
     // 分: duration/1000/60;
     // 秒: duration/1000%60;
@@ -631,7 +687,7 @@ void QQMusic::onPositionChanged(qint64 position)
                                              .arg(position/1000%60, 2, 10, QChar('0')));
 
     // 根据播放时间修改进度条
-    ui->progressBar->setStep(position/(float)totalTime);
+    ui->progressBar->setStep(totalTime > 0 ? position/(float)totalTime : 0.0f);
 
     // 根据当前播放时间歌词同步显示
     if(currentIndex >= 0)
@@ -640,13 +696,14 @@ void QQMusic::onPositionChanged(qint64 position)
 
 void QQMusic::onMusicSliderChanged(float ratio)
 {
+     ratio = qBound(0.0f, ratio, 1.0f);
     // 1. 计算当前seek位置的时⻓
      qint64 durationTime = (qint64)(totalTime * ratio);
     // 修改当前时间显示
      ui->currentTime->setText(QString("%1:%2").arg(durationTime/1000/60, 2, 10, QChar('0'))
                                               .arg(durationTime/1000%60, 2, 10, QChar('0')));
 
-     player->setPosition(durationTime);
+     if (player && totalTime > 0) player->setPosition(durationTime);
 }
 
 void QQMusic::onMediaAvailableChanged(bool available)
@@ -654,6 +711,10 @@ void QQMusic::onMediaAvailableChanged(bool available)
     (void)available;
     // 先获取到Music对象,然后再设置歌曲名和歌曲作者
     // 需要先知道媒体源在播放列表中的索引
+    if (!available || !currentPage || currentIndex < 0) {
+        lrcPage->showLrcWord(-1);
+        return;
+    }
     QString musicId = currentPage->getMusicIdByindex(currentIndex);
     auto it = musicList.findMusicById(musicId);
     QString musicName("未知歌曲");
@@ -693,8 +754,15 @@ void QQMusic::onMediaAvailableChanged(bool available)
         QString lrcPath = it->getMusicLrcPath();
 
         // 通过歌词文件路径解析歌词
-        lrcPage->parseLrc(lrcPath);
+        if (!lrcPage->parseLrc(lrcPath)) lrcPage->showLrcWord(-1);
     }
+    else lrcPage->showLrcWord(-1);
+}
+
+void QQMusic::closeEvent(QCloseEvent *event)
+{
+    onQQMusicQuit();
+    event->accept();
 }
 
 

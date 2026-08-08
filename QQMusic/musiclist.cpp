@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QFileInfo>
+#include <QSqlDatabase>
 MusicList::MusicList()
 {
 
@@ -24,12 +26,10 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
 
         // 查找: 最快的就是哈希 Qset O(1)
         // 检测歌曲是否存在，如果不在才能添加
-        QString musicPath = musicurl.toLocalFile();
+        QString musicPath = QFileInfo(musicurl.toLocalFile()).absoluteFilePath();
         if(musicPaths.contains(musicPath)) continue;
 
         // 歌曲还没有加载过，将其解析并添加到歌曲列表
-         musicPaths.insert(musicPath);
-
 
         // 由于添加进来的⽂件不⼀定是歌曲文件，因此需要再次筛选出音乐文件
         QMimeDatabase mimeDB;
@@ -40,6 +40,7 @@ void MusicList::addMusicByUrl(const QList<QUrl> &musicUrls)
         // 如果是音乐文件, 加⼊歌曲列表
         if(mime == "audio/mpeg" || mime == "audio/flac" || mime == "audio/wav")
         {
+            musicPaths.insert(musicPath);
             // 需要将url创建一个Music对象添加至musicList中
             Music music(musicurl);
             musicList.push_back(music);
@@ -76,14 +77,15 @@ void MusicList::readFromDB()
     }
 }
 
-void MusicList::writeToDB()
+bool MusicList::writeToDB()
 {
-    for(auto& music : musicList)
-    {
-        // 循环遍历这个歌曲列表
-        // 将每个music的信息写入进数据库里
-        music.insertToDB();
+    QSqlDatabase db = QSqlDatabase::database();
+    if (!db.isValid() || !db.isOpen() || !db.transaction()) return false;
+    for(auto& music : musicList) {
+        if(!music.insertToDB()) { db.rollback(); return false; }
     }
+    if (!db.commit()) { db.rollback(); return false; }
+    return true;
 }
 
 iterator MusicList::findMusicById(const QString &musicId)

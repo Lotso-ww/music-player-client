@@ -2,6 +2,8 @@
 #include "ui_lrcpage.h"
 #include <QFile>
 #include <QDebug>
+#include <QRegularExpression>
+#include <algorithm>
 
 LrcPage::LrcPage(QWidget *parent) :
     QWidget(parent),
@@ -39,15 +41,14 @@ void LrcPage::setMusicNameAndSinger(QString &musicName, QString &musicSigner)
 
 bool LrcPage::parseLrc(const QString &lrcPath)
 {
+    lrcLines.clear();
     // 打开文件
     QFile lrcFile(lrcPath);
     if(!lrcFile.open(QFile::ReadOnly))
     {
-        return false; // 打开失败
+        showLrcWord(-1);
+        return false;
     }
-
-    // 清除上一首歌曲的歌词
-    lrcLines.clear();
 
     while(!lrcFile.atEnd()) // 没读到结尾就继续
     {
@@ -56,38 +57,31 @@ bool LrcPage::parseLrc(const QString &lrcPath)
 
         // [00:17.94]那些失眠的⼈啊 你们还好吗
         // [0:58.600.00]你像⼀只飞来飞去的蝴蝶
-        int start = 0, end = 0;
-        end = word.indexOf(']', start);
-        QString lrcTime = word.mid(start, end - start + 1);
-        QString lrcText = word.mid(end + 1, word.size() - end - 2);
-
-        // 解析时间 -- ms
-        // [00:17.94] [0:58.600.00]
-        qint64 lineTime = 0;
-        // 解析分 -- 并转成ms
-        start = 1, end = 0;
-        end = word.indexOf(':', start);
-        lineTime += lrcTime.mid(start, end - start).toLong()*60*1000;
-
-        // 解析秒 -- 并转成ms
-        start = end + 1;
-        end = word.indexOf('.', start);
-        lineTime += lrcTime.mid(start, end - start).toLong()*1000;
-
-        // 解析ms
-        start = end + 1;
-        end = word.indexOf('.', start);// 没找到的话会也是会到结尾
-        lineTime += lrcTime.mid(start, end - start).toLong();
-
-        // 将这一行保存
-        lrcLines.push_back(LineWordLine(lineTime, lrcText));
+        const QRegularExpressionMatchIterator matches =
+            QRegularExpression("\\[(\\d{1,3}):(\\d{1,2})(?:\\.(\\d{1,3})(?:\\.\\d{1,3})?)?\\]").globalMatch(word);
+        const int textStart = word.lastIndexOf(']') + 1;
+        const QString lrcText = textStart > 0 ? word.mid(textStart).trimmed() : QString();
+        for (auto it = matches; it.hasNext();) {
+            const QRegularExpressionMatch match = it.next();
+            const int minutes = match.captured(1).toInt();
+            const int seconds = match.captured(2).toInt();
+            if (seconds >= 60) continue;
+            QString fraction = match.captured(3);
+            while (fraction.size() < 3) fraction.append('0');
+            lrcLines.push_back(LineWordLine(minutes * 60000LL + seconds * 1000LL + fraction.left(3).toInt(), lrcText));
+        }
     }
+
+    std::sort(lrcLines.begin(), lrcLines.end(), [](const LineWordLine &left, const LineWordLine &right) {
+        return left._wordTime < right._wordTime;
+    });
 
     for(auto& e : lrcLines)
     {
         qDebug() << e._wordTime << ":" << e._wordText;
     }
-    return true;
+    if (lrcLines.isEmpty()) showLrcWord(-1);
+    return !lrcLines.isEmpty();
 }
 
 void LrcPage::showLrcWord(qint64 time)

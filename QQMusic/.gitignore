@@ -24,6 +24,8 @@ tags
 .directory
 *.debug
 Makefile*
+target_wrapper.bat
+test-build/
 *.prl
 *.app
 moc_*.cpp
