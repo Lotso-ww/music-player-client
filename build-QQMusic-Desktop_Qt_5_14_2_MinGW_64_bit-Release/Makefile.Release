@@ -54,68 +54,84 @@ SOURCES       = ..\QQMusic\btform.cpp \
 		..\QQMusic\commonpage.cpp \
 		..\QQMusic\listitembox.cpp \
 		..\QQMusic\lrcpage.cpp \
+		..\QQMusic\localsearchservice.cpp \
 		..\QQMusic\main.cpp \
 		..\QQMusic\music.cpp \
 		..\QQMusic\musiclist.cpp \
+		..\QQMusic\musicscanner.cpp \
 		..\QQMusic\musicslider.cpp \
 		..\QQMusic\qqmusic.cpp \
 		..\QQMusic\recbox.cpp \
 		..\QQMusic\recboxitem.cpp \
-		..\QQMusic\volumetool.cpp release\qrc_Resource.cpp \
+		..\QQMusic\volumetool.cpp \
+		..\QQMusic\thememanager.cpp release\qrc_Resource.cpp \
 		release\moc_btform.cpp \
 		release\moc_commonpage.cpp \
 		release\moc_listitembox.cpp \
 		release\moc_lrcpage.cpp \
+		release\moc_musicscanner.cpp \
 		release\moc_musicslider.cpp \
 		release\moc_qqmusic.cpp \
 		release\moc_recbox.cpp \
 		release\moc_recboxitem.cpp \
-		release\moc_volumetool.cpp
+		release\moc_volumetool.cpp \
+		release\moc_thememanager.cpp
 OBJECTS       = release/btform.o \
 		release/commonpage.o \
 		release/listitembox.o \
 		release/lrcpage.o \
+		release/localsearchservice.o \
 		release/main.o \
 		release/music.o \
 		release/musiclist.o \
+		release/musicscanner.o \
 		release/musicslider.o \
 		release/qqmusic.o \
 		release/recbox.o \
 		release/recboxitem.o \
 		release/volumetool.o \
+		release/thememanager.o \
 		release/qrc_Resource.o \
 		release/moc_btform.o \
 		release/moc_commonpage.o \
 		release/moc_listitembox.o \
 		release/moc_lrcpage.o \
+		release/moc_musicscanner.o \
 		release/moc_musicslider.o \
 		release/moc_qqmusic.o \
 		release/moc_recbox.o \
 		release/moc_recboxitem.o \
-		release/moc_volumetool.o
+		release/moc_volumetool.o \
+		release/moc_thememanager.o
 
 DIST          =  ..\QQMusic\btform.h \
 		..\QQMusic\commonpage.h \
 		..\QQMusic\listitembox.h \
 		..\QQMusic\lrcpage.h \
+		..\QQMusic\localsearchservice.h \
 		..\QQMusic\music.h \
 		..\QQMusic\musiclist.h \
+		..\QQMusic\musicscanner.h \
 		..\QQMusic\musicslider.h \
 		..\QQMusic\qqmusic.h \
 		..\QQMusic\recbox.h \
 		..\QQMusic\recboxitem.h \
-		..\QQMusic\volumetool.h ..\QQMusic\btform.cpp \
+		..\QQMusic\volumetool.h \
+		..\QQMusic\thememanager.h ..\QQMusic\btform.cpp \
 		..\QQMusic\commonpage.cpp \
 		..\QQMusic\listitembox.cpp \
 		..\QQMusic\lrcpage.cpp \
+		..\QQMusic\localsearchservice.cpp \
 		..\QQMusic\main.cpp \
 		..\QQMusic\music.cpp \
 		..\QQMusic\musiclist.cpp \
+		..\QQMusic\musicscanner.cpp \
 		..\QQMusic\musicslider.cpp \
 		..\QQMusic\qqmusic.cpp \
 		..\QQMusic\recbox.cpp \
 		..\QQMusic\recboxitem.cpp \
-		..\QQMusic\volumetool.cpp
+		..\QQMusic\volumetool.cpp \
+		..\QQMusic\thememanager.cpp
 QMAKE_TARGET  = QQMusic
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = QQMusic.exe
@@ -130,15 +146,15 @@ release/QQMusic.exe: D:/QT5/5.14.2/mingw73_64/lib/libQt5Multimedia.a D:/QT5/5.14
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @object_script.QQMusic.Release  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -o Makefile.Release ..\QQMusic\QQMusic.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
+	@$(QMAKE) -o Makefile.Release ..\QQMusic\QQMusic.pro "CONFIG+=release"
 
 qmake_all: FORCE
 
 dist:
-	$(ZIP) QQMusic.zip $(SOURCES) $(DIST) ..\QQMusic\QQMusic.pro ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\qdevice.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\device_config.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\angle.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\qconfig.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\default_post.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qtquickcompiler.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qt.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\resources.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\moc.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\uic.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\yacc.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\lex.prf ..\QQMusic\QQMusic.pro ..\QQMusic\Resource.qrc ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Multimedia.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Widgets.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Gui.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Network.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Sql.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Core.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\qtmain.prl     ..\QQMusic\Resource.qrc ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp ..\QQMusic\btform.h ..\QQMusic\commonpage.h ..\QQMusic\listitembox.h ..\QQMusic\lrcpage.h ..\QQMusic\music.h ..\QQMusic\musiclist.h ..\QQMusic\musicslider.h ..\QQMusic\qqmusic.h ..\QQMusic\recbox.h ..\QQMusic\recboxitem.h ..\QQMusic\volumetool.h  ..\QQMusic\btform.cpp ..\QQMusic\commonpage.cpp ..\QQMusic\listitembox.cpp ..\QQMusic\lrcpage.cpp ..\QQMusic\main.cpp ..\QQMusic\music.cpp ..\QQMusic\musiclist.cpp ..\QQMusic\musicslider.cpp ..\QQMusic\qqmusic.cpp ..\QQMusic\recbox.cpp ..\QQMusic\recboxitem.cpp ..\QQMusic\volumetool.cpp ..\QQMusic\btform.ui ..\QQMusic\commonpage.ui ..\QQMusic\listitembox.ui ..\QQMusic\lrcpage.ui ..\QQMusic\musicslider.ui ..\QQMusic\qqmusic.ui ..\QQMusic\recbox.ui ..\QQMusic\recboxitem.ui ..\QQMusic\volumetool.ui    
+	$(ZIP) QQMusic.zip $(SOURCES) $(DIST) ..\QQMusic\QQMusic.pro ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\spec_pre.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\qdevice.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\device_config.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\sanitize.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\gcc-base.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\g++-base.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\angle.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\windows-vulkan.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\g++-win32.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\common\windows-desktop.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\qconfig.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_location_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qt_functions.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qt_config.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\win32-g++\qmake.conf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\exclusive_builds.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\toolchain.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\default_pre.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\default_pre.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\resolve_config.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\default_post.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\build_pass.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\precompile_header.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\warn_on.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qt.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\resources_functions.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\resources.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\moc.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\opengl.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\uic.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\qmake_use.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\file_copies.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\win32\windows.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\testcase_targets.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\exceptions.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\yacc.prf ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\lex.prf ..\QQMusic\QQMusic.pro ..\QQMusic\Resource.qrc ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Multimedia.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Widgets.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Gui.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Network.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Sql.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\Qt5Core.prl ..\..\..\QT5\5.14.2\mingw73_64\lib\qtmain.prl   ..\QQMusic\Resource.qrc ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp ..\QQMusic\btform.h ..\QQMusic\commonpage.h ..\QQMusic\listitembox.h ..\QQMusic\lrcpage.h ..\QQMusic\localsearchservice.h ..\QQMusic\music.h ..\QQMusic\musiclist.h ..\QQMusic\musicscanner.h ..\QQMusic\musicslider.h ..\QQMusic\qqmusic.h ..\QQMusic\recbox.h ..\QQMusic\recboxitem.h ..\QQMusic\volumetool.h ..\QQMusic\thememanager.h  ..\QQMusic\btform.cpp ..\QQMusic\commonpage.cpp ..\QQMusic\listitembox.cpp ..\QQMusic\lrcpage.cpp ..\QQMusic\localsearchservice.cpp ..\QQMusic\main.cpp ..\QQMusic\music.cpp ..\QQMusic\musiclist.cpp ..\QQMusic\musicscanner.cpp ..\QQMusic\musicslider.cpp ..\QQMusic\qqmusic.cpp ..\QQMusic\recbox.cpp ..\QQMusic\recboxitem.cpp ..\QQMusic\volumetool.cpp ..\QQMusic\thememanager.cpp ..\QQMusic\btform.ui ..\QQMusic\commonpage.ui ..\QQMusic\listitembox.ui ..\QQMusic\lrcpage.ui ..\QQMusic\musicslider.ui ..\QQMusic\qqmusic.ui ..\QQMusic\recbox.ui ..\QQMusic\recboxitem.ui ..\QQMusic\volumetool.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\btform.o release\commonpage.o release\listitembox.o release\lrcpage.o release\main.o release\music.o release\musiclist.o release\musicslider.o release\qqmusic.o release\recbox.o release\recboxitem.o release\volumetool.o release\qrc_Resource.o release\moc_btform.o release\moc_commonpage.o release\moc_listitembox.o release\moc_lrcpage.o release\moc_musicslider.o release\moc_qqmusic.o release\moc_recbox.o release\moc_recboxitem.o release\moc_volumetool.o
+	-$(DEL_FILE) release\btform.o release\commonpage.o release\listitembox.o release\lrcpage.o release\localsearchservice.o release\main.o release\music.o release\musiclist.o release\musicscanner.o release\musicslider.o release\qqmusic.o release\recbox.o release\recboxitem.o release\volumetool.o release\thememanager.o release\qrc_Resource.o release\moc_btform.o release\moc_commonpage.o release\moc_listitembox.o release\moc_lrcpage.o release\moc_musicscanner.o release\moc_musicslider.o release\moc_qqmusic.o release\moc_recbox.o release\moc_recboxitem.o release\moc_volumetool.o release\moc_thememanager.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -153,11 +169,6 @@ check: first
 
 benchmark: first
 
-compiler_qmlcache_make_all:
-compiler_qmlcache_clean:
-compiler_qmlcache_loader_make_all: release/qmlcache_loader.cpp
-compiler_qmlcache_loader_clean:
-	-$(DEL_FILE) release\qmlcache_loader.cpp
 compiler_no_pch_compiler_make_all:
 compiler_no_pch_compiler_clean:
 compiler_rcc_make_all: release/qrc_Resource.cpp
@@ -257,9 +268,9 @@ compiler_moc_predefs_clean:
 release/moc_predefs.h: ../../../QT5/5.14.2/mingw73_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -Wextra -Wextra -dM -E -o release\moc_predefs.h ..\..\..\QT5\5.14.2\mingw73_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: release/moc_btform.cpp release/moc_commonpage.cpp release/moc_listitembox.cpp release/moc_lrcpage.cpp release/moc_musicslider.cpp release/moc_qqmusic.cpp release/moc_recbox.cpp release/moc_recboxitem.cpp release/moc_volumetool.cpp
+compiler_moc_header_make_all: release/moc_btform.cpp release/moc_commonpage.cpp release/moc_listitembox.cpp release/moc_lrcpage.cpp release/moc_musicscanner.cpp release/moc_musicslider.cpp release/moc_qqmusic.cpp release/moc_recbox.cpp release/moc_recboxitem.cpp release/moc_volumetool.cpp release/moc_thememanager.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_btform.cpp release\moc_commonpage.cpp release\moc_listitembox.cpp release\moc_lrcpage.cpp release\moc_musicslider.cpp release\moc_qqmusic.cpp release\moc_recbox.cpp release\moc_recboxitem.cpp release\moc_volumetool.cpp
+	-$(DEL_FILE) release\moc_btform.cpp release\moc_commonpage.cpp release\moc_listitembox.cpp release\moc_lrcpage.cpp release\moc_musicscanner.cpp release\moc_musicslider.cpp release\moc_qqmusic.cpp release\moc_recbox.cpp release\moc_recboxitem.cpp release\moc_volumetool.cpp release\moc_thememanager.cpp
 release/moc_btform.cpp: ../QQMusic/btform.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QWidget \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
@@ -729,6 +740,80 @@ release/moc_lrcpage.cpp: ../QQMusic/lrcpage.h \
 		../../../QT5/5.14.2/mingw73_64/bin/moc.exe
 	D:\QT5\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Gitee.code/QQMusic/build-QQMusic-Desktop_Qt_5_14_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/QT5/5.14.2/mingw73_64/mkspecs/win32-g++ -ID:/Gitee.code/QQMusic/QQMusic -ID:/QT5/5.14.2/mingw73_64/include -ID:/QT5/5.14.2/mingw73_64/include/QtMultimedia -ID:/QT5/5.14.2/mingw73_64/include/QtWidgets -ID:/QT5/5.14.2/mingw73_64/include/QtGui -ID:/QT5/5.14.2/mingw73_64/include/QtANGLE -ID:/QT5/5.14.2/mingw73_64/include/QtNetwork -ID:/QT5/5.14.2/mingw73_64/include/QtSql -ID:/QT5/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\QQMusic\lrcpage.h -o release\moc_lrcpage.cpp
 
+release/moc_musicscanner.cpp: ../QQMusic/musicscanner.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QThread \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qthread.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QAtomicInt \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVector \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		../QQMusic/music.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QUrl \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		release/moc_predefs.h \
+		../../../QT5/5.14.2/mingw73_64/bin/moc.exe
+	D:\QT5\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Gitee.code/QQMusic/build-QQMusic-Desktop_Qt_5_14_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/QT5/5.14.2/mingw73_64/mkspecs/win32-g++ -ID:/Gitee.code/QQMusic/QQMusic -ID:/QT5/5.14.2/mingw73_64/include -ID:/QT5/5.14.2/mingw73_64/include/QtMultimedia -ID:/QT5/5.14.2/mingw73_64/include/QtWidgets -ID:/QT5/5.14.2/mingw73_64/include/QtGui -ID:/QT5/5.14.2/mingw73_64/include/QtANGLE -ID:/QT5/5.14.2/mingw73_64/include/QtNetwork -ID:/QT5/5.14.2/mingw73_64/include/QtSql -ID:/QT5/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\QQMusic\musicscanner.h -o release\moc_musicscanner.cpp
+
 release/moc_musicslider.cpp: ../QQMusic/musicslider.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QWidget \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
@@ -981,6 +1066,21 @@ release/moc_qqmusic.cpp: ../QQMusic/qqmusic.h \
 		../QQMusic/music.h \
 		../QQMusic/volumetool.h \
 		../QQMusic/lrcpage.h \
+		../QQMusic/thememanager.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		../QQMusic/musicscanner.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QThread \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qthread.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QAtomicInt \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QTimer \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QProgressDialog \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qprogressdialog.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
 		release/moc_predefs.h \
 		../../../QT5/5.14.2/mingw73_64/bin/moc.exe
 	D:\QT5\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Gitee.code/QQMusic/build-QQMusic-Desktop_Qt_5_14_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/QT5/5.14.2/mingw73_64/mkspecs/win32-g++ -ID:/Gitee.code/QQMusic/QQMusic -ID:/QT5/5.14.2/mingw73_64/include -ID:/QT5/5.14.2/mingw73_64/include/QtMultimedia -ID:/QT5/5.14.2/mingw73_64/include/QtWidgets -ID:/QT5/5.14.2/mingw73_64/include/QtGui -ID:/QT5/5.14.2/mingw73_64/include/QtANGLE -ID:/QT5/5.14.2/mingw73_64/include/QtNetwork -ID:/QT5/5.14.2/mingw73_64/include/QtSql -ID:/QT5/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\QQMusic\qqmusic.h -o release\moc_qqmusic.cpp
@@ -1314,6 +1414,65 @@ release/moc_volumetool.cpp: ../QQMusic/volumetool.h \
 		release/moc_predefs.h \
 		../../../QT5/5.14.2/mingw73_64/bin/moc.exe
 	D:\QT5\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Gitee.code/QQMusic/build-QQMusic-Desktop_Qt_5_14_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/QT5/5.14.2/mingw73_64/mkspecs/win32-g++ -ID:/Gitee.code/QQMusic/QQMusic -ID:/QT5/5.14.2/mingw73_64/include -ID:/QT5/5.14.2/mingw73_64/include/QtMultimedia -ID:/QT5/5.14.2/mingw73_64/include/QtWidgets -ID:/QT5/5.14.2/mingw73_64/include/QtGui -ID:/QT5/5.14.2/mingw73_64/include/QtANGLE -ID:/QT5/5.14.2/mingw73_64/include/QtNetwork -ID:/QT5/5.14.2/mingw73_64/include/QtSql -ID:/QT5/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\QQMusic\volumetool.h -o release\moc_volumetool.cpp
+
+release/moc_thememanager.cpp: ../QQMusic/thememanager.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		release/moc_predefs.h \
+		../../../QT5/5.14.2/mingw73_64/bin/moc.exe
+	D:\QT5\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include D:/Gitee.code/QQMusic/build-QQMusic-Desktop_Qt_5_14_2_MinGW_64_bit-Release/release/moc_predefs.h -ID:/QT5/5.14.2/mingw73_64/mkspecs/win32-g++ -ID:/Gitee.code/QQMusic/QQMusic -ID:/QT5/5.14.2/mingw73_64/include -ID:/QT5/5.14.2/mingw73_64/include/QtMultimedia -ID:/QT5/5.14.2/mingw73_64/include/QtWidgets -ID:/QT5/5.14.2/mingw73_64/include/QtGui -ID:/QT5/5.14.2/mingw73_64/include/QtANGLE -ID:/QT5/5.14.2/mingw73_64/include/QtNetwork -ID:/QT5/5.14.2/mingw73_64/include/QtSql -ID:/QT5/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\QQMusic\thememanager.h -o release\moc_thememanager.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1930,7 +2089,7 @@ release/btform.o: ../QQMusic/btform.cpp ../QQMusic/btform.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvariantanimation.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qeasingcurve.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qabstractanimation.h \
-		ui_btform.h \
+		../QQMusic/ui_btform.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -2076,7 +2235,7 @@ release/commonpage.o: ../QQMusic/commonpage.cpp ../QQMusic/commonpage.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVector \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QSet \
 		../QQMusic/music.h \
-		ui_commonpage.h \
+		../QQMusic/ui_commonpage.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreapplication.h \
@@ -2117,6 +2276,7 @@ release/commonpage.o: ../QQMusic/commonpage.cpp ../QQMusic/commonpage.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QSpacerItem \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		../QQMusic/listitembox.h \
+		../QQMusic/localsearchservice.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\commonpage.o ..\QQMusic\commonpage.cpp
 
@@ -2225,7 +2385,7 @@ release/listitembox.o: ../QQMusic/listitembox.cpp ../QQMusic/listitembox.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
-		ui_listitembox.h \
+		../QQMusic/ui_listitembox.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -2360,7 +2520,7 @@ release/lrcpage.o: ../QQMusic/lrcpage.cpp ../QQMusic/lrcpage.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qeasingcurve.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qabstractanimation.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVector \
-		ui_lrcpage.h \
+		../QQMusic/ui_lrcpage.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -2384,8 +2544,66 @@ release/lrcpage.o: ../QQMusic/lrcpage.cpp ../QQMusic/lrcpage.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QSpacerItem \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFile \
-		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDebug
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDebug \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QRegularExpression \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qregularexpression.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\lrcpage.o ..\QQMusic\lrcpage.cpp
+
+release/localsearchservice.o: ../QQMusic/localsearchservice.cpp ../QQMusic/localsearchservice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVector \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QString \
+		../QQMusic/music.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QUrl \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhash.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\localsearchservice.o ..\QQMusic\localsearchservice.cpp
 
 release/main.o: ../QQMusic/main.cpp ../QQMusic/qqmusic.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -2530,9 +2748,23 @@ release/main.o: ../QQMusic/main.cpp ../QQMusic/qqmusic.h \
 		../QQMusic/music.h \
 		../QQMusic/volumetool.h \
 		../QQMusic/lrcpage.h \
+		../QQMusic/thememanager.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		../QQMusic/musicscanner.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QThread \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qthread.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QAtomicInt \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QTimer \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QProgressDialog \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qprogressdialog.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QMessageBox \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qmessagebox.h \
-		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QSharedMemory \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsharedmemory.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
@@ -2541,7 +2773,15 @@ release/main.o: ../QQMusic/main.cpp ../QQMusic/qqmusic.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qeventloop.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
-		../../../QT5/5.14.2/mingw73_64/include/QtGui/qinputmethod.h
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDebug \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDir \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdir.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFile \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QSettings \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsettings.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStandardPaths \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstandardpaths.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\QQMusic\main.cpp
 
 release/music.o: ../QQMusic/music.cpp ../QQMusic/music.h \
@@ -2644,7 +2884,15 @@ release/music.o: ../QQMusic/music.cpp ../QQMusic/music.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtSql/qtsql-config.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqldatabase.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtSql/QSqlError \
-		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqlerror.h
+		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqlerror.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QEventLoop \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QTimer \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\music.o ..\QQMusic\music.cpp
 
 release/musiclist.o: ../QQMusic/musiclist.cpp ../QQMusic/musiclist.h \
@@ -2728,8 +2976,105 @@ release/musiclist.o: ../QQMusic/musiclist.cpp ../QQMusic/musiclist.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtSql/qtsql-config.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqldatabase.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtSql/QSqlError \
-		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqlerror.h
+		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqlerror.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtSql/QSqlDatabase \
+		../../../QT5/5.14.2/mingw73_64/include/QtSql/QSqlRecord \
+		../../../QT5/5.14.2/mingw73_64/include/QtSql/qsqlrecord.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QCryptographicHash \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFile \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QHash \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDir \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdir.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\musiclist.o ..\QQMusic\musiclist.cpp
+
+release/musicscanner.o: ../QQMusic/musicscanner.cpp ../QQMusic/musicscanner.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QThread \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qthread.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QAtomicInt \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVector \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		../QQMusic/music.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QUrl \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDirIterator \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdiriterator.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdir.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFile \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QCryptographicHash \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcryptographichash.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QMetaObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QMimeDatabase \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmimedatabase.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmimetype.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QSet \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qset.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\musicscanner.o ..\QQMusic\musicscanner.cpp
 
 release/musicslider.o: ../QQMusic/musicslider.cpp ../QQMusic/musicslider.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QWidget \
@@ -2836,7 +3181,7 @@ release/musicslider.o: ../QQMusic/musicslider.cpp ../QQMusic/musicslider.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
-		ui_musicslider.h \
+		../QQMusic/ui_musicslider.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -2993,7 +3338,22 @@ release/qqmusic.o: ../QQMusic/qqmusic.cpp ../QQMusic/qqmusic.h \
 		../QQMusic/music.h \
 		../QQMusic/volumetool.h \
 		../QQMusic/lrcpage.h \
-		ui_qqmusic.h \
+		../QQMusic/thememanager.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		../QQMusic/musicscanner.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QThread \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qthread.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QAtomicInt \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFileInfo \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QTimer \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QProgressDialog \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qprogressdialog.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
+		../QQMusic/ui_qqmusic.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreapplication.h \
@@ -3042,8 +3402,6 @@ release/qqmusic.o: ../QQMusic/qqmusic.cpp ../QQMusic/qqmusic.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QFileDialog \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qfiledialog.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdir.h \
-		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfileinfo.h \
-		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QDial \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdial.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qabstractslider.h \
@@ -3058,7 +3416,14 @@ release/qqmusic.o: ../QQMusic/qqmusic.cpp ../QQMusic/qqmusic.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QMenu \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qmenu.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qaction.h \
-		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qactiongroup.h
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qactiongroup.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStandardPaths \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstandardpaths.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QDir \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/QCloseEvent \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QFile \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QInputDialog \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qinputdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qqmusic.o ..\QQMusic\qqmusic.cpp
 
 release/recbox.o: ../QQMusic/recbox.cpp ../QQMusic/recbox.h \
@@ -3169,7 +3534,7 @@ release/recbox.o: ../QQMusic/recbox.cpp ../QQMusic/recbox.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QJsonArray \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qjsonarray.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qjsonvalue.h \
-		ui_recbox.h \
+		../QQMusic/ui_recbox.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -3298,7 +3663,7 @@ release/recboxitem.o: ../QQMusic/recboxitem.cpp ../QQMusic/recboxitem.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
-		ui_recboxitem.h \
+		../QQMusic/ui_recboxitem.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -3431,7 +3796,7 @@ release/volumetool.o: ../QQMusic/volumetool.cpp ../QQMusic/volumetool.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
-		ui_volumetool.h \
+		../QQMusic/ui_volumetool.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtCore/QVariant \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
@@ -3456,6 +3821,125 @@ release/volumetool.o: ../QQMusic/volumetool.cpp ../QQMusic/volumetool.h \
 		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpen.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\volumetool.o ..\QQMusic\volumetool.cpp
 
+release/thememanager.o: ../QQMusic/thememanager.cpp ../QQMusic/thememanager.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QObject \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnamespace.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qconfig.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtcore-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsystemdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qprocessordetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcompilerdetection.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtypeinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsysinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlogging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qflags.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbasicatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_bootstrap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qgenericatomic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_cxx11.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qatomic_msvc.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qglobalstatic.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmutex.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qnumeric.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qversiontagging.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobjectdefs_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstring.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qchar.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qrefcount.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qarraydata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringliteral.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringview.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringbuilder.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qalgorithms.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiterator.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhashfunctions.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpair.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvector.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainertools_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qpoint.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qbytearraylist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringlist.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qregexp.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qstringmatcher.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreevent.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qscopedpointer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmetatype.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QStringList \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qapplication.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtguiglobal.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtgui-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcoreapplication.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qeventloop.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qwindowdefs.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qwindowdefs_win.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsize.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmargins.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qcursor.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qdesktopwidget.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpaintdevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qrect.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpalette.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qcolor.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qrgb.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qrgba64.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qbrush.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qmatrix.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpolygon.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qregion.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdatastream.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qiodevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qline.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtransform.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpainterpath.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qimage.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpixelformat.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qpixmap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsharedpointer.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qshareddata.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qhash.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsharedpointer_impl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qfont.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qfontinfo.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qkeysequence.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qevent.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qvariant.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qmap.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qdebug.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qlocale.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qset.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qguiapplication.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtGui/qinputmethod.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QSettings \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/qsettings.h \
+		../../../QT5/5.14.2/mingw73_64/include/QtCore/QSet \
+		../../../QT5/5.14.2/mingw73_64/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\thememanager.o ..\QQMusic\thememanager.cpp
+
 release/qrc_Resource.o: release/qrc_Resource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_Resource.o release\qrc_Resource.cpp
 
@@ -3471,6 +3955,9 @@ release/moc_listitembox.o: release/moc_listitembox.cpp
 release/moc_lrcpage.o: release/moc_lrcpage.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_lrcpage.o release\moc_lrcpage.cpp
 
+release/moc_musicscanner.o: release/moc_musicscanner.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_musicscanner.o release\moc_musicscanner.cpp
+
 release/moc_musicslider.o: release/moc_musicslider.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_musicslider.o release\moc_musicslider.cpp
 
@@ -3485,6 +3972,9 @@ release/moc_recboxitem.o: release/moc_recboxitem.cpp
 
 release/moc_volumetool.o: release/moc_volumetool.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_volumetool.o release\moc_volumetool.cpp
+
+release/moc_thememanager.o: release/moc_thememanager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_thememanager.o release\moc_thememanager.cpp
 
 ####### Install
 

@@ -3,6 +3,8 @@
 #include <QTextStream>
 #include "../lrcpage.h"
 #include "../recbox.h"
+#include "../localsearchservice.h"
+#include "../music.h"
 
 class P0Test : public QObject
 {
@@ -56,6 +58,19 @@ private slots:
         QCOMPARE(RecBox::pageCount(1, 4), 1);
         QCOMPARE(RecBox::pageCount(9, 4), 3);
         QCOMPARE(RecBox::pageCount(4, 0), 0);
+    }
+
+    void localSearchIsCaseInsensitiveAcrossFields()
+    {
+        Music music;
+        music.setMusicName(QStringLiteral("夜曲"));
+        music.setMusicSinger(QStringLiteral("周杰伦"));
+        music.setMusicAlbumn(QStringLiteral("November's Chopin"));
+        QVERIFY(LocalSearchService::matches(music, QStringLiteral("夜")));
+        QVERIFY(LocalSearchService::matches(music, QStringLiteral("周杰")));
+        QVERIFY(LocalSearchService::matches(music, QStringLiteral("chopin")));
+        QVERIFY(!LocalSearchService::matches(music, QStringLiteral("不存在")));
+        QVERIFY(LocalSearchService::matches(music, QString()));
     }
 };
 

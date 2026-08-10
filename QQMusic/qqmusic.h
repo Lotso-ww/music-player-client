@@ -10,6 +10,10 @@
 #include "musiclist.h"
 #include "volumetool.h"
 #include "lrcpage.h"
+#include "thememanager.h"
+#include "musicscanner.h"
+#include <QTimer>
+#include <QProgressDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class QQMusic; }
@@ -83,6 +87,14 @@ private slots:
     void on_skin_clicked();
 
     void on_min_clicked();
+    void onLocalSearchChanged(const QString &text);
+    void applyLocalSearch();
+    void chooseScanFiles();
+    void chooseScanDirectory();
+    void onScanProgress(int scanned, int total, const QString &path);
+    void onScanFinished(const QVector<ScannedMusic> &items, const QStringList &duplicates, const QStringList &failures);
+    void onScanCancelled();
+    void startScan(const QStringList &roots);
 
 protected:
     virtual void mousePressEvent(QMouseEvent* event);
@@ -109,5 +121,11 @@ private:
     bool isDrag; // 是否拖拽
     bool databaseReady;
     bool persistenceDone;
+    ThemeManager *themeManager;
+    MusicScanner *musicScanner;
+    QTimer *searchTimer;
+    QTimer *availabilityTimer;
+    QProgressDialog *scanProgress;
+    QString pendingSearch;
 };
 #endif // QQMUSIC_H

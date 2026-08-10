@@ -1,5 +1,6 @@
 #include "btform.h"
 #include "ui_btform.h"
+#include <QApplication>
 
 btForm::btForm(QWidget *parent) :
     QWidget(parent),
@@ -71,7 +72,9 @@ int btForm::getPageId() const
 void btForm::clearBg()
 {
     // 把背景颜色设置还原成按下之前的
-    ui->btStyle->setStyleSheet("#btStyle:hover{background-color:#D8D8D8;}");
+    const QString hover = qApp && qApp->property("darkTheme").toBool()
+        ? QStringLiteral("#3A3B3F") : QStringLiteral("#D8D8D8");
+    ui->btStyle->setStyleSheet(QStringLiteral("#btStyle:hover{background-color:%1;}").arg(hover));
 }
 
 void btForm::showAnimat()

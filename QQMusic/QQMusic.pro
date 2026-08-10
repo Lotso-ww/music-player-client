@@ -21,27 +21,33 @@ SOURCES += \
     commonpage.cpp \
     listitembox.cpp \
     lrcpage.cpp \
+    localsearchservice.cpp \
     main.cpp \
     music.cpp \
     musiclist.cpp \
+    musicscanner.cpp \
     musicslider.cpp \
     qqmusic.cpp \
     recbox.cpp \
     recboxitem.cpp \
-    volumetool.cpp
+    volumetool.cpp \
+    thememanager.cpp
 
 HEADERS += \
     btform.h \
     commonpage.h \
     listitembox.h \
     lrcpage.h \
+    localsearchservice.h \
     music.h \
     musiclist.h \
+    musicscanner.h \
     musicslider.h \
     qqmusic.h \
     recbox.h \
     recboxitem.h \
-    volumetool.h
+    volumetool.h \
+    thememanager.h
 
 FORMS += \
     btform.ui \

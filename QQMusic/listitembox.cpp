@@ -1,5 +1,6 @@
 #include "listitembox.h"
 #include "ui_listitembox.h"
+#include <QApplication>
 
 ListItemBox::ListItemBox(QWidget *parent) :
     QWidget(parent),
@@ -51,7 +52,8 @@ void ListItemBox::onLikeBtnClicked()
 void ListItemBox::enterEvent(QEvent *event)
 {
     (void)event;
-    setStyleSheet("background-color:#EFEFEF");
+    setStyleSheet(qApp && qApp->property("darkTheme").toBool()
+        ? "background-color:#3A3B3F" : "background-color:#EFEFEF");
 
 }
 

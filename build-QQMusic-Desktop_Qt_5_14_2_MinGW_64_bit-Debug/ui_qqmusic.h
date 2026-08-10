@@ -661,7 +661,7 @@ public:
 
         retranslateUi(QQMusic);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(QQMusic);

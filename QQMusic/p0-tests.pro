@@ -1,4 +1,4 @@
-QT += core gui widgets multimedia testlib
+QT += core gui widgets multimedia sql testlib
 CONFIG += c++11 testcase
 TEMPLATE = app
 TARGET = qqmusic_tests
@@ -6,11 +6,15 @@ TARGET = qqmusic_tests
 SOURCES += tests/test_p0.cpp \
            lrcpage.cpp \
            recbox.cpp \
-           recboxitem.cpp
+           recboxitem.cpp \
+           localsearchservice.cpp \
+           music.cpp
 
 HEADERS += lrcpage.h \
            recbox.h \
-           recboxitem.h
+           recboxitem.h \
+           localsearchservice.h \
+           music.h
 
 FORMS += lrcpage.ui \
          recbox.ui \

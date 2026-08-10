@@ -19,6 +19,8 @@ public:
     void setIsLike(bool isLike);
     void setIsHistory(bool isHistory);
     void setMusicUrl(const QUrl& musicUrl);
+    void setFingerprint(const QString &fingerprint);
+    void setAvailable(bool available);
 
     // get系列
     QString getMusicId()const;
@@ -30,6 +32,8 @@ public:
     bool getIsHistory()const;
     QUrl getMusicUrl()const;
     QString getMusicLrcPath()const;
+    QString getFingerprint() const;
+    bool isAvailable() const;
 
     bool insertToDB();
 
@@ -51,6 +55,8 @@ private:
     bool isLike;
     bool isHistory;
     QUrl musicUrl;
+    QString fingerprint;
+    bool available;
 };
 
 #endif // MUSIC_H

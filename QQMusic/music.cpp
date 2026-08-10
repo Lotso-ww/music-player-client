@@ -13,6 +13,7 @@ Music::Music()
      : musicDuration(0)
      , isLike(false)
      , isHistory(false)
+     , available(true)
 {
 
 }
@@ -22,6 +23,7 @@ Music::Music(const QUrl& url)
      , isLike(false)
      , isHistory(false)
      , musicUrl(url)
+     , available(true)
 {
     // 读取url对应的歌曲文件信息，解析出元数据
     // 歌曲名称，歌曲作者，歌曲专辑，歌曲持续时长
@@ -63,6 +65,8 @@ void Music::setMusicUrl(const QUrl& musicUrl)
 {
     this->musicUrl = musicUrl;
 }
+void Music::setFingerprint(const QString &value) { fingerprint = value; }
+void Music::setAvailable(bool value) { available = value; }
 
 // get系列
 QString Music::getMusicId()const
@@ -140,9 +144,12 @@ bool Music::insertToDB()
         if(isExists)
         {
             // 2. 如果存在,那么我们就只需要更新数据库中对应的isLike和isHistory属性
-            query.prepare("UPDATE MusicInfo SET isLike = ?, isHistory = ? WHERE musicId = ?");
+            query.prepare("UPDATE MusicInfo SET isLike = ?, isHistory = ?, musicUrl = ?, available = ?, fingerprint = ? WHERE musicId = ?");
             query.addBindValue(isLike ? 1 : 0);
             query.addBindValue(isHistory ? 1 : 0);
+            query.addBindValue(musicUrl.toLocalFile());
+            query.addBindValue(available ? 1 : 0);
+            query.addBindValue(fingerprint);
             query.addBindValue(musicId);
             if(!query.exec())
             {
@@ -155,8 +162,8 @@ bool Music::insertToDB()
         {
             // 3. 如果不存在,我们就往数据库中插入对应的歌曲信息
             query.prepare("INSERT INTO MusicInfo(musicId, musicName, musicSinger, albumName,\
-                                                 musicUrl, duration, isLike, isHistory)\
-                           VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+                                                 musicUrl, duration, isLike, isHistory, available, fingerprint)\
+                           VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             query.addBindValue(musicId);
             query.addBindValue(musicName);
             query.addBindValue(musicSinger);
@@ -165,6 +172,8 @@ bool Music::insertToDB()
             query.addBindValue(musicDuration);
             query.addBindValue(isLike ? 1 : 0);
             query.addBindValue(isHistory ? 1 : 0);
+            query.addBindValue(available ? 1 : 0);
+            query.addBindValue(fingerprint);
             if(!query.exec())
             {
                 qDebug() << "插入失败" << query.lastError().text();
@@ -175,6 +184,8 @@ bool Music::insertToDB()
     }
     return true;
 }
+QString Music::getFingerprint() const { return fingerprint; }
+bool Music::isAvailable() const { return available; }
 
 void Music::parseMediaMetaData()
 {

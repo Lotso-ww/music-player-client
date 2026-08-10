@@ -31,6 +31,7 @@ public:
     void addMusicToMusicPage(MusicList& musicList);
     void setMusicImage(QPixmap pixmap);
     void reFresh(MusicList& musicList);
+    void setSearchQuery(const QString &query);
 
     void addMusicToPlayList(MusicList& musicList, QMediaPlaylist* playList);
 
@@ -44,6 +45,7 @@ private:
     Ui::CommonPage *ui;
     PageType pageType; // 标记属于likePage、localPage、recentPage哪个页面
     QVector<QString> musicListOfPage; // 具体某个页面的⾳乐，将来只需要存储音乐的id即可
+    QString searchQuery;
 };
 
 #endif // COMMONPAGE_H

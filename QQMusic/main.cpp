@@ -3,10 +3,41 @@
 #include <QSharedMemory>
 #include <QApplication>
 #include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QSettings>
+#include <QStandardPaths>
+
+namespace {
+void configureProjectIdentity(QApplication &application)
+{
+    const QString legacyDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QSettings legacySettings;
+    const QVariant legacyTheme = legacySettings.value(QStringLiteral("appearance/theme"));
+
+    application.setOrganizationName(QStringLiteral("QQMusicProject"));
+    application.setOrganizationDomain(QStringLiteral("qqmusic-project.local"));
+    application.setApplicationName(QStringLiteral("QQMusicProject"));
+
+    const QString projectDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    const QString projectDatabase = QDir(projectDataPath).filePath(QStringLiteral("QQMusic.db"));
+    const QString legacyDatabase = QDir(legacyDataPath).filePath(QStringLiteral("QQMusic.db"));
+    if (!QFileInfo::exists(projectDatabase) && QFileInfo::exists(legacyDatabase)) {
+        QDir().mkpath(projectDataPath);
+        if (!QFile::copy(legacyDatabase, projectDatabase))
+            qWarning() << "Legacy database migration failed:" << legacyDatabase;
+    }
+
+    QSettings projectSettings;
+    if (!projectSettings.contains(QStringLiteral("appearance/theme")) && legacyTheme.isValid())
+        projectSettings.setValue(QStringLiteral("appearance/theme"), legacyTheme);
+}
+}
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    configureProjectIdentity(a);
 
     // 创建共享内存
     QSharedMemory shareMemory("QQMusic");

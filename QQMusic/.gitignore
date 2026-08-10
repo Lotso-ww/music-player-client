@@ -26,6 +26,7 @@ tags
 Makefile*
 target_wrapper.bat
 test-build/
+test-fixtures/
 *.prl
 *.app
 moc_*.cpp

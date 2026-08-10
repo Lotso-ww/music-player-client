@@ -18,6 +18,9 @@
 #include <QCloseEvent>
 #include <QFile>
 #include <QFileInfo>
+#include <QInputDialog>
+#include <QProgressDialog>
+#include <QSet>
 
 QQMusic::QQMusic(QWidget *parent)
     : QWidget(parent)
@@ -27,10 +30,16 @@ QQMusic::QQMusic(QWidget *parent)
     , isDrag(false)
     , databaseReady(false)
     , persistenceDone(false)
+    , themeManager(new ThemeManager(this))
+    , musicScanner(new MusicScanner())
+    , searchTimer(new QTimer(this))
+    , availabilityTimer(new QTimer(this))
+    , scanProgress(nullptr)
 {
     ui->setupUi(this);
 
     initUI();
+    themeManager->applySaved();
     databaseReady = initSqlite();
     initMusicList();
     initPlayer();
@@ -39,6 +48,11 @@ QQMusic::QQMusic(QWidget *parent)
 
 QQMusic::~QQMusic()
 {
+    if (musicScanner) {
+        musicScanner->cancel();
+        delete musicScanner;
+        musicScanner = nullptr;
+    }
     delete ui;
 }
 
@@ -165,7 +179,9 @@ bool QQMusic::initSqlite()
                    musicUrl varchar(256),\
                    duration BIGINT,\
                    isLike INTEGER,\
-                   isHistory INTEGER)";
+                   isHistory INTEGER,\
+                   available INTEGER DEFAULT 1,\
+                   fingerprint varchar(64))";
 
     QSqlQuery query;
     if(!query.exec(sql))
@@ -177,6 +193,17 @@ bool QQMusic::initSqlite()
     }
 
     qDebug() << "创建MusicInfo表成功";
+
+    // P1 scanner fields are added idempotently for databases created by P0.
+    QSqlQuery columns;
+    QSet<QString> names;
+    if (columns.exec("PRAGMA table_info(MusicInfo)")) {
+        while (columns.next()) names.insert(columns.value(1).toString());
+    }
+    if (!names.contains("available") && !columns.exec("ALTER TABLE MusicInfo ADD COLUMN available INTEGER DEFAULT 1"))
+        qWarning() << "迁移 available 字段失败:" << columns.lastError().text();
+    if (!names.contains("fingerprint") && !columns.exec("ALTER TABLE MusicInfo ADD COLUMN fingerprint varchar(64)"))
+        qWarning() << "迁移 fingerprint 字段失败:" << columns.lastError().text();
     return true;
 }
 
@@ -184,6 +211,7 @@ void QQMusic::initMusicList()
 {
     // 1. 从数据库读取歌曲信息
     if (databaseReady) musicList.readFromDB();
+    musicList.refreshAvailability();
 
     // 2. 更新CommonPage⻚⾯信息
     ui->likePage->setPageType(PageType::LIKE_PAGE);
@@ -229,6 +257,22 @@ void QQMusic::initPlayer()
 
 void QQMusic::connectSignalAndSlots()
 {
+    searchTimer->setSingleShot(true);
+    searchTimer->setInterval(120);
+    connect(ui->lineEdit, &QLineEdit::textChanged, this, &QQMusic::onLocalSearchChanged);
+    connect(searchTimer, &QTimer::timeout, this, &QQMusic::applyLocalSearch);
+    availabilityTimer->setInterval(10000);
+    connect(availabilityTimer, &QTimer::timeout, this, [this]() {
+        if (!musicList.refreshAvailability()) return;
+        ui->likePage->reFresh(musicList);
+        ui->localPage->reFresh(musicList);
+        ui->recentPage->reFresh(musicList);
+        saveMusicState();
+    });
+    availabilityTimer->start();
+    connect(musicScanner, &MusicScanner::progress, this, &QQMusic::onScanProgress);
+    connect(musicScanner, &MusicScanner::finished, this, &QQMusic::onScanFinished);
+    connect(musicScanner, &MusicScanner::cancelled, this, &QQMusic::onScanCancelled);
     // 关联btForm的信号和处理这个信号的槽函数
     connect(ui->rec, &btForm::btClick, this, &QQMusic::onBtFormClicked);
     connect(ui->radio, &btForm::btClick, this, &QQMusic::onBtFormClicked);
@@ -349,6 +393,11 @@ void QQMusic::updateLikeMusicAndPage(bool isLike, const QString &musicId)
 void QQMusic::onQQMusicQuit()
 {
     if (persistenceDone) return;
+    if (musicScanner) {
+        musicScanner->cancel();
+        delete musicScanner;
+        musicScanner = nullptr;
+    }
     if (!saveMusicState()) qCritical() << "退出时批量保存歌曲信息失败";
     persistenceDone = true;
     // 关闭数据库
@@ -431,47 +480,92 @@ void QQMusic::on_volume_clicked()
 
 void QQMusic::on_addLocal_clicked()
 {
-    // 1. 创建一个文件对话框,并且设置标题
-    QFileDialog* fileDialog = new QFileDialog(this);
-    fileDialog->setWindowTitle("添加本地音乐");
+    QMenu menu(this);
+    QAction *files = menu.addAction(QStringLiteral("选择音乐文件"));
+    QAction *directory = menu.addAction(QStringLiteral("扫描音乐目录"));
+    QAction *chosen = menu.exec(ui->addLocal->mapToGlobal(QPoint(0, ui->addLocal->height())));
+    if (chosen == files) chooseScanFiles();
+    else if (chosen == directory) chooseScanDirectory();
+}
 
-    // 2. 设置对话框的打开格式和选择文件的模式
-    fileDialog->setAcceptMode(QFileDialog::AcceptOpen); // 设置一个打开格式的文件对话框
-    fileDialog->setFileMode(QFileDialog::ExistingFiles); // 设置只能选择文件，并且⼀次性可以选择多个存在的文件; 可以一次打开多个
+void QQMusic::chooseScanFiles()
+{
+    const QStringList paths = QFileDialog::getOpenFileNames(this, QStringLiteral("选择音乐文件"),
+        QStandardPaths::writableLocation(QStandardPaths::MusicLocation),
+        QStringLiteral("音频文件 (*.mp3 *.flac *.wav *.aac *.m4a)"));
+    if (!paths.isEmpty()) startScan(paths);
+}
 
-    // 3. 设置对话框的MIME过滤器
-    QStringList mimeTypeFilters;
-    mimeTypeFilters << "application/octet-stream";
-    fileDialog->setMimeTypeFilters(mimeTypeFilters);
+void QQMusic::chooseScanDirectory()
+{
+    const QString path = QFileDialog::getExistingDirectory(this, QStringLiteral("选择音乐目录"),
+        QStandardPaths::writableLocation(QStandardPaths::MusicLocation));
+    if (!path.isEmpty()) startScan(QStringList() << path);
+}
 
-    // 4. 设置对话框打开的默认路径，先获取当前工作目录并且进行调整
-    QDir dir(QDir::currentPath());
-    dir.cdUp();
-    QString projectPath = dir.path();
-    projectPath += "/QQMusic/musics/";
-    fileDialog->setDirectory(projectPath);
+void QQMusic::startScan(const QStringList &roots)
+{
+    if (!musicScanner || musicScanner->isRunning()) return;
+    scanProgress = new QProgressDialog(QStringLiteral("正在扫描音乐…"), QStringLiteral("取消"), 0, 0, this);
+    scanProgress->setWindowTitle(QStringLiteral("本地音乐扫描"));
+    scanProgress->setAutoClose(false);
+    scanProgress->setMinimumDuration(0);
+    connect(scanProgress, &QProgressDialog::canceled, musicScanner, &MusicScanner::cancel);
+    scanProgress->show();
+    musicScanner->scan(roots);
+}
 
-    // 5. 显⽰对话框，并接收返回值
-    // 模态对话框, exec内部是死循环处理
-    if(QDialog::Accepted == fileDialog->exec())
-    {
-        // 获取选中的文件
-        QList<QUrl> fileUrls = fileDialog->selectedUrls();
+void QQMusic::onScanProgress(int scanned, int total, const QString &path)
+{
+    if (!scanProgress) return;
+    scanProgress->setRange(0, qMax(1, total));
+    scanProgress->setValue(scanned);
+    scanProgress->setLabelText(QStringLiteral("正在扫描：%1").arg(QFileInfo(path).fileName()));
+}
 
-        // fileUrls: 内部存放的是刚刚选中的文件的url路径
-        // 需要将文件信息填充到本地下载
-
-        // 将所有音乐添加到音乐列表中, MusicList
-        musicList.addMusicByUrl(fileUrls);
-
-        // 切换到本地⾳乐界面，加载完的音乐需要在此界面上显示
-        ui->stackedWidget->setCurrentIndex(4);
-        ui->localPage->reFresh(musicList);
-
-        // 添加歌曲到播放列表
-        ui->localPage->addMusicToPlayList(musicList, playList);
+void QQMusic::onScanFinished(const QVector<ScannedMusic> &items, const QStringList &duplicates, const QStringList &failures)
+{
+    if (scanProgress) { scanProgress->close(); scanProgress->deleteLater(); scanProgress = nullptr; }
+    QVector<Music> music;
+    music.reserve(items.size());
+    for (const ScannedMusic &item : items) music.push_back(item.music);
+    const int added = musicList.addScannedMusic(music);
+    ui->likePage->reFresh(musicList);
+    ui->localPage->reFresh(musicList);
+    ui->recentPage->reFresh(musicList);
+    if (!saveMusicState()) qWarning() << "扫描结果保存失败";
+    const int existingDuplicates = qMax(0, items.size() - added);
+    if (existingDuplicates > 0 || !duplicates.isEmpty() || !failures.isEmpty()) {
+        QMessageBox::information(this, QStringLiteral("扫描完成"),
+            QStringLiteral("新增 %1 首，重复 %2 个，失败 %3 个").arg(added)
+                .arg(duplicates.size() + existingDuplicates).arg(failures.size()));
     }
 
+}
+
+void QQMusic::onScanCancelled()
+{
+    if (scanProgress) { scanProgress->close(); scanProgress->deleteLater(); scanProgress = nullptr; }
+}
+
+void QQMusic::onLocalSearchChanged(const QString &text)
+{
+    pendingSearch = text;
+    searchTimer->start();
+}
+
+void QQMusic::applyLocalSearch()
+{
+    ui->lineEdit->setToolTip(pendingSearch.isEmpty() ? QStringLiteral("搜索歌曲名、歌手或专辑") : QString());
+    ui->likePage->setSearchQuery(QString());
+    ui->recentPage->setSearchQuery(QString());
+    ui->localPage->setSearchQuery(pendingSearch);
+    ui->localPage->reFresh(musicList);
+    if (!pendingSearch.trimmed().isEmpty()) {
+        ui->stackedWidget->setCurrentIndex(4);
+        currentPage = ui->localPage;
+        updateBtFormAnimal();
+    }
 }
 
 void QQMusic::onLrcWordClicked()
@@ -768,7 +862,9 @@ void QQMusic::closeEvent(QCloseEvent *event)
 
 void QQMusic::on_skin_clicked()
 {
-    QMessageBox::information(this, "温馨提示", "换肤功能还在紧急支持中!!!");
+    const QStringList themes = themeManager->themes();
+    const int next = (themes.indexOf(themeManager->currentTheme()) + 1) % themes.size();
+    themeManager->apply(themes.at(next));
 }
 
 void QQMusic::on_min_clicked()

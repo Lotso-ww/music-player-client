@@ -1,6 +1,7 @@
 #include "commonpage.h"
 #include "ui_commonpage.h"
 #include "listitembox.h"
+#include "localsearchservice.h"
 #include <QDebug>
 
 CommonPage::CommonPage(QWidget *parent) :
@@ -53,13 +54,13 @@ void CommonPage::addMusicToMusicPage(MusicList& musicList)
         switch(pageType)
         {
         case LIKE_PAGE:
-            if(music.getIsLike()) musicListOfPage.push_back(music.getMusicId());
+            if(music.getIsLike() && LocalSearchService::matches(music, searchQuery)) musicListOfPage.push_back(music.getMusicId());
             break;
         case LOCAL_PAGE:
-            musicListOfPage.push_back(music.getMusicId());
+            if(LocalSearchService::matches(music, searchQuery)) musicListOfPage.push_back(music.getMusicId());
             break;
         case HISTORY_PAGE:
-            if(music.getIsHistory()) musicListOfPage.push_back(music.getMusicId());
+            if(music.getIsHistory() && LocalSearchService::matches(music, searchQuery)) musicListOfPage.push_back(music.getMusicId());
             break;
         default:
             qDebug() << "暂不支持";
@@ -88,6 +89,7 @@ void CommonPage::reFresh(MusicList &musicList)
         auto it = musicList.findMusicById(musicId);
         if(it == musicList.end())
             continue; // 没找到就跳过
+        if (!it->isAvailable()) continue;
 
         // 将ListItemBox对象放置pageMusicList
         ListItemBox* listItemBox = new ListItemBox(this);
@@ -114,6 +116,11 @@ void CommonPage::reFresh(MusicList &musicList)
 
 }
 
+void CommonPage::setSearchQuery(const QString &query)
+{
+    searchQuery = query;
+}
+
 void CommonPage::addMusicToPlayList(MusicList &musicList, QMediaPlaylist *playList)
 {
     if (!playList) return;
@@ -122,7 +129,8 @@ void CommonPage::addMusicToPlayList(MusicList &musicList, QMediaPlaylist *playLi
         existing.insert(playList->media(i).canonicalResource().url());
     for(auto& music : musicList)
     {
-        if (!music.getMusicUrl().isValid() || music.getMusicUrl().toLocalFile().isEmpty()) continue;
+        if (!music.isAvailable() || !music.getMusicUrl().isValid() || music.getMusicUrl().toLocalFile().isEmpty()) continue;
+        if (!LocalSearchService::matches(music, searchQuery)) continue;
         switch(pageType)
         {
         case LIKE_PAGE:

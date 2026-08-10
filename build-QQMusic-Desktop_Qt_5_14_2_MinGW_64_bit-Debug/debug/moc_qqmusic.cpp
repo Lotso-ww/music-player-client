@@ -10,6 +10,7 @@
 #include "../../QQMusic/qqmusic.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
+#include <QtCore/QVector>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'qqmusic.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
@@ -22,8 +23,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_QQMusic_t {
-    QByteArrayData data[39];
-    char stringdata0[562];
+    QByteArrayData data[56];
+    char stringdata0[770];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -70,7 +71,24 @@ QT_MOC_LITERAL(34, 491, 5), // "ratio"
 QT_MOC_LITERAL(35, 497, 23), // "onMediaAvailableChanged"
 QT_MOC_LITERAL(36, 521, 9), // "available"
 QT_MOC_LITERAL(37, 531, 15), // "on_skin_clicked"
-QT_MOC_LITERAL(38, 547, 14) // "on_min_clicked"
+QT_MOC_LITERAL(38, 547, 14), // "on_min_clicked"
+QT_MOC_LITERAL(39, 562, 20), // "onLocalSearchChanged"
+QT_MOC_LITERAL(40, 583, 4), // "text"
+QT_MOC_LITERAL(41, 588, 16), // "applyLocalSearch"
+QT_MOC_LITERAL(42, 605, 15), // "chooseScanFiles"
+QT_MOC_LITERAL(43, 621, 19), // "chooseScanDirectory"
+QT_MOC_LITERAL(44, 641, 14), // "onScanProgress"
+QT_MOC_LITERAL(45, 656, 7), // "scanned"
+QT_MOC_LITERAL(46, 664, 5), // "total"
+QT_MOC_LITERAL(47, 670, 4), // "path"
+QT_MOC_LITERAL(48, 675, 14), // "onScanFinished"
+QT_MOC_LITERAL(49, 690, 21), // "QVector<ScannedMusic>"
+QT_MOC_LITERAL(50, 712, 5), // "items"
+QT_MOC_LITERAL(51, 718, 10), // "duplicates"
+QT_MOC_LITERAL(52, 729, 8), // "failures"
+QT_MOC_LITERAL(53, 738, 15), // "onScanCancelled"
+QT_MOC_LITERAL(54, 754, 9), // "startScan"
+QT_MOC_LITERAL(55, 764, 5) // "roots"
 
     },
     "QQMusic\0on_quit_clicked\0\0onBtFormClicked\0"
@@ -88,7 +106,13 @@ QT_MOC_LITERAL(38, 547, 14) // "on_min_clicked"
     "onDurationChanged\0duration\0onPositionChanged\0"
     "position\0onMusicSliderChanged\0ratio\0"
     "onMediaAvailableChanged\0available\0"
-    "on_skin_clicked\0on_min_clicked"
+    "on_skin_clicked\0on_min_clicked\0"
+    "onLocalSearchChanged\0text\0applyLocalSearch\0"
+    "chooseScanFiles\0chooseScanDirectory\0"
+    "onScanProgress\0scanned\0total\0path\0"
+    "onScanFinished\0QVector<ScannedMusic>\0"
+    "items\0duplicates\0failures\0onScanCancelled\0"
+    "startScan\0roots"
 };
 #undef QT_MOC_LITERAL
 
@@ -98,7 +122,7 @@ static const uint qt_meta_data_QQMusic[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      31,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -106,29 +130,37 @@ static const uint qt_meta_data_QQMusic[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  129,    2, 0x08 /* Private */,
-       3,    1,  130,    2, 0x08 /* Private */,
-       5,    0,  133,    2, 0x08 /* Private */,
-       6,    0,  134,    2, 0x08 /* Private */,
-       7,    0,  135,    2, 0x08 /* Private */,
-       8,    0,  136,    2, 0x08 /* Private */,
-       9,    0,  137,    2, 0x08 /* Private */,
-      10,    0,  138,    2, 0x08 /* Private */,
-      11,    0,  139,    2, 0x08 /* Private */,
-      12,    0,  140,    2, 0x08 /* Private */,
-      13,    1,  141,    2, 0x08 /* Private */,
-      16,    1,  144,    2, 0x08 /* Private */,
-      19,    2,  147,    2, 0x08 /* Private */,
-      23,    2,  152,    2, 0x08 /* Private */,
-      24,    1,  157,    2, 0x08 /* Private */,
-      25,    1,  160,    2, 0x08 /* Private */,
-      27,    1,  163,    2, 0x08 /* Private */,
-      29,    1,  166,    2, 0x08 /* Private */,
-      31,    1,  169,    2, 0x08 /* Private */,
-      33,    1,  172,    2, 0x08 /* Private */,
-      35,    1,  175,    2, 0x08 /* Private */,
-      37,    0,  178,    2, 0x08 /* Private */,
-      38,    0,  179,    2, 0x08 /* Private */,
+       1,    0,  169,    2, 0x08 /* Private */,
+       3,    1,  170,    2, 0x08 /* Private */,
+       5,    0,  173,    2, 0x08 /* Private */,
+       6,    0,  174,    2, 0x08 /* Private */,
+       7,    0,  175,    2, 0x08 /* Private */,
+       8,    0,  176,    2, 0x08 /* Private */,
+       9,    0,  177,    2, 0x08 /* Private */,
+      10,    0,  178,    2, 0x08 /* Private */,
+      11,    0,  179,    2, 0x08 /* Private */,
+      12,    0,  180,    2, 0x08 /* Private */,
+      13,    1,  181,    2, 0x08 /* Private */,
+      16,    1,  184,    2, 0x08 /* Private */,
+      19,    2,  187,    2, 0x08 /* Private */,
+      23,    2,  192,    2, 0x08 /* Private */,
+      24,    1,  197,    2, 0x08 /* Private */,
+      25,    1,  200,    2, 0x08 /* Private */,
+      27,    1,  203,    2, 0x08 /* Private */,
+      29,    1,  206,    2, 0x08 /* Private */,
+      31,    1,  209,    2, 0x08 /* Private */,
+      33,    1,  212,    2, 0x08 /* Private */,
+      35,    1,  215,    2, 0x08 /* Private */,
+      37,    0,  218,    2, 0x08 /* Private */,
+      38,    0,  219,    2, 0x08 /* Private */,
+      39,    1,  220,    2, 0x08 /* Private */,
+      41,    0,  223,    2, 0x08 /* Private */,
+      42,    0,  224,    2, 0x08 /* Private */,
+      43,    0,  225,    2, 0x08 /* Private */,
+      44,    3,  226,    2, 0x08 /* Private */,
+      48,    3,  233,    2, 0x08 /* Private */,
+      53,    0,  240,    2, 0x08 /* Private */,
+      54,    1,  241,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -154,6 +186,14 @@ static const uint qt_meta_data_QQMusic[] = {
     QMetaType::Void, QMetaType::Bool,   36,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   40,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::QString,   45,   46,   47,
+    QMetaType::Void, 0x80000000 | 49, QMetaType::QStringList, QMetaType::QStringList,   50,   51,   52,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QStringList,   55,
 
        0        // eod
 };
@@ -187,6 +227,14 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 20: _t->onMediaAvailableChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 21: _t->on_skin_clicked(); break;
         case 22: _t->on_min_clicked(); break;
+        case 23: _t->onLocalSearchChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 24: _t->applyLocalSearch(); break;
+        case 25: _t->chooseScanFiles(); break;
+        case 26: _t->chooseScanDirectory(); break;
+        case 27: _t->onScanProgress((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3]))); break;
+        case 28: _t->onScanFinished((*reinterpret_cast< const QVector<ScannedMusic>(*)>(_a[1])),(*reinterpret_cast< const QStringList(*)>(_a[2])),(*reinterpret_cast< const QStringList(*)>(_a[3]))); break;
+        case 29: _t->onScanCancelled(); break;
+        case 30: _t->startScan((*reinterpret_cast< const QStringList(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -211,6 +259,13 @@ void QQMusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< CommonPage* >(); break;
+            }
+            break;
+        case 28:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QVector<ScannedMusic> >(); break;
             }
             break;
         }
@@ -246,13 +301,13 @@ int QQMusic::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 31;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 31)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 31;
     }
     return _id;
 }
