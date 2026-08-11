@@ -301,10 +301,10 @@ flowchart TB
 
 #### P2A C++ 后端技术验证
 
-- [~] `P2A-01` Drogon 最小验证工程已实现；待有 Docker Engine 的主机完成 HTTP、JSON、MySQL、测试和 Docker 构建实测。
+- [x] `P2A-01` 已在 Ubuntu 24.04 Docker 环境完成 Drogon HTTP、JSON、MySQL、CTest 和镜像构建实测。
 - [x] `P2A-02` 已记录 ADR；当前锁定 Drogon，不并行维护 oatpp/Crow。
-- [~] `P2A-03` 已实现版本化 REST API、统一错误格式、请求 ID 和日志脱敏；待容器运行验证。
-- [~] `P2A-04` 已提供 Ubuntu 24.04 Docker Compose 重建配置；待 Docker 主机演练。
+- [x] `P2A-03` 已验证 `/api/v1`、统一 JSON 错误、请求 ID 和日志脱敏边界。
+- [x] `P2A-04` 已在 Ubuntu 24.04 Docker Compose 完成服务重建、MySQL 初始化和清理演练。
 
 #### P2B 账号系统
 
@@ -751,7 +751,7 @@ flowchart TB
   - [~] P1B 主题换肤（云同步待 P2 账号系统）。
   - [~] P1C 桌面歌词（保留原有内嵌展示，独立窗口方案暂缓）。
   - [~] P1D 后台音乐扫描（万级压力验收待补）。
-- [~] P2A C++ 后端技术验证（实现完成，Docker/MySQL 运行级验收待具备 Docker Engine 的主机执行）。
+- [x] P2A C++ 后端技术验证。
 - [ ] P2B 账号系统。
 - [ ] P2C 在线演示曲库与下载。
 - [ ] P2D 离线优先云同步。

@@ -4,9 +4,9 @@
 
 - SPEC 编号：P2A-01 至 P2A-04
 - Git 分支：master
-- 关键提交：待提交
+- 关键提交：`214e4ac` 至 `f42ffc0`
 - 完成日期：2026-08-11
-- 状态：实现完成，运行级验收待执行
+- 状态：已完成
 
 ## 本次目标
 
@@ -36,13 +36,16 @@
 - `git diff --check`：通过。
 - 使用 MinGW 生成器执行 `cmake -S backend ...`：CMake 解析工程成功，随后因本机没有 `DrogonConfig.cmake` 停在 `find_package(Drogon)`；默认 Visual Studio 生成器另受当前环境的 Windows SDK 路径权限限制。Docker Engine 也不可用。
 - `scripts/verify-p2a.ps1` 已覆盖 Compose 配置、镜像构建、MySQL 健康等待、`/api/v1/health`、404 错误契约及请求 ID 一致性，但本机无法运行。
+- Ubuntu 24.04 LTS 服务器执行 `docker compose ... build api`：通过；Drogon `v1.9.10`、MariaDB Connector/C、后端二进制均构建成功，CTest `1/1` 通过。
+- 应用 MySQL 账号执行 `SELECT 1`：通过。
+- `GET /api/v1/health`：HTTP `200`，返回 `data.database=available`、`data.status=ok`；响应头和 JSON 内的请求 ID 一致。
+- `GET /api/v1/not-found`：HTTP `404`，返回 `error.code=route_not_found`；响应头和 JSON 内的请求 ID 一致。
+- 验收脚本执行 `docker compose ... down -v --remove-orphans` 后检查：Compose 项目为空，无遗留 `backend-*` 容器或验证 MySQL 卷。
 
 ## 遗留事项
 
-- Docker 首次构建日志确认 Drogon 使用 Git 子模块提供 Trantor；Dockerfile 已改为递归浅克隆。Drogon 1.9.10 的异步 MySQL 实现需要 MariaDB Connector/C 的非阻塞 API，因此 Ubuntu 24.04 构建和运行时使用 `libmariadb-dev` / `libmariadb3`；并通过该版本 `FindMySQL.cmake` 使用的 `MYSQL_INCLUDE_DIRS`、`MYSQL_LIBRARIES` 显式指定路径。需使用这些修复重新构建后再记录正式验收结果。
+- Docker 构建使用 Gitee Drogon 镜像和可配置的 Trantor 代理地址，适配无法直接访问 GitHub 的服务器网络；具备 GitHub 访问能力的环境可通过构建参数替换源地址。
 - 运行容器使用非 root UID `65534`，并以 `/var/lib/qqmusic` 作为可写工作目录，避免 Drogon 默认上传临时目录在根目录下创建失败。MySQL 配置零初始化，明确使用 `utf8mb4` 和 5 秒连接超时。
-- 在安装 Docker Engine 的 Ubuntu 24.04 或新 Linux 主机上创建 `backend/.env` 后执行 `scripts/verify-p2a.ps1` 等价的 Compose 命令，保存构建和接口输出。
-- Docker 实测通过后，补充本文件结果、将 P2A-01/P2A-03/P2A-04 及总检查表改为 `[x]`，再进入 P2B。
 - 当前不含账户、Token、同步、曲库或下载业务逻辑，符合 P2A 技术验证边界。
 
 ## 面试回顾
