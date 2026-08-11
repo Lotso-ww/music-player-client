@@ -16,8 +16,8 @@ RUN git config --global url."${TRANTOR_REPOSITORY}".insteadOf "https://github.co
     && cmake -S /tmp/drogon -B /tmp/drogon/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_ORM=ON \
-        -DMYSQL_INCLUDE_DIR=/usr/include/mysql \
-        -DMYSQL_LIBRARY=/usr/lib/x86_64-linux-gnu/libmysqlclient.so \
+        -DMYSQL_INCLUDE_DIRS=/usr/include/mysql \
+        -DMYSQL_LIBRARIES=/usr/lib/x86_64-linux-gnu/libmysqlclient.so \
         -DBUILD_CTL=OFF \
         -DBUILD_EXAMPLES=OFF \
         -DBUILD_TESTING=OFF \
