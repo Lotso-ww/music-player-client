@@ -4,7 +4,7 @@
 > 项目定位：面向 C++/Qt 客户端、上位机开发与 C++ 后端实习岗位的作品项目  
 > 当前基线：Qt 5.14.2、C++11、qmake、Qt Widgets、QMediaPlayer、SQLite  
 > 文档状态：需求访谈已完成，待按阶段实施  
-> 最后更新：2026-08-07
+> 最后更新：2026-08-11
 
 ---
 
@@ -301,10 +301,10 @@ flowchart TB
 
 #### P2A C++ 后端技术验证
 
-- [ ] `P2A-01` 对 Drogon 完成最小验证：HTTP、JSON、MySQL、测试和 Docker 构建。
-- [ ] `P2A-02` 记录 ADR；若 Drogon 不满足要求，再比较 oatpp/Crow，不并行维护多个框架。
-- [ ] `P2A-03` 建立版本化 REST API、统一错误格式、请求 ID 和日志脱敏。
-- [ ] `P2A-04` Docker Compose 可在 Ubuntu 24.04 和新 Linux 主机重建服务。
+- [~] `P2A-01` Drogon 最小验证工程已实现；待有 Docker Engine 的主机完成 HTTP、JSON、MySQL、测试和 Docker 构建实测。
+- [x] `P2A-02` 已记录 ADR；当前锁定 Drogon，不并行维护 oatpp/Crow。
+- [~] `P2A-03` 已实现版本化 REST API、统一错误格式、请求 ID 和日志脱敏；待容器运行验证。
+- [~] `P2A-04` 已提供 Ubuntu 24.04 Docker Compose 重建配置；待 Docker 主机演练。
 
 #### P2B 账号系统
 
@@ -751,7 +751,7 @@ flowchart TB
   - [~] P1B 主题换肤（云同步待 P2 账号系统）。
   - [~] P1C 桌面歌词（保留原有内嵌展示，独立窗口方案暂缓）。
   - [~] P1D 后台音乐扫描（万级压力验收待补）。
-- [ ] P2A C++ 后端技术验证。
+- [~] P2A C++ 后端技术验证（实现完成，Docker/MySQL 运行级验收待具备 Docker Engine 的主机执行）。
 - [ ] P2B 账号系统。
 - [ ] P2C 在线演示曲库与下载。
 - [ ] P2D 离线优先云同步。

@@ -27,6 +27,10 @@ Release 构建将 `CONFIG+=debug` 替换为 `CONFIG+=release`。应用数据库�
 
 使用 `qDebug()` 记录开发诊断，使用 `qWarning()` 记录可恢复异常，使用 `qCritical()` 记录数据库、单实例和持久化失败。日志不得包含密码、token 或完整授权头。
 
+## P2A 后端技术验证
+
+独立的 C++17/Drogon 服务位于 `backend/`，不影响 Qt 5 客户端构建。它提供版本化健康检查、MySQL 连通性检查、统一 JSON 错误、请求 ID 和日志脱敏。Docker Compose 运行、验证命令与已知环境前提见 [backend/README.md](backend/README.md)；验证脚本为 `scripts/verify-p2a.ps1`。
+
 ## P0 验收
 
 自动化回归位于 `tests/`；播放列表、托盘退出、Alt+F4、损坏媒体和无歌词切歌还需按 `docs/reviews/` 中的手工记录执行。
