@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 ARG DROGON_VERSION=v1.9.10
-RUN git clone --depth 1 --branch ${DROGON_VERSION} https://github.com/drogonframework/drogon.git /tmp/drogon \
+RUN git clone --depth 1 --branch ${DROGON_VERSION} --recurse-submodules --shallow-submodules \
+        https://github.com/drogonframework/drogon.git /tmp/drogon \
     && cmake -S /tmp/drogon -B /tmp/drogon/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_ORM=ON \
