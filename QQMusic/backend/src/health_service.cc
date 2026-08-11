@@ -35,7 +35,7 @@ void registerHealthEndpoint()
                 },
                 [callback, id](const drogon::orm::DrogonDbException &exception) {
                     LOG_WARN << "health database check failed: "
-                             << sanitizeLogValue(exception.what());
+                             << sanitizeLogValue(exception.base().what());
                     callback(api::errorResponse(drogon::k503ServiceUnavailable,
                                                 "dependency_unavailable",
                                                 "Service is temporarily unavailable.",

@@ -4,7 +4,7 @@ namespace qqmusic::api {
 
 std::string requestId(const drogon::HttpRequestPtr &request)
 {
-    const auto value = request->getAttribute<std::string>("request_id");
+    const auto value = request->getAttributes()->get<std::string>("request_id");
     return value.empty() ? "unknown" : value;
 }
 
