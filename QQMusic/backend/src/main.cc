@@ -37,7 +37,7 @@ int main()
                                                    id);
             });
         drogon::app().addListener(config.listenAddress, config.listenPort);
-        drogon::orm::MysqlConfig mysqlConfig;
+        drogon::orm::MysqlConfig mysqlConfig{};
         mysqlConfig.host = config.mysqlHost;
         mysqlConfig.port = config.mysqlPort;
         mysqlConfig.databaseName = config.mysqlDatabase;
@@ -45,6 +45,8 @@ int main()
         mysqlConfig.password = config.mysqlPassword;
         mysqlConfig.connectionNumber = 2;
         mysqlConfig.name = "qqmusic";
+        mysqlConfig.characterSet = "utf8mb4";
+        mysqlConfig.timeout = 5.0;
         const drogon::orm::DbConfig databaseConfig = mysqlConfig;
         drogon::app().addDbClient(databaseConfig);
         qqmusic::registerHealthEndpoint();

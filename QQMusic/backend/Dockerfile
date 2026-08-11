@@ -43,8 +43,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY --from=build /usr/local/lib/libdrogon.so* /usr/local/lib/
 COPY --from=build /usr/local/lib/libtrantor.so* /usr/local/lib/
 COPY --from=build /src/build/qqmusic-api /usr/local/bin/qqmusic-api
-RUN ldconfig
+RUN mkdir -p /var/lib/qqmusic \
+    && chown 65534:65534 /var/lib/qqmusic \
+    && ldconfig
 
 EXPOSE 8080
-USER nobody
+WORKDIR /var/lib/qqmusic
+USER 65534:65534
 ENTRYPOINT ["/usr/local/bin/qqmusic-api"]
