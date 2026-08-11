@@ -37,15 +37,16 @@ int main()
                                                    id);
             });
         drogon::app().addListener(config.listenAddress, config.listenPort);
-        drogon::app().addDbClient("mysql",
-                                  config.mysqlHost,
-                                  config.mysqlPort,
-                                  config.mysqlDatabase,
-                                  config.mysqlUser,
-                                  config.mysqlPassword,
-                                  2,
-                                  "",
-                                  "qqmusic");
+        drogon::orm::DbConfig databaseConfig;
+        databaseConfig.rdbms = "mysql";
+        databaseConfig.host = config.mysqlHost;
+        databaseConfig.port = config.mysqlPort;
+        databaseConfig.databaseName = config.mysqlDatabase;
+        databaseConfig.user = config.mysqlUser;
+        databaseConfig.password = config.mysqlPassword;
+        databaseConfig.connectionNum = 2;
+        databaseConfig.name = "qqmusic";
+        drogon::app().addDbClient(databaseConfig);
         qqmusic::registerHealthEndpoint();
         LOG_INFO << "QQMusic API listening on " << config.listenAddress << ':' << config.listenPort;
         drogon::app().run();
