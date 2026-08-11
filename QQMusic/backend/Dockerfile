@@ -8,8 +8,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 ARG DROGON_VERSION=v1.9.10
-RUN git clone --depth 1 --branch ${DROGON_VERSION} --recurse-submodules --shallow-submodules \
-        https://github.com/drogonframework/drogon.git /tmp/drogon \
+ARG DROGON_REPOSITORY=https://gitee.com/mirrors/drogon.git
+ARG TRANTOR_REPOSITORY=https://ghproxy.net/https://github.com/an-tao/trantor.git
+RUN git config --global url."${TRANTOR_REPOSITORY}".insteadOf "https://github.com/an-tao/trantor.git" \
+    && git clone --depth 1 --branch ${DROGON_VERSION} --recurse-submodules --shallow-submodules \
+        ${DROGON_REPOSITORY} /tmp/drogon \
     && cmake -S /tmp/drogon -B /tmp/drogon/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_ORM=ON \
