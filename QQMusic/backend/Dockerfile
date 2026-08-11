@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential cmake git ca-certificates pkg-config \
     libjsoncpp-dev uuid-dev libssl-dev zlib1g-dev libbrotli-dev \
-    default-libmysqlclient-dev \
+    libmariadb-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ARG DROGON_VERSION=v1.9.10
@@ -16,8 +16,8 @@ RUN git config --global url."${TRANTOR_REPOSITORY}".insteadOf "https://github.co
     && cmake -S /tmp/drogon -B /tmp/drogon/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_ORM=ON \
-        -DMYSQL_INCLUDE_DIRS=/usr/include/mysql \
-        -DMYSQL_LIBRARIES=/usr/lib/x86_64-linux-gnu/libmysqlclient.so \
+        -DMYSQL_INCLUDE_DIRS=/usr/include/mariadb \
+        -DMYSQL_LIBRARIES=/usr/lib/x86_64-linux-gnu/libmariadb.so \
         -DBUILD_CTL=OFF \
         -DBUILD_EXAMPLES=OFF \
         -DBUILD_TESTING=OFF \
@@ -37,7 +37,7 @@ FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libjsoncpp25 libssl3t64 libbrotli1 libmysqlclient21 libuuid1 zlib1g \
+    libjsoncpp25 libssl3t64 libbrotli1 libmariadb3 libuuid1 zlib1g \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=build /usr/local/lib/libdrogon.so* /usr/local/lib/

@@ -39,7 +39,7 @@
 
 ## 遗留事项
 
-- Docker 首次构建日志确认 Drogon 使用 Git 子模块提供 Trantor；Dockerfile 已改为递归浅克隆。Ubuntu 24.04 的库路径不在 Drogon 1.9.10 `FindMySQL.cmake` 的默认搜索范围内，Dockerfile 已通过该模块使用的 `MYSQL_INCLUDE_DIRS`、`MYSQL_LIBRARIES` 显式指定头文件和客户端库。需使用这些修复重新构建后再记录正式验收结果。
+- Docker 首次构建日志确认 Drogon 使用 Git 子模块提供 Trantor；Dockerfile 已改为递归浅克隆。Drogon 1.9.10 的异步 MySQL 实现需要 MariaDB Connector/C 的非阻塞 API，因此 Ubuntu 24.04 构建和运行时使用 `libmariadb-dev` / `libmariadb3`；并通过该版本 `FindMySQL.cmake` 使用的 `MYSQL_INCLUDE_DIRS`、`MYSQL_LIBRARIES` 显式指定路径。需使用这些修复重新构建后再记录正式验收结果。
 - 在安装 Docker Engine 的 Ubuntu 24.04 或新 Linux 主机上创建 `backend/.env` 后执行 `scripts/verify-p2a.ps1` 等价的 Compose 命令，保存构建和接口输出。
 - Docker 实测通过后，补充本文件结果、将 P2A-01/P2A-03/P2A-04 及总检查表改为 `[x]`，再进入 P2B。
 - 当前不含账户、Token、同步、曲库或下载业务逻辑，符合 P2A 技术验证边界。
