@@ -299,7 +299,7 @@ flowchart TB
 
 ### P2：C++ 后端、账号、网络音乐与云同步
 
-#### P2A C++ 后端技术验证
+#### P2A C++ 后端技术验证【完成】
 
 - [x] `P2A-01` 已在 Ubuntu 24.04 Docker 环境完成 Drogon HTTP、JSON、MySQL、CTest 和镜像构建实测。
 - [x] `P2A-02` 已记录 ADR；当前锁定 Drogon，不并行维护 oatpp/Crow。
